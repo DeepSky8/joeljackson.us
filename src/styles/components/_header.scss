@@ -1,0 +1,183 @@
+@mixin header__bottom {
+    // transition: border-color $transition-med;
+    // transition-timing-function: ease-in-out;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    &.green {
+        border-color: $text-black;
+    }
+    &.blue {
+        border-color: $text-black;
+    }
+    &.black {
+        border-color: $blue-light;
+    }
+    &.white {
+        border-color: $text-black;
+    }
+}
+
+// .header__spacer {
+//     transition: 1s;
+
+//     overflow: hidden;
+//     // padding: $xs-size;
+//     // transition: .5s;
+//     width: fill;
+//     max-width: 60rem;
+//     top: 0;
+//     z-index: 99;
+// }
+
+// .header__wrapper {
+//     // overflow: hidden;
+//     // padding: $xs-size;
+//     // transition: .5s;
+
+//     width: 100%;
+//     max-width: 60rem;
+//     // text-align: center;
+//     // max-width: 60rem;
+//     // margin: 0 auto;
+//     position: relative;
+//     // z-index: 99;
+//     // display: flex;
+//     // justify-content: space-between;
+//     // &.shrink {
+//     //     animation: collapse 0.5s ease forwards;
+//     // }
+//     // &.open {
+//     //     animation: open 0.5s ease forwards;
+//     // }
+// }
+
+.header__wrapper {
+    // justify-content: space-around;
+    position: fixed;
+    top: 0;
+
+    // text-align: center;
+    // left: 50%;
+    // transform: translateX(-50%);
+    overflow: hidden;
+
+    // padding: $xs-size;
+    // transition: .5s;
+    width: 100%;
+    // max-width: 60rem;
+    padding: 0;
+    margin: 0 auto;
+
+    z-index: 98;
+    @include header__bottom;
+
+    @include body__text--color;
+    @include header__text;
+    @include background--color(header__background);
+    // @include background--color(header__background__shadow);
+
+    // display: block;
+
+    h1 {
+        margin: 0;
+    }
+}
+
+.header__content {
+    padding: $s-size;
+    display: flex;
+    justify-content: space-between;
+}
+
+// .header__wrapper {
+//     // overflow: hidden;
+//     // padding: $xs-size;
+//     // transition: .5s;
+
+//     width: 100%;
+//     max-width: 60rem;
+//     // text-align: center;
+//     // max-width: 60rem;
+//     // margin: 0 auto;
+//     position: relative;
+//     // z-index: 99;
+//     // display: flex;
+//     // justify-content: space-between;
+//     // &.shrink {
+//     //     animation: collapse 0.5s ease forwards;
+//     // }
+//     // &.open {
+//     //     animation: open 0.5s ease forwards;
+//     // }
+// }
+
+// .header__content {
+//     justify-content: center;
+//     position: fixed;
+//     // text-align: center;
+//     left: 50%;
+//     transform: translateX(-50%);
+//     overflow: hidden;
+//     padding: $xs-size;
+//     // transition: .5s;
+//     width: 100%;
+//     max-width: 60rem;
+//     padding: 0 0 $s-size 0;
+//     margin: 0 auto;
+//     top: 0;
+//     z-index: 98;
+//     @include body__text;
+//     @include header__text;
+//     @include background--color(header__background);
+//     // @include background--color(header__background__shadow);
+
+//     @include header__bottom;
+
+//     // display: block;
+
+//     h1 {
+//         margin: 0;
+//     }
+// }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .header__wrapper {
+        // justify-content: space-around;
+        // position: fixed;
+        // top: 0;
+
+        // text-align: center;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: hidden;
+
+        // padding: $xs-size;
+        // transition: .5s;
+        // width: 100%;
+        max-width: 60rem;
+        // padding: 0;
+        margin: 0 auto;
+
+        // z-index: 98;
+        @include body__text--color;
+        @include header__text;
+        @include background--color(header__background);
+        // @include background--color(header__background__shadow);
+
+        @include header__bottom;
+
+        // display: block;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    .header__content {
+        padding: $s-size;
+        display: flex;
+        justify-content: space-between;
+    }
+}

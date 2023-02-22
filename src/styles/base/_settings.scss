@@ -1,0 +1,227 @@
+// Google Material Icon font
+
+.material-icons {
+    // font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    // font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+
+// Breakpoints
+
+$tiny-breakpoint: 371px;
+$medium-breakpoint: 540px;
+$desktop-breakpoint: 425px;
+
+// Sizes
+$xs-size: 0.6rem;
+$s-size: 1.2rem;
+$m-size: 1.6rem;
+$l-size: 3.2rem;
+$xl-size: 4.8rem;
+$xxl-size: 9.6rem;
+
+$tiny-breakpoint: 371px;
+$medium-breakpoint: 540px;
+$desktop-breakpoint: 425px;
+
+$calcFontSize: calc(12px + 2vmin);
+$calcFontSizeLarge: calc(12px + 4vmin);
+$calcFontSizeExtraLarge: calc(12px + 6vmin);
+
+// Colors
+$text-black: #000000;
+
+$green-reg: #66904c;
+$green-med-dark: darken($green-reg, 8%);
+$green-dark: darken($green-reg, 20%);
+
+$blue-reg: #267be9;
+$blue-med-dark: darken($blue-reg, 15%);
+$blue-dark: darken($blue-reg, 20%);
+
+$blue-light: #a2d4d3;
+$blue-light-dark: darken($blue-light, 20%);
+
+$grey-light: #e7e7e7;
+$grey-regular: #686868;
+$green-alt: #4c7135;
+$background-grey: #12121a;
+$background-blue: #151517;
+
+// $blue-light: #0dc0ba;
+// blue/grey #151517
+// red/grey #171515
+// favicon green #86bf63
+// $green-dark: #66904c;
+// $green-alt: #4c7135;
+// $blue-reg: #0f6be4;
+
+// Timing
+$transition-short: 0.5s;
+$transition-med: 1s;
+$transition-long: 2s;
+
+@mixin color__transition($item) {
+    transition: $item $transition-med;
+    transition-timing-function: ease-out;
+}
+
+@mixin background--color($area) {
+    @if ($area == window__background) {
+        &.green {
+            background-color: $background-grey;
+        }
+        &.blue {
+            background-color: $grey-light;
+        }
+        &.black {
+            background-color: $background-grey;
+        }
+        &.white {
+            background-color: $grey-regular;
+        }
+    }
+
+    @if ($area == header__background) {
+        &.green {
+            background-color: $green-med-dark;
+        }
+        &.blue {
+            background-color: $blue-med-dark;
+        }
+        &.black {
+            background-color: $background-blue;
+        }
+        &.white {
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == header__background__shadow) {
+        &.green {
+            box-shadow: 0px -10px 15px 12px $green-dark;
+        }
+        &.blue {
+            box-shadow: 0px -10px 15px 12px $blue-dark;
+        }
+        &.black {
+            box-shadow: 0px -10px 15px 12px $blue-light-dark;
+        }
+        &.white {
+            box-shadow: 0 -5 18px 10px $text-black;
+        }
+    }
+
+    @if ($area == body__background) {
+        &.green {
+            background-color: $green-reg;
+        }
+        &.blue {
+            background-color: $blue-reg;
+        }
+        &.black {
+            background-color: $background-blue;
+        }
+        &.white {
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == body__background__shadow) {
+        &.green {
+            box-shadow: 0 0 30px 10px $green-dark;
+        }
+        &.blue {
+            box-shadow: 0 0 18px 10px $blue-dark;
+        }
+        &.black {
+            box-shadow: 0 0 15px 3px $blue-light-dark;
+        }
+        &.white {
+            box-shadow: 0 0 18px 10px $text-black;
+        }
+    }
+}
+
+@mixin header__text {
+    &.green {
+        color: $text-black;
+    }
+    &.blue {
+        color: $grey-light;
+    }
+    &.black {
+        color: $blue-light;
+    }
+    &.white {
+        color: $text-black;
+    }
+}
+
+@mixin body__text--color {
+    &.green {
+        color: $text-black;
+    }
+    &.blue {
+        color: $text-black;
+    }
+    &.black {
+        color: $blue-light;
+    }
+    &.white {
+        color: $text-black;
+    }
+}
+
+@mixin border--color {
+    &.green {
+        border-color: $text-black;
+    }
+    &.blue {
+        border-color: $text-black;
+    }
+    &.black {
+        border-color: $blue-light;
+    }
+    &.white {
+        border-color: $text-black;
+    }
+}
+
+// @mixin hr__line($location) {
+//     transition: color $transition-med;
+//     @if ($location == header__bottom) {
+//         &.green {
+//             color: $text-black;
+//         }
+//         &.blue {
+//             color: $text-black;
+//         }
+//         &.black {
+//             color: $blue-light;
+//         }
+//         &.white {
+//             color: $text-black;
+//         }
+//     }
+// }
