@@ -1,0 +1,127 @@
+// Options:
+// Any CSS element that might change
+@mixin color__transition($item, $timer: $transition-long) {
+    transition: $item $timer;
+    transition-timing-function: ease-out;
+}
+
+@mixin size__transition($item, $timer: $transition-short) {
+    transition: $item $timer;
+    transition-timing-function: ease;
+}
+
+// @mixin multiple__transition($elements..., $timers..., $transitions...) {
+//     @for $i from 0 to length($elements) {
+
+//     }
+
+//     // transition: ;
+// }
+
+@mixin twoItem__transition($itemOne, $timerOne, $funcOne, $itemTwo, $timerTwo, $funcTwo) {
+    transition: $itemOne $timerOne $funcOne, $itemTwo $timerTwo $funcTwo;
+}
+
+// Options:
+// window__background
+// header__background
+// header__background__shadow
+// body__background
+// body__background__shadow
+
+@mixin background--color($area) {
+    @if ($area == window__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $background-grey;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-grey;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-regular;
+        }
+    }
+
+    @if ($area == header__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green-med-dark;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-med-dark;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-blue;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == header__background__shadow) {
+        &.green {
+            @include color__transition(box-shadow);
+            box-shadow: 0px -10px 15px 12px $green-dark;
+        }
+        &.blue {
+            @include color__transition(box-shadow);
+            box-shadow: 0px -10px 15px 12px $blue-dark;
+        }
+        &.black {
+            @include color__transition(box-shadow);
+            box-shadow: 0px -10px 15px 12px $blue-light-dark;
+        }
+        &.white {
+            @include color__transition(box-shadow);
+            box-shadow: 0 -5 18px 10px $text-black;
+        }
+    }
+
+    @if ($area == body__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green-reg;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-reg;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-blue;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == body__background__shadow) {
+        &.green {
+            @include color__transition(box-shadow);
+            box-shadow: 0 0 30px 10px $green-dark;
+        }
+        &.blue {
+            @include color__transition(box-shadow);
+            box-shadow: 0 0 18px 10px $blue-dark;
+        }
+        &.black {
+            @include color__transition(box-shadow);
+            box-shadow: 0 0 15px 3px $blue-light-dark;
+        }
+        &.white {
+            @include color__transition(box-shadow);
+            box-shadow: 0 0 18px 10px $text-black;
+        }
+    }
+}

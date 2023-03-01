@@ -1,4 +1,5 @@
 .bodyWrapper {
+    @include body__text--color;
     padding-top: 600px;
     height: 90000px;
 }

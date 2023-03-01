@@ -22,7 +22,3 @@ const Home = () => {
 }
 
 export default Home
-
-// <div className="home__header--width">
-// <Header />
-// </div>

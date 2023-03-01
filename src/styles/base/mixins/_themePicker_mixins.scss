@@ -1,0 +1,66 @@
+@mixin themePicker__container--bottomPadding {
+    &.expanded {
+        // @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
+        padding-bottom: 0;
+        @include size__transition(padding-bottom)
+    }
+    &.contracted {
+        // @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
+        padding-bottom: $xs-size;
+        @include size__transition(padding-bottom)
+
+    }
+}
+
+@mixin themePicker__button {
+    border-style: solid;
+
+    &.green {
+        background-color: $green-reg;
+        border-color: $green-reg;
+        &.picked {
+            border-color: $text-black;
+            // background-color: $green-reg;
+        }
+    }
+    &.blue {
+        border-color: $blue-reg;
+        background-color: $blue-reg;
+        &.picked {
+            border-color: $text-black;
+
+            // background-color: $blue-reg;
+        }
+    }
+    &.black {
+        border-color: $background-blue;
+        background-color: $background-blue;
+        &.picked {
+            border-color: $blue-light;
+            // background-color: $background-blue;
+        }
+    }
+    &.white {
+        border-color: $grey-light;
+        background-color: $grey-light;
+        &.picked {
+            border-color: $text-black;
+            // background-color: $grey-light;
+        }
+    }
+}
+
+@mixin themePicker__button--size {
+    &.expanded {
+        @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
+        height: $theme__button--size;
+        width: $theme__button--size;
+        margin: 0 10px;
+    }
+    &.contracted {
+        @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
+        height: $theme__button--sizeSmall;
+        width: $theme__button--sizeSmall;
+        margin: 0 10px;
+    }
+}

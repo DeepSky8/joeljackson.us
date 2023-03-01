@@ -1,76 +1,48 @@
-.window__background {
-    @include background--color(body__background);
-    @include color__transition(background-color);
-     // @include background--color(window__background);
-        // transition: background-color 3s;
-        // transition-timing-function: ease-in-out;
-;
-}
-
 .home__content__wrapper {
-    // transition: background-color $transition-long;
-    // transition-timing-function: ease-in-out;
     position: relative;
     margin: 0;
-
-    max-width: 60rem;
-    padding-bottom: $s-size;
+    padding: 0;
+    width: 100%;
     min-height: 99vh;
     font-size: $calcFontSizeLarge;
 
     @include background--color(body__background);
-    @include color__transition(background-color);
+    // @include color__transition(background-color);
 
-    // @include background--color(body__background__shadow);
-    @include body__text--color;
-    @include color__transition(color);
-
+    // @include body__text--color;
+    // @include color__transition(color);
 }
 
-// .home__header--width {
-//     // max-width: 60rem;
-//     width: 100%;
-// }
-
-// .body__spacer {
-//     padding: $m-size;
-// }
+.home__body--spacer {
+    padding: $m-size;
+}
 
 @media only screen and (min-device-width: $desktop-breakpoint) {
     .window__background {
         @include background--color(window__background);
-        @include color__transition(background-color);
-
-        // transition: background-color 3s;
-        // transition-timing-function: ease-in-out;
+        // @include color__transition(background-color);
     }
 
     .home__content__wrapper {
-        // transition: background-color $transition-long;
-        // transition-timing-function: ease-in-out;
         position: relative;
         margin: 0 auto;
 
-        max-width: 60rem;
+        max-width: $max-content-width;
         padding-bottom: $s-size;
         min-height: 99vh;
-        font-size: $calcFontSizeLarge;
+        // font-size: $calcFontSizeLarge;
 
-        @include background--color(body__background);
-        @include color__transition(background-color);
+        // @include background--color(body__background);
+        // @include color__transition(background-color);
+
         @include background--color(body__background__shadow);
-        @include color__transition(box-shadow);
-        @include body__text--color;
-        @include color__transition(color);
+        // @include color__transition(box-shadow);
 
+        // @include body__text--color;
+        // @include color__transition(color);
     }
 
-    .home__header--width {
-        // max-width: 60rem;
-        width: 100%;
-    }
-
-    .home__body--spacer {
-        padding: $m-size;
-    }
+    // .home__body--spacer {
+    //     padding: $m-size;
+    // }
 }

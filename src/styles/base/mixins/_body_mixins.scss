@@ -1,0 +1,18 @@
+@mixin body__text--color {
+    &.green {
+        @include color__transition(color);
+        color: $text-black;
+    }
+    &.blue {
+        @include color__transition(color);
+        color: $text-black;
+    }
+    &.black {
+        @include color__transition(color);
+        color: $blue-light;
+    }
+    &.white {
+        @include color__transition(color);
+        color: $text-black;
+    }
+}
