@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MenuWrapper from "../components/body/MenuWrapper";
+import MenuWrapper, { loader as menuLoader } from "../components/body/MenuWrapper";
 import Welcome from "../components/body/Welcome";
 import Home from "../components/Home";
 import NotFoundPage from "../components/NotFoundPage";
@@ -23,13 +23,9 @@ const AppRouter = createBrowserRouter([
                         // errorElement: <NotFoundPage />
                     },
                     {
-                        path: 'made',
+                        path: "/:type",
                         element: <MenuWrapper />,
-                        // errorElement: <NotFoundPage />
-                    },
-                    {
-                        path: 'found',
-                        element: <MenuWrapper />,
+                        loader: menuLoader,
                         // errorElement: <NotFoundPage />
                     },
                 ]

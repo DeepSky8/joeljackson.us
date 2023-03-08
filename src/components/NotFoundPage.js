@@ -8,7 +8,7 @@ import useLocalStorageState from "use-local-storage-state";
 export const NotFoundPage = () => {
     const error = useRouteError()
     return (
-        <div ID={`error-page`}>
+        <div id={`notFoundPage`}>
             <h1>Oops!</h1>
             <p>Sorry, an unexpected error has occurred.</p>
             <p>
