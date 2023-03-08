@@ -3,9 +3,12 @@
 @import "./base/mixins/header_mixins";
 @import "./base/mixins/themePicker_mixins";
 @import "./base/mixins/body_mixins";
+@import "./base/mixins/nav_mixins";
+@import "./components/errorPage";
 @import "./base/base";
 @import "./base/materialSymbols";
 @import "./components/home";
 @import "./components/header";
 @import "./components/themePicker";
 @import "./components/body";
+@import "./components/nav";

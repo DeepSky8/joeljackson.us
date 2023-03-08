@@ -1,0 +1,54 @@
+@mixin nav-link--base {
+    text-decoration: none;
+    // text-align: center;
+}
+
+@mixin nav-link--outline {
+    outline: solid;
+    @include color__transition(outline);
+
+    &.green {
+        outline-color: $text-black;
+        @include color__transition(outline);
+        @include size__transition(font-weight);
+
+        &.picked {
+            font-weight: bold;
+            @include color__transition(outline);
+            @include size__transition(font-weight);
+        }
+    }
+    &.blue {
+        outline-color: $text-black;
+        @include color__transition(outline);
+        @include size__transition(font-weight);
+
+        &.picked {
+            font-weight: bold;
+            @include color__transition(outline);
+            @include size__transition(font-weight);
+        }
+    }
+    &.black {
+        outline-color: $blue-light;
+        @include color__transition(outline);
+        @include size__transition(font-weight);
+
+        &.picked {
+            font-weight: bold;
+            @include color__transition(outline);
+            @include size__transition(font-weight);
+        }
+    }
+    &.white {
+        outline-color: $text-black;
+        @include color__transition(outline);
+        @include size__transition(font-weight);
+
+        &.picked {
+            font-weight: bold;
+            @include color__transition(outline);
+            @include size__transition(font-weight);
+        }
+    }
+}

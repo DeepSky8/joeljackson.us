@@ -3,7 +3,7 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 99vh;
+    min-height: 100vh;
     font-size: $calcFontSizeLarge;
 
     @include background--color(body__background);
@@ -15,7 +15,10 @@
 
 .home__body--spacer {
     padding: $m-size;
+    padding-top: $xxl-size;
 }
+
+
 
 @media only screen and (min-device-width: $desktop-breakpoint) {
     .window__background {

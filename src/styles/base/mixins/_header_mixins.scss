@@ -1,11 +1,11 @@
 @mixin header__text--color {
     &.green {
         // @include color__transition(color);
-        color: $text-black;
+        color: $green-light;
     }
     &.blue {
         // @include color__transition(color);
-        color: $grey-light;
+        color: $text-black;
     }
     &.black {
         // @include color__transition(color);

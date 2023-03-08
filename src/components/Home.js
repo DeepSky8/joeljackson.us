@@ -11,9 +11,9 @@ const Home = () => {
 
     return (
         <div className={`window__background ${theme}`} >
-        <Header />
+            <Header />
             <div className={`home__content__wrapper ${theme}`}>
-                <div className="home__body--spacer">
+                <div className={`home__body--spacer ${theme}`}>
                     <Body />
                 </div>
             </div>

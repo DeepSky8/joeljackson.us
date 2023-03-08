@@ -1,5 +1,7 @@
-import React, { Children } from "react";
+import React from "react";
 import { createBrowserRouter } from "react-router-dom";
+import MenuWrapper from "../components/body/MenuWrapper";
+import Welcome from "../components/body/Welcome";
 import Home from "../components/Home";
 import NotFoundPage from "../components/NotFoundPage";
 import ThemeWrapper from "../components/theme/ThemeWrapper";
@@ -13,7 +15,24 @@ const AppRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                errorElement: <NotFoundPage />
+                // errorElement: <NotFoundPage />,
+                children: [
+                    {
+                        index: true,
+                        element: <Welcome />,
+                        // errorElement: <NotFoundPage />
+                    },
+                    {
+                        path: 'made',
+                        element: <MenuWrapper />,
+                        // errorElement: <NotFoundPage />
+                    },
+                    {
+                        path: 'found',
+                        element: <MenuWrapper />,
+                        // errorElement: <NotFoundPage />
+                    },
+                ]
 
             }
         ]

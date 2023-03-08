@@ -1,0 +1,12 @@
+
+#error-page{
+    font-size: $calcFontSizeLarge;
+    text-align: center;
+}
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    #error-page{
+        font-size: $calcFontSize;
+        text-align: center;
+    }
+}

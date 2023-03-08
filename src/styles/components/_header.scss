@@ -30,15 +30,16 @@
     // @include background--color(header__background);
     // @include color__transition(background-color);
     @include header__text--size;
+}
+
+.headerLink {
+    margin: 0;
+
+    @include textLink;
+    @include header__text--color;
     h1 {
         margin: 0;
-        // font-size: $calcFontSizeExtraLarge;
-        // @include header__text--size;
-
-
     }
-
-    // @include
 }
 
 .material-icons {

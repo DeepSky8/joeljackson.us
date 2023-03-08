@@ -1,0 +1,31 @@
+.nav__wrapper {
+    display: flex;
+    justify-content: center;
+    padding: $s-size 0;
+}
+
+.nav-link--left {
+    @include nav-link--base;
+    @include header__text--color;
+    @include background--color(button__background);
+    @include nav-link--outline;
+    text-align: right;
+    border-top-left-radius: 500px;
+    border-bottom-left-radius: 500px;
+    padding: 10px 22px 20px 0px;
+    margin-right: 0%;
+    width: 20%;
+}
+
+.nav-link--right {
+    @include nav-link--base;
+    @include header__text--color;
+    @include background--color(button__background);
+    @include nav-link--outline;
+    text-align: left;
+    border-top-right-radius: 500px;
+    border-bottom-right-radius: 500px;
+    padding: 10px 0px 20px 20px;
+    margin-left: 0%;
+    width: 20%;
+}

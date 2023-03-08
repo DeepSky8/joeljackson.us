@@ -1,7 +1,0 @@
-86bf63
-
-hex green: 86bf63
-
-darker green: 66904c
-
-Windows green: c7135
