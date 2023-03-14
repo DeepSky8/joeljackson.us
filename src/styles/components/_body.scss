@@ -1,5 +1,5 @@
 .bodyWrapper {
-    @include body__text--color;
+    @include body__text--color();
     // margin-top: $xl-size;
 }
 
@@ -7,7 +7,7 @@
 @media only screen and (min-device-width: $desktop-breakpoint) {
 
     .bodyWrapper {
-        @include body__text--color;
+        @include body__text--color();
         // margin-top: 0;
     }
 }

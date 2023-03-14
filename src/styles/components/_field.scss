@@ -1,0 +1,31 @@
+.field__container {
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding-bottom: $xs-size;
+}
+
+// .field__container--description {
+//     // flex: 0 0 33.3333%;
+//     // display: flex;
+//     // width: 15vw;
+//     // min-width: fit-content;
+// }
+
+// .field__container--input {
+//     // flex: 0 0 66.6666%;
+//     // position: absolute;
+//     // left: 20vw;
+//     // max-width: 70vw;
+//     // display: flex;
+// }
+
+.field--input {
+    height: fit-content;
+    font-size: $calcFontSizeLarge;
+    @include inset__item;
+    @include background--color(field__input__background);
+    @include body__text--color();
+}

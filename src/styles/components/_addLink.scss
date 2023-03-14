@@ -1,0 +1,31 @@
+.addLink__container {
+    outline-style: solid;
+    outline-width: 1px;
+    @include body__outline--color;
+    @include background--color(addLink__background);
+    padding: $s-size;
+    // text-align: center;
+    border-radius: 3px;
+    @include inset__item;
+}
+
+.addLink__images {
+    display: flex;
+    justify-content: space-around;
+}
+
+.addLink__imageViewer--border {
+    @include border__style();
+    height: 320px;
+    width: 320px;
+}
+
+.addLink__save--button {
+    margin-top: $s-size;
+    width: 100%;
+    height: fit-content;
+    font-size: $calcFontSizeLarge;
+    @include background--color(switch__background);
+    @include body__text--color();
+    @include border__style();
+}

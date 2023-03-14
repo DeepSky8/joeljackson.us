@@ -1,27 +1,10 @@
 .themePicker__container {
     position: relative;
-    // vertical-align: bottom;
-    // top: 50%;
-    // top: 50px;
-    // bottom: 0px;
     margin-top: $xs-size;
-    // margin-bottom: $xs-size;
     display: flex;
-    // right: $xl-size + $xs-size;
-    // right: $xl-size - $xs-size;
-    // transform: translateX(-50%);
-    // overflow: hidden;
     width: fit-content;
     height: fit-content;
     @include themePicker__container--bottomPadding;
-    // background-color: transparent;
-    // @include color__transition(background-color);
-    // @include background--color(header__background);
-    // z-index: 500;
-    // display: flex;
-    // flex-direction: row;
-    // height: auto;
-    // flex-flow: column;
 }
 
 .themePicker__slider__container {
@@ -34,33 +17,10 @@
     right: 0;
     padding: 0;
     margin: 0;
-    // @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
     border: none;
     display: flex;
-    // border-radius: 100%;
-    // background-color: transparent;
-    // height: 100%;
-    // @include color__transition(background-color);
     @include background--color(header__background);
-    // background-color: transparent;
 }
-
-// .material-icons {
-//     font-size: $calcFontSizeExtraLarge;
-//     border-radius: 100%;
-
-//     height: $theme__button--size;
-//     width: $theme__button--size;
-//     // border-radius: 60%;
-
-//     &.palette {
-//         // @include color__transition(background-color);
-//         // @include background--color(header__background);
-//         // background-color: transparent;
-//         @include color__transition(color);
-//         @include header__text--color;
-//     }
-// }
 
 @keyframes slide-right {
     0% {
@@ -69,10 +29,6 @@
     100% {
         transform: translateX(102%);
     }
-    // from {
-    // }
-    // to {
-    // }
 }
 
 @keyframes slide-left {
@@ -82,23 +38,12 @@
     100% {
         transform: translateX(0%);
     }
-    // from {
-    // }
-    // to {
-    // }
 }
 
 .themePicker__button__container {
     display: flex;
-    // overflow: hidden;
     position: relative;
-    // right: 0;
     transform: translateX(102%);
-    // z-index: 100;
-    // -webkit-transform: translateX(-100%);
-    // text-align: right;
-    // transition: 2s;
-    // animation: ease-in 5s linear 0 1 left forwards;
 
     &.hidden {
         animation-name: slide-right;
@@ -121,15 +66,6 @@
     flex-direction: row;
     border-radius: 60%;
     @include themePicker__button--size();
-    // height: $theme__button--size;
-    // width: $theme__button--size;
     cursor: pointer;
-    // gap: $xs-size;
     @include themePicker__button();
-    // @include color__transition(background-color);
-    // @include color__transition(border-color);
-
-    // &:hover {
-    //     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
-    // }
 }

@@ -1,0 +1,7 @@
+.menuWrapper__add-link {
+    text-decoration: none;
+    @include body__text--color();
+    padding: 0 25px 15px;
+    font-size: $calcFontSizeExtraLarge;
+    
+}

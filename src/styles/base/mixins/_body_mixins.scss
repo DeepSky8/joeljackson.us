@@ -1,18 +1,59 @@
-@mixin body__text--color {
+@mixin body__text--color($strength: noEffect) {
+    @if ($strength == noEffect) {
+        &.green {
+            @include color__transition(color);
+            color: $text-black;
+        }
+        &.blue {
+            @include color__transition(color);
+            color: $text-black;
+        }
+        &.black {
+            @include color__transition(color);
+            color: $blue-light;
+        }
+        &.white {
+            @include color__transition(color);
+            color: $text-black;
+        }
+    }
+
+    @if ($strength == faded) {
+        &.green {
+            @include color__transition(color);
+            color: $text-grey--green;
+        }
+        &.blue {
+            @include color__transition(color);
+            color: $text-grey;
+        }
+        &.black {
+            @include color__transition(color);
+            color: $text-blue--faded;
+        }
+        &.white {
+            @include color__transition(color);
+            color: $text-grey;
+        }
+    }
+}
+
+@mixin body__outline--color() {
+
     &.green {
-        @include color__transition(color);
-        color: $text-black;
+        @include color__transition(outline-color);
+        outline-color: $text-black;
     }
     &.blue {
-        @include color__transition(color);
-        color: $text-black;
+        @include color__transition(outline-color);
+        outline-color: $text-black;
     }
     &.black {
-        @include color__transition(color);
-        color: $blue-light;
+        @include color__transition(outline-color);
+        outline-color: $blue-light;
     }
     &.white {
-        @include color__transition(color);
-        color: $text-black;
+        @include color__transition(outline-color);
+        outline-color: $text-black;
     }
 }

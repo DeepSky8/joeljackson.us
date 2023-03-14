@@ -1,0 +1,12 @@
+.imageViewer__container {
+    height: 320px;
+    width: 320px;
+    text-align: center;
+    overflow: hidden;
+    p {
+        margin: 0;
+    }
+    img {
+        padding: 10px 10px;
+    }
+}
