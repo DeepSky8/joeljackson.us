@@ -1,9 +1,9 @@
 import React, { Suspense, useContext, useEffect, useReducer } from "react";
-import { Await, useLoaderData } from "react-router";
+import { Await, useLoaderData, useNavigate } from "react-router";
 import { updateType } from "../../actions/cardActions";
+import saveLink from "../../functions/saveLink";
 import fieldPopulator from "../../objectsArrays/fieldObjectArray";
 import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
-import { getItems } from "../../temp/tempAPI";
 import ThemeContext from "../context/ThemeContext";
 import Field from "./Field";
 import ImageUpload from "./ImageUpload";
@@ -15,6 +15,7 @@ const loader = async ({ params }) => {
 }
 
 const AddLink = () => {
+    const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type } = useLoaderData()
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
@@ -73,7 +74,9 @@ const AddLink = () => {
             <div>
                 <button
                     className={`addLink__save--button ${theme}`}
-                    onClick={() => { alert('Item Saved') }}
+                    onClick={() => {
+                        if (saveLink(cardState)) { navigate(`/${cardState.type}`) }
+                    }}
                 >Save</button>
             </div>
 
