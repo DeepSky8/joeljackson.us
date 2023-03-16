@@ -28,4 +28,5 @@
     @include background--color(switch__background);
     @include body__text--color();
     @include border__style();
+    cursor: pointer;
 }

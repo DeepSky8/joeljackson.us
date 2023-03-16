@@ -1,3 +1,7 @@
+import { child, push, ref, update } from 'firebase/database';
+import { uploadBytesResumable, ref as sRef } from 'firebase/storage';
+import { db, storage } from "../api/firebase";
+
 export const updateType = (updatedType) => ({
     type: 'UPDATE_TYPE',
     updatedType
@@ -37,3 +41,33 @@ export const updateAltText = (updatedAltText) => ({
 export const clearImage = () => ({
     type: 'CLEAR_IMAGE'
 })
+
+// Cloud Actions
+
+export const startSaveLink = ({ altText, body, link, title, type }, cardKey) => {
+    const updates = {}
+
+    updates[`${type}/${cardKey}`] = { altText, body, link, title, type, cardKey }
+
+    update(ref(db), updates)
+        .catch((error) => {
+            console.log('Did not save link', error)
+        })
+}
+
+export const startUploadFile = (imageFile, cardKey) => {
+    const pathReference = sRef(storage, `/images/${cardKey}`)
+    const uploadTask = uploadBytesResumable(pathReference, imageFile)
+        .catch((error) => {
+            alert('Did not upload image')
+            console.log('Did not upload file', error)
+        })
+}
+
+export const startNewLink = (cardData) => {
+    const newCardKey = push(child(ref(db), `${cardData.type}`)).key
+    startSaveLink(cardData, newCardKey)
+    startUploadFile(cardData.imageFile, newCardKey)
+}
+
+

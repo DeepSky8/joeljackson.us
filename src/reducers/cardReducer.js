@@ -1,6 +1,6 @@
 
 const defaultCardState = {
-    cardID: '',
+    cardKey: '',
     type: 'made',
     title: '',
     titlePlaceholder: 'Catchy or otherwise',
