@@ -5,7 +5,8 @@
     width: 100%;
     min-height: 100vh;
     font-size: $calcFontSizeLarge;
-
+    // padding: $m-size;
+    // padding-top: $xxl-size;
     @include background--color(body__background);
     // @include color__transition(background-color);
 
@@ -13,7 +14,7 @@
     // @include color__transition(color);
 }
 
-.home__body--spacer {
+.home__content--padding {
     padding: $m-size;
     padding-top: $xxl-size;
 }

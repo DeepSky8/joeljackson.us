@@ -58,6 +58,11 @@ const cardReducer = (state, action) => {
                 ...state,
                 altText: action.updatedAltText
             }
+        case 'LOAD_CARD':
+            return {
+                ...state,
+                ...action.cardData
+            }
         default:
             return state
     }

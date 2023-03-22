@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import ThemeContext from "../context/ThemeContext";
 
-const ImageViewer = ({ imageFile, altText }) => {
+const ImageViewer = ({ imageFile, imageURL = null, altText }) => {
+    const theme = useContext(ThemeContext)
     const [fileURL, setFileURL] = useState(null)
 
     useEffect(() => {
         let reader, isCancel = false;
-
         if (imageFile) {
             const reader = new FileReader();
             reader.onload = (e) => {
@@ -27,14 +28,17 @@ const ImageViewer = ({ imageFile, altText }) => {
     }, [imageFile])
 
     return (
-        <div className="imageViewer__container">
+        <div className={`imageViewer__container ${theme}`}>
             {
-                fileURL
+                imageURL
                     ?
-                    <img src={fileURL} alt={altText} />
+                    <img src={imageURL} alt={altText} />
                     :
-                    <p>{altText}</p>
-
+                    fileURL
+                        ?
+                        <img src={fileURL} alt={altText} />
+                        :
+                        altText
             }
         </div>
     )

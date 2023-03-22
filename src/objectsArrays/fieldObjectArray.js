@@ -1,4 +1,4 @@
-import { updateAltText, updateBody, updateLink, updateTitle } from "../actions/cardActions"
+import { startSaveCard, updateAltText, updateBody, updateLink, updateTitle } from "../actions/cardActions"
 
 const fieldObjectArray = [
     {
@@ -44,7 +44,15 @@ const fieldPopulator = ({ cardState, dispatchCardState, theme }) => {
             change: (e) => {
                 dispatchCardState(action(e.target.value))
             },
-            blur: () => { },
+            blur: () => {
+                return (
+                    cardState.cardKey
+                        ?
+                        startSaveCard({ ...cardState }, cardState.cardKey)
+                        :
+                        ''
+                )
+            },
         }
         fieldFieldsArray.push(fieldFieldsObject)
     })

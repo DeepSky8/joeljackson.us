@@ -3,9 +3,7 @@
     width: 320px;
     text-align: center;
     overflow: hidden;
-    p {
-        margin: 0;
-    }
+    @include body__text--color;
     img {
         padding: 10px 10px;
     }

@@ -1,6 +1,7 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import MenuWrapper, { loader as menuLoader } from "../components/body/MenuWrapper";
+import EditWrapper, { loader as editLoader } from "../components/body/edit/EditWrapper";
+import MenuWrapper, { loader as menuLoader } from "../components/body/menu/MenuWrapper";
 import Welcome from "../components/body/Welcome";
 import AddLink, { loader as addLoader } from "../components/createEdit/AddLink";
 import Home from "../components/Home";
@@ -33,6 +34,11 @@ const AppRouter = createBrowserRouter([
                         path: '/:type/add',
                         element: <AddLink />,
                         loader: addLoader
+                    },
+                    {
+                        path: '/:type/edit',
+                        element: <EditWrapper />,
+                        loader: editLoader,
                     }
                 ]
 

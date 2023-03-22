@@ -20,7 +20,7 @@ const ImageUpload = ({ dispatchCardState }) => {
                     type='file'
                     accept='.jpeg,.jpg,.gif,.png,.bmp'
                     onChange={(e) => {
-                        resizeImage(e, dispatchCardState)
+                        dispatchCardState(resizeImage(e))
                     }}
                     onBlur={() => { }}
                 />
