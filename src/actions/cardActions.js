@@ -118,7 +118,7 @@ export const startGetCards = async (type) => {
 
 }
 
-export const startRemoveCard = (type = 'undefined', cardKey) => {
+export const startRemoveCard = async (type = 'undefined', cardKey) => {
     const updates = {}
 
     updates[`${type}/${cardKey}/`] = null

@@ -1,8 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router";
 // import useLocalStorageState from "use-local-storage-state";
 
 
 const MenuItem = ({ cardData, removeCard }) => {
+    const navigate = useNavigate()
     // const [cardState,] = useLocalStorageState(cardKey, {
     //     defaultValue: {
     //         cardKey: '',
@@ -25,11 +27,16 @@ const MenuItem = ({ cardData, removeCard }) => {
                 cardData.imageURL ?
                     <img src={cardData.imageURL} alt={cardData.altText} />
                     :
-                    ''
+                    cardData.altText
             }
             <button
                 onClick={() => { removeCard() }}
             >Remove</button>
+            <button
+                onClick={() => {
+                    navigate(`/${cardData.type}/edit/${cardData.cardKey}`)
+                }}
+            >Edit</button>
         </div>
     )
 }

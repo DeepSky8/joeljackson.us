@@ -1,7 +1,7 @@
 import convert from 'image-file-resize';
 import { updateImageFile } from '../actions/cardActions';
 
-const resizeImage = (e) => {
+const resizeImage = (e, dispatchCardState) => {
     const imageMimeType = /image\/(jpeg|jpg|gif|png|bmp)/i;
 
     const file = e.target.files[0];
@@ -16,7 +16,7 @@ const resizeImage = (e) => {
         type: 'jpg'
     })
         .then((resizedFile) => {
-            return updateImageFile(resizedFile)
+            return dispatchCardState(updateImageFile(resizedFile))
         })
         .catch((error) => {
             console.log('error', error)

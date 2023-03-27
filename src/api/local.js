@@ -1,3 +1,4 @@
+import { defaultCardState } from "../reducers/cardReducer"
 
 export const getLocalCardKeys = async (type) => {
     const localKeys = JSON.parse(localStorage.getItem(`${type.toString()}Keys`))
@@ -11,7 +12,7 @@ export const getLocalCardKeys = async (type) => {
 export const getLocalCard = (key) => {
     const localCard = JSON.parse(localStorage.getItem(key))
     // console.log('localCard', localCard)
-    return localCard ? localCard : { title: 'Loading...', body: 'Loading...' }
+    return localCard ? localCard : defaultCardState
 }
 
 // export const localCards = async (type) => {

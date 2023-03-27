@@ -1,5 +1,5 @@
 import React, { Suspense, useContext } from "react";
-import { Await, defer, useLoaderData } from "react-router";
+import { Await, defer, useLoaderData, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { startRemoveCard } from "../../../actions/cardActions";
 import ThemeContext from "../../context/ThemeContext";
@@ -29,6 +29,7 @@ const loader = async ({ params }) => {
 
 
 const MenuWrapper = () => {
+    const navigate = useNavigate()
     const theme = useContext(ThemeContext)
     const { type, localCards } = useLoaderData()
     // const [localCardKeys, setLocalCardKeys] = useLocalStorageState(`${type}Keys`)
@@ -37,6 +38,9 @@ const MenuWrapper = () => {
 
     const removeCard = (cardKey) => {
         startRemoveCard(type, cardKey)
+            .then(() => {
+                navigate(`/${type}`)
+            })
     }
 
 
@@ -65,8 +69,6 @@ const MenuWrapper = () => {
                 </Await>
             </Suspense>
             <Link className={`menuWrapper__add-link ${theme}`} to={'add'}>Add</Link>
-
-            <Link className={`menuWrapper__add-link ${theme}`} to={'edit'}>Edit</Link>
         </div>
     )
 }

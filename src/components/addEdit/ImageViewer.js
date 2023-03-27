@@ -8,10 +8,12 @@ const ImageViewer = ({ imageFile, imageURL = null, altText }) => {
     useEffect(() => {
         let reader, isCancel = false;
         if (imageFile) {
-            const reader = new FileReader();
+            reader = new FileReader();
             reader.onload = (e) => {
                 const { result } = e.target
-                if (result && !isCancel) {
+                if (result
+                    && !isCancel
+                ) {
                     setFileURL(result)
                 }
             }

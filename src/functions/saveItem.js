@@ -1,7 +1,7 @@
 import { startNewLink } from "../actions/cardActions";
 import fieldsFilled from "./fieldsFilled";
 
-const saveLink = async (cardState) => {
+const saveItem = async (cardState) => {
     const textEntered = fieldsFilled([cardState.title, cardState.body, cardState.link])
     const imageEntered = fieldsFilled([cardState.imageFile])
     const altEntered = fieldsFilled([cardState.altText])
@@ -33,4 +33,4 @@ const saveLink = async (cardState) => {
 
 }
 
-export default saveLink
+export default saveItem

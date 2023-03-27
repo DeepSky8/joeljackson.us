@@ -1,31 +1,37 @@
 import React, { Suspense, useContext, useEffect, useReducer } from "react";
 import { Await, useLoaderData, useNavigate } from "react-router";
-import { updateType } from "../../actions/cardActions";
-import saveLink from "../../functions/saveLink";
-import fieldPopulator from "../../objectsArrays/fieldObjectArray";
-import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
-import ThemeContext from "../context/ThemeContext";
-import Field from "./Field";
-import ImageUpload from "./ImageUpload";
-import ImageViewer from "./ImageViewer";
-import MadeFoundSwitch from "./MadeFoundSwitch";
+import { startNewLink, startSaveCard, startUploadFile, updateType } from "../actions/cardActions";
+import readyToUpdate from "../functions/readyToUpdate";
+import saveItem from "../functions/saveItem";
+import fieldPopulator from "../objectsArrays/fieldObjectArray";
+import { cardReducer, defaultCardState } from "../reducers/cardReducer";
+import ThemeContext from "../components/context/ThemeContext";
+import Field from "../components/addEdit/Field";
+import ImageUpload from "../components/addEdit/ImageUpload";
+import ImageViewer from "../components/addEdit/ImageViewer";
+import MadeFoundSwitch from "../components/addEdit/MadeFoundSwitch";
 
 const loader = async ({ params }) => {
     return ({ type: params.type })
 }
 
-const AddLink = () => {
+
+const AddItem = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type } = useLoaderData()
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
+    dispatchCardState(updateType(type.toString()))
 
-    useEffect(() => {
-        if (['made', 'found'].includes(type.toString())) {
-            dispatchCardState(updateType(type.toString()))
-        }
-    }, [type])
+    const goBack = () => {
+        navigate(`/${cardState.type}`)
+    }
+
+    // useEffect(() => {
+    //     if (['made', 'found'].includes(type.toString())) {
+    //     }
+    // }, [type])
 
 
     return (
@@ -75,13 +81,29 @@ const AddLink = () => {
                 <button
                     className={`addLink__save--button ${theme}`}
                     onClick={() => {
-                        if (saveLink(cardState)) { navigate(`/${cardState.type}`) }
+                        if (readyToUpdate(cardState)) {
+                            startNewLink(cardState)
+                                .then(() => {
+                                    goBack()
+                                })
+                                .catch((error) => {
+                                    alert(error)
+                                })
+
+                        }
                     }}
                 >Save</button>
+
+                <button
+                    className={`addLink__save--button ${theme}`}
+                    onClick={() => {
+                        goBack()
+                    }}
+                >Cancel</button>
             </div>
 
         </div>
     )
 }
 
-export { loader, AddLink as default }
+export { loader, AddItem as default }
