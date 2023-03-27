@@ -1,7 +1,7 @@
 import { startNewLink } from "../actions/cardActions";
 import fieldsFilled from "./fieldsFilled";
 
-const saveLink = (cardState) => {
+const saveItem = async (cardState) => {
     const textEntered = fieldsFilled([cardState.title, cardState.body, cardState.link])
     const imageEntered = fieldsFilled([cardState.imageFile])
     const altEntered = fieldsFilled([cardState.altText])
@@ -10,8 +10,14 @@ const saveLink = (cardState) => {
     const error3 = 'Please include an image to accompany your Alternate Text'
 
     if (textEntered && (imageEntered === altEntered)) {
-        startNewLink(cardState);
-        return true
+       return startNewLink(cardState)
+            // .then(() => {
+            //     return true
+            // })
+            // .catch((error) => {
+            //     alert(error)
+            // })
+        // return true
     } else {
 
         if (!textEntered) {
@@ -27,4 +33,4 @@ const saveLink = (cardState) => {
 
 }
 
-export default saveLink
+export default saveItem

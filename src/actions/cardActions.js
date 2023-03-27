@@ -1,5 +1,5 @@
-import { child, push, ref, update } from 'firebase/database';
-import { uploadBytesResumable, ref as sRef } from 'firebase/storage';
+import { child, get, push, ref, update } from 'firebase/database';
+import { uploadBytesResumable, ref as sRef, getDownloadURL } from 'firebase/storage';
 import { db, storage } from "../api/firebase";
 
 export const updateType = (updatedType) => ({
@@ -42,9 +42,14 @@ export const clearImage = () => ({
     type: 'CLEAR_IMAGE'
 })
 
+export const loadCard = (cardData) => ({
+    type: 'LOAD_CARD',
+    cardData
+})
+
 // Cloud Actions
 
-export const startSaveLink = ({ altText, body, link, title, type }, cardKey) => {
+export const startSaveCard = async ({ altText, body, link, title, type }, cardKey) => {
     const updates = {}
 
     updates[`${type}/${cardKey}`] = { altText, body, link, title, type, cardKey }
@@ -55,9 +60,31 @@ export const startSaveLink = ({ altText, body, link, title, type }, cardKey) => 
         })
 }
 
-export const startUploadFile = (imageFile, cardKey) => {
-    const pathReference = sRef(storage, `/images/${cardKey}`)
-    const uploadTask = uploadBytesResumable(pathReference, imageFile)
+const startSaveURL = async (type, cardKey, url) => {
+    const updates = {}
+
+    updates[`${type}/${cardKey}/imageURL`] = url
+
+    update(ref(db), updates)
+        .catch((error) => {
+            console.log('Did not save url', error)
+        })
+
+    // return true
+}
+
+export const startUploadFile = async (imageFile, type, cardKey) => {
+    const pathReference = sRef(storage, `${type}/${cardKey}`)
+    uploadBytesResumable(pathReference, imageFile)
+        .then(() => {
+            return getDownloadURL(pathReference)
+        })
+        .then((url) => {
+            startSaveURL(type, cardKey, url)
+        })
+        // .then((result) => {
+        //     return result
+        // })
         .catch((error) => {
             alert('Did not upload image')
             console.log('Did not upload file', error)
@@ -66,8 +93,36 @@ export const startUploadFile = (imageFile, cardKey) => {
 
 export const startNewLink = (cardData) => {
     const newCardKey = push(child(ref(db), `${cardData.type}`)).key
-    startSaveLink(cardData, newCardKey)
-    startUploadFile(cardData.imageFile, newCardKey)
+    startSaveCard(cardData, newCardKey)
+    startUploadFile(cardData.imageFile, cardData.type, newCardKey)
+    // .then(() => {
+    //     return true
+    // })
 }
 
+export const startGetCards = async (type) => {
+
+    return get(ref(db, `${type}`))
+        .then((snapshot) => {
+            const tempList = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((snap) => {
+                    tempList.push(snap.val())
+                })
+            }
+            return tempList
+        })
+        .catch((error) => {
+            console.log('error', error)
+        })
+
+}
+
+export const startRemoveCard = async (type = 'undefined', cardKey) => {
+    const updates = {}
+
+    updates[`${type}/${cardKey}/`] = null
+
+    update(ref(db), updates)
+}
 

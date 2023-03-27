@@ -45,7 +45,7 @@
 .material-icons {
     // @include header__text--color;
 
-    @include twoItem__transition(font-size, $transition-long, ease-out, color, $transition-short, ease);
+    @include twoItem__transition(font-size, $transition-short, ease-out, color, $transition-short, ease);
 
     // @include header__text--size;
     // font-size: $calcFontSizeExtraLarge;

@@ -10,7 +10,7 @@ const Field = ({ label, id, theme, type, placeholder, value, change, blur }) => 
             <span className="field__container--input">
                 <input
                     id={id}
-                    className={`field--input ${id} ${theme}`}
+                    className={`field--input ${theme}`}
                     type={type}
                     placeholder={placeholder}
                     value={value}

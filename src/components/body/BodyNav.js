@@ -9,7 +9,7 @@ const BodyNav = () => {
     return (
         <div className="nav__wrapper">
             <NavLink
-                to='made'
+                to='/made'
                 className={({ isActive }) =>
                 (
                     isActive
@@ -22,7 +22,7 @@ const BodyNav = () => {
             >Made</NavLink>
 
             <NavLink
-            to='found'
+            to='/found'
             className={({ isActive }) =>
             (
                 isActive
