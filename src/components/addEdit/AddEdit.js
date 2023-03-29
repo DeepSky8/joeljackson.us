@@ -1,34 +1,48 @@
 import React, { Suspense, useContext, useReducer } from "react";
-import { Await, useLoaderData, useNavigate } from "react-router";
+import { Await, useLoaderData, useNavigate, useOutletContext, useParams } from "react-router";
 import ThemeContext from "../context/ThemeContext";
 import ImageUpload from "./ImageUpload";
 import ImageViewer from "./ImageViewer";
 import fieldPopulator from "../../objectsArrays/fieldObjectArray";
-import { cardReducer } from "../../reducers/cardReducer";
+import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
 import Field from "./Field";
-import { startNewLink, startSaveCard, startUploadFile, updateType } from "../../actions/cardActions";
-import { getLocalCard } from "../../api/local";
+import { loadCard, startNewLink, startSaveCard, startUploadFile, updateType } from "../../actions/cardActions";
+// import { getLocalCard } from "../../api/local";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
+import { useState } from "react";
 
-const loader = async ({ params }) => {
-    return ({
-        cardData: getLocalCard(params.id),
-        type: params.type
-    })
-}
+// const loader = async ({ params }) => {
+//     return ({
+//         cardData: defaultCardState,
+//         type: params.type
+//     })
+// }
 
 const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
-    const { type, cardData } = useLoaderData()
-    const [cardState, dispatchCardState] = useReducer(cardReducer, cardData)
+    const { type, id } = useParams()
+    const { madeCardArray, foundCardArray } = useOutletContext()
+    // const { type, cardData } = useLoaderData()
+    const [currentArray, setCurrentArray] = useState([])
+    const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
     useEffect(() => {
         dispatchCardState(updateType(type.toString()))
+        type === 'found'
+            ?
+            setCurrentArray(foundCardArray)
+            :
+            setCurrentArray(madeCardArray)
     }, [type])
+
+    useEffect(() => {
+        const selectedCard = currentArray.find(card => card.cardKey === id)
+        if (selectedCard) { dispatchCardState(loadCard(selectedCard)) }
+    }, [currentArray])
 
     const goBack = () => {
         navigate(`/${cardState.type}`)
@@ -36,7 +50,7 @@ const AddEdit = () => {
 
     const evalAddEdit = () => {
         if (readyToUpdate(cardState)) {
-            if (cardData.cardKey) {
+            if (cardState.cardKey) {
                 startUploadFile(cardState.imageFile, cardState.type, cardState.cardKey)
                 startSaveCard(cardState, cardState.cardKey)
                     .then(() => {
@@ -56,78 +70,62 @@ const AddEdit = () => {
     return (
         <div className={`addLink__container ${theme}`}>
 
-            <Suspense fallback={''}>
-                <Await resolve={type}>
-                    {(linkType) => {
+            {cardState.cardKey
+                ?
+                <p>{`I ${cardState.type} this:`}</p>
+                :
+                <MadeFoundSwitch
+                    type={type}
+                    dispatchCardState={dispatchCardState}
+                />
+            }
 
-                        if (cardData.cardKey === '') {
-                            return (
-                                <MadeFoundSwitch
-                                    type={linkType}
-                                    dispatchCardState={dispatchCardState}
-                                />
-                            )
-                        } else {
-                            return (
-                                <p>{`I ${cardData.type} this:`}</p>
-                            )
-                        }
-
-                    }}
-                </Await>
-            </Suspense>
-
-            <Suspense fallback={<h2>Loading ...</h2>}>
-                <Await resolve={cardData}>
-                    {(cardData) => {
+            {
+                <span>
+                    {fieldArray.map((field) => {
                         return (
-
-                            <span>
-                                {fieldArray.map((field) => {
-                                    return (
-                                        <Field
-                                            key={field.id}
-                                            {...field}
-                                            id={field.id + cardData.cardKey}
-                                        />
-                                    )
-                                })}
-
-                                <span className="addLink__images" >
-                                    <ImageUpload
-                                        key={cardState.cardKey}
-                                        dispatchCardState={dispatchCardState}
-                                    />
-
-                                    <span className="addLink__imageViewer--border">
-                                        <ImageViewer
-                                            key={cardState.cardKey}
-                                            imageFile={cardState.imageFile}
-                                            imageURL={cardState.imageURL}
-                                            altText={cardState.altText}
-                                        />
-                                    </span>
-                                </span>
-
-                                <button
-                                    className={`addLink__save--button ${theme}`}
-                                    onClick={() => {
-                                        if (evalAddEdit()) { goBack() }
-                                    }}
-                                >{cardData.cardKey === '' ? 'Save' : 'Update'}</button>
-                                <button
-                                    className={`addLink__save--button ${theme}`}
-                                    onClick={() => { goBack() }}
-                                >Cancel</button>
-
-                            </span>
+                            <Field
+                                key={field.id}
+                                {...field}
+                                id={field.id + cardState.cardKey}
+                            />
                         )
+                    })}
 
-                    }}
-                </Await>
-            </Suspense>
+                    <span className="addLink__images" >
+                        <ImageUpload
+                            key={cardState.cardKey}
+                            dispatchCardState={dispatchCardState}
+                        />
+
+                        <span className="addLink__imageViewer--border">
+                            <ImageViewer
+                                key={cardState.cardKey}
+                                imageFile={cardState.imageFile}
+                                imageURL={cardState.imageURL}
+                                altText={cardState.altText}
+                            />
+                        </span>
+                    </span>
+
+                    <button
+                        className={`addLink__save--button ${theme}`}
+                        onClick={() => {
+                            if (evalAddEdit()) { goBack() }
+                        }}
+                    >{cardState.cardKey ? 'Update' : 'Save'}</button>
+                    <button
+                        className={`addLink__save--button ${theme}`}
+                        onClick={() => { goBack() }}
+                    >Cancel</button>
+
+                </span>
+            }
         </div>
     )
 }
 
-export { loader, AddEdit as default }
+export {
+    // loader, 
+    AddEdit as default
+}
