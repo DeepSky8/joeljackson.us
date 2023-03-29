@@ -6,6 +6,7 @@ import ThemeContext from "../../context/ThemeContext";
 import BodyNav from "../BodyNav";
 import MenuItem from "./MenuItem";
 import { getLocalCards } from "../../../api/local";
+import checkURL from "../../../functions/checkURL";
 
 const loader = async ({ params }) => {
     return defer({

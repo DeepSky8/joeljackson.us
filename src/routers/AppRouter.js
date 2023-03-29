@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
-import AddEdit, {loader as addEditLoader} from "../components/body/edit/AddEdit";
+import AddEdit, {loader as addEditLoader} from "../components/addEdit/AddEdit";
 // import EditWrapper, { loader as editLoader } from "../components/body/edit/EditWrapper";
 import MenuWrapper, { loader as menuLoader } from "../components/body/menu/MenuWrapper";
 import Welcome from "../components/body/Welcome";

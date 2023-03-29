@@ -1,15 +1,15 @@
 import React, { Suspense, useContext, useReducer } from "react";
 import { Await, useLoaderData, useNavigate } from "react-router";
-import ThemeContext from "../../context/ThemeContext";
-import ImageUpload from "../../addEdit/ImageUpload";
-import ImageViewer from "../../addEdit/ImageViewer";
-import fieldPopulator from "../../../objectsArrays/fieldObjectArray";
-import { cardReducer } from "../../../reducers/cardReducer";
-import Field from "../../addEdit/Field";
-import { startNewLink, startSaveCard, startUploadFile, updateType } from "../../../actions/cardActions";
-import { getLocalCard } from "../../../api/local";
-import readyToUpdate from "../../../functions/readyToUpdate";
-import MadeFoundSwitch from "../../addEdit/MadeFoundSwitch";
+import ThemeContext from "../context/ThemeContext";
+import ImageUpload from "./ImageUpload";
+import ImageViewer from "./ImageViewer";
+import fieldPopulator from "../../objectsArrays/fieldObjectArray";
+import { cardReducer } from "../../reducers/cardReducer";
+import Field from "./Field";
+import { startNewLink, startSaveCard, startUploadFile, updateType } from "../../actions/cardActions";
+import { getLocalCard } from "../../api/local";
+import readyToUpdate from "../../functions/readyToUpdate";
+import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
 
 const loader = async ({ params }) => {
