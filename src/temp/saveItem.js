@@ -1,5 +1,5 @@
 import { startNewLink } from "../actions/cardActions";
-import fieldsFilled from "./fieldsFilled";
+import fieldsFilled from "../functions/fieldsFilled";
 
 const saveItem = async (cardState) => {
     const textEntered = fieldsFilled([cardState.title, cardState.body, cardState.link])
