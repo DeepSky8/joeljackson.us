@@ -1,5 +1,5 @@
 import { child, get, push, ref, update } from 'firebase/database';
-import { uploadBytesResumable, ref as sRef, getDownloadURL } from 'firebase/storage';
+import { uploadBytesResumable, ref as sRef, getDownloadURL, deleteObject } from 'firebase/storage';
 import { db, storage } from "../api/firebase";
 
 export const updateType = (updatedType) => ({
@@ -52,7 +52,12 @@ export const loadCard = (cardData) => ({
 export const startSaveCard = async ({ altText, body, link, title, type }, cardKey) => {
     const updates = {}
 
-    updates[`${type}/${cardKey}`] = { altText, body, link, title, type, cardKey }
+    updates[`${type}/${cardKey}/altText`] = altText
+    updates[`${type}/${cardKey}/body`] = body
+    updates[`${type}/${cardKey}/link`] = link
+    updates[`${type}/${cardKey}/title`] = title
+    updates[`${type}/${cardKey}/type`] = type
+    updates[`${type}/${cardKey}/cardKey`] = cardKey
 
     update(ref(db), updates)
         .catch((error) => {
@@ -120,9 +125,14 @@ export const startGetCards = async (type) => {
 
 export const startRemoveCard = async (type = 'undefined', cardKey) => {
     const updates = {}
+    const storageRef = sRef(storage, `${type}/${cardKey}/`)
 
     updates[`${type}/${cardKey}/`] = null
 
     update(ref(db), updates)
+    deleteObject(storageRef)
+        .catch((error) => {
+            console.log('Error deleting image', error)
+        })
 }
 

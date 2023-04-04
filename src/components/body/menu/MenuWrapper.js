@@ -33,13 +33,14 @@ const MenuWrapper = () => {
             {type === 'found' && foundCardArray.map((cardData) => {
 
                 return (
-                    <MenuItem
-                        key={cardData.cardKey}
-                        cardData={cardData}
-                        removeCard={() => {
-                            removeCard(cardData.cardKey)
-                        }}
-                    />
+                    
+                        <MenuItem
+                            key={cardData.cardKey}
+                            cardData={cardData}
+                            removeCard={() => {
+                                removeCard(cardData.cardKey)
+                            }}
+                        />
                 )
             })}
             <Link className={`menuWrapper__add-link ${theme}`} to={'add'}>Add</Link>
