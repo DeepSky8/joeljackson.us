@@ -6,7 +6,7 @@ import ImageViewer from "./ImageViewer";
 import fieldPopulator from "../../objectsArrays/fieldObjectArray";
 import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
 import Field from "./Field";
-import { loadCard, startNewLink, startSaveCard, startUploadFile, updateType } from "../../actions/cardActions";
+import { loadCard, startNewLink, startSaveCard, startUploadFile, updateLink, updateType } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
