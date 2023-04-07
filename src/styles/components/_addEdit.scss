@@ -1,0 +1,45 @@
+.addEdit__container {
+    outline-style: solid;
+    outline-width: 1px;
+    @include body__outline--color;
+    @include background--color(addLink__background);
+    padding: $s-size;
+    // text-align: center;
+    border-radius: 3px;
+    @include inset__item;
+}
+
+.addEdit__images {
+    // display: flexbox;
+    // justify-content: center;
+    // width: 100%;
+}
+
+// .addEdit__imageViewer--border {
+//     // @include border__style();
+//     height: 620px;
+//     width: 620px;
+//     // justify-content: space-around;
+//     // display: flexbox;
+// }
+
+.addEdit__buttons--container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.addEdit__buttons--saveCancel {
+    margin-top: $s-size;
+    padding: .5rem;
+    width: 48%;
+    // height: fit-content;
+    font-size: $calcFontSizeLarge;
+    @include background--color(switch__background);
+    @include body__text--color();
+    @include border__style();
+    cursor: pointer;
+}
+
+.addEdit--center {
+    @include center-item;
+}

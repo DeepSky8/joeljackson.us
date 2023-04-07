@@ -16,33 +16,36 @@ const MenuWrapper = () => {
     }
 
     return (
-        <div>
+        <div className="menuWrapper__container">
             <BodyNav />
-            {type === 'made' && madeCardArray.map((cardData) => {
+            <Link className={`menuWrapper__add-link ${theme}`} to={'add'}>+</Link>
+            <div className="menuWrapper__menuItems"            >
+                {type === 'made' && madeCardArray.map((cardData) => {
 
-                return (
-                    <MenuItem
-                        key={cardData.cardKey}
-                        cardData={cardData}
-                        removeCard={() => {
-                            removeCard(cardData.cardKey)
-                        }}
-                    />
-                )
-            })}
-            {type === 'found' && foundCardArray.map((cardData) => {
+                    return (
+                        <MenuItem
+                            key={cardData.cardKey}
+                            cardData={cardData}
+                            removeCard={() => {
+                                removeCard(cardData.cardKey)
+                            }}
+                        />
+                    )
+                })}
 
-                return (
-                    <MenuItem
-                        key={cardData.cardKey}
-                        cardData={cardData}
-                        removeCard={() => {
-                            removeCard(cardData.cardKey)
-                        }}
-                    />
-                )
-            })}
-            <Link className={`menuWrapper__add-link ${theme}`} to={'add'}>Add</Link>
+                {type === 'found' && foundCardArray.map((cardData) => {
+
+                    return (
+                        <MenuItem
+                            key={cardData.cardKey}
+                            cardData={cardData}
+                            removeCard={() => {
+                                removeCard(cardData.cardKey)
+                            }}
+                        />
+                    )
+                })}
+            </div>
         </div>
     )
 }

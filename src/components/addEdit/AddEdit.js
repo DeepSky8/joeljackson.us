@@ -1,5 +1,5 @@
-import React, { Suspense, useContext, useReducer } from "react";
-import { Await, useLoaderData, useNavigate, useOutletContext, useParams } from "react-router";
+import React, { useContext, useReducer } from "react";
+import { useNavigate, useOutletContext, useParams } from "react-router";
 import ThemeContext from "../context/ThemeContext";
 import ImageUpload from "./ImageUpload";
 import ImageViewer from "./ImageViewer";
@@ -7,7 +7,6 @@ import fieldPopulator from "../../objectsArrays/fieldObjectArray";
 import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
 import Field from "./Field";
 import { loadCard, startNewLink, startSaveCard, startUploadFile, updateType } from "../../actions/cardActions";
-// import { getLocalCard } from "../../api/local";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
@@ -24,7 +23,7 @@ const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type, id } = useParams()
-    const { madeCardArray, foundCardArray } = useOutletContext()
+    const { madeCardArray, foundCardArray } = useOutletContext([])
     // const { type, cardData } = useLoaderData()
     const [currentArray, setCurrentArray] = useState([])
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
@@ -68,11 +67,13 @@ const AddEdit = () => {
     }
 
     return (
-        <div className={`addLink__container ${theme}`}>
+        <div className={`addEdit__container ${theme}`}>
 
             {cardState.cardKey
                 ?
-                <p>{`I ${cardState.type} this:`}</p>
+                <p
+                className="addEdit--center"
+                >{`I ${cardState.type} this`}</p>
                 :
                 <MadeFoundSwitch
                     type={type}
@@ -92,32 +93,31 @@ const AddEdit = () => {
                         )
                     })}
 
-                    <span className="addLink__images" >
+                    <span className="addEdit__images" >
                         <ImageUpload
                             key={cardState.cardKey}
                             dispatchCardState={dispatchCardState}
                         />
-
-                        <span className="addLink__imageViewer--border">
-                            <ImageViewer
-                                key={cardState.cardKey}
-                                imageFile={cardState.imageFile}
-                                imageURL={cardState.imageURL}
-                                altText={cardState.altText}
-                            />
-                        </span>
+                        <ImageViewer
+                            key={cardState.cardKey}
+                            imageFile={cardState.imageFile}
+                            imageURL={cardState.imageURL}
+                            altText={cardState.altText}
+                        />
                     </span>
 
-                    <button
-                        className={`addLink__save--button ${theme}`}
-                        onClick={() => {
-                            if (evalAddEdit()) { goBack() }
-                        }}
-                    >{cardState.cardKey ? 'Update' : 'Save'}</button>
-                    <button
-                        className={`addLink__save--button ${theme}`}
-                        onClick={() => { goBack() }}
-                    >Cancel</button>
+                    <span className="addEdit__buttons--container">
+                        <button
+                            className={`addEdit__buttons--saveCancel ${theme}`}
+                            onClick={() => {
+                                if (evalAddEdit()) { goBack() }
+                            }}
+                        >{cardState.cardKey ? 'Update' : 'Save'}</button>
+                        <button
+                            className={`addEdit__buttons--saveCancel ${theme}`}
+                            onClick={() => { goBack() }}
+                        >Cancel</button>
+                    </span>
 
                 </span>
             }
@@ -125,7 +125,7 @@ const AddEdit = () => {
     )
 }
 
-export {
-    // loader, 
-    AddEdit as default
-}
+export default AddEdit
+
+// <span className="addEdit__imageViewer--border">
+// </span>
