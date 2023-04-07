@@ -11,8 +11,8 @@ const resizeImage = (e, dispatchCardState) => {
     }
     convert({
         file,
-        width: 300,
-        height: 300,
+        width: 600,
+        height: 600,
         type: 'jpg'
     })
         .then((resizedFile) => {

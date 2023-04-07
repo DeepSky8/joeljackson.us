@@ -3,7 +3,7 @@ import fieldsFilled from "./fieldsFilled";
 
 
 const readyToUpdate = (cardState) => {
-
+    console.log('cardState', cardState)
     const validationObjectsArray = [
         {
             test: fieldsFilled([cardState.title, cardState.body]),
@@ -34,7 +34,7 @@ const readyToUpdate = (cardState) => {
         return false
     } else if (failedTestIndex === -1) {
         return true
-    }   
+    }
 }
 
 export default readyToUpdate

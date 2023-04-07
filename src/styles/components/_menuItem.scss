@@ -1,3 +1,80 @@
 .menuItem__container {
-    margin-bottom: $s-size;
+    margin: 0 auto $s-size;
+    // outline-style: solid;
+    // outline-width: 1px;
+    // @include body__outline--color;
+    border-style: solid;
+    border-width: 1px;
+    @include border__style;
+    max-width: 98%;
+    max-height: $card-height;
+    text-align: center;
+}
+
+.menuItem__link {
+    display: block;
+    text-decoration: none;
+    @include body__text--color;
+    padding: 0 $s-size;
+    cursor: pointer;
+}
+
+.menuItem__title {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-size: $calcFontSizeExtraLarge;
+    font-weight: bold;
+    margin: $xs-size;
+}
+
+.menuItem__content {
+    display: flex;
+    justify-content: center;
+    // outline-style: solid;
+    // outline-width: 1px;
+    // @include body__outline--color;
+    border-style: solid;
+    border-width: 1px;
+    @include outset__item;
+    // @include border__style;
+    &:hover {
+        @include inset__item;
+    }
+}
+
+.menuItem__image {
+    text-decoration: none;
+    font-size: $calcFontSize;
+    max-width: 48%;
+}
+
+.menuItem__body {
+    max-width: 48%;
+    text-decoration: none;
+}
+
+.menuItem__body--spacer {
+    display: block;
+    margin: $s-size;
+}
+
+.menuItem__buttons--container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menuItem__buttons--editRemove {
+    margin: $s-size;
+    padding: 0.5rem;
+    width: 48%;
+    font-size: $calcFontSizeLarge;
+    @include background--color(header__background);
+    @include body__text--color();
+    @include border__style();
+    cursor: pointer;
+    &:hover {
+        @include inset__item;
+        @include background--color(switch__background);
+    }
 }

@@ -16,9 +16,17 @@
 
 @mixin inset__item() {
     border-radius: 5px;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3), 0 2px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, 0.3), 0 2px rgba(255, 255, 255, 0.1);
 }
+
+@mixin outset__item() {
+    border-radius: 5px;
+    -webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px  rgba(255, 255, 255, 0.1);
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px rgba(255, 255, 255, 0.1);
+}
+
+// rgba(255, 255, 255, 0.1)
 
 // Options:
 // window__background
@@ -223,4 +231,8 @@
     border-radius: 5px;
     border-width: 1px;
     border-color: black;
+}
+
+@mixin center-item {
+    text-align: center;
 }
