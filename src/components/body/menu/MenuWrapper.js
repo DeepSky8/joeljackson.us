@@ -36,6 +36,7 @@ const MenuWrapper = () => {
                 {type === 'found' && foundCardArray.map((cardData) => {
 
                     return (
+
                         <MenuItem
                             key={cardData.cardKey}
                             cardData={cardData}
@@ -46,6 +47,7 @@ const MenuWrapper = () => {
                     )
                 })}
             </div>
+
         </div>
     )
 }

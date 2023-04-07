@@ -11,6 +11,7 @@ import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
 import { useState } from "react";
+import checkURL from "../../functions/checkURL";
 
 // const loader = async ({ params }) => {
 //     return ({
@@ -49,8 +50,12 @@ const AddEdit = () => {
 
     const evalAddEdit = () => {
         if (readyToUpdate(cardState)) {
+            // Add HTTP if it's not part of the URL as entered by the user
+            dispatchCardState(updateLink(checkURL(cardState.link)))
+
             if (cardState.cardKey) {
-                startUploadFile(cardState.imageFile, cardState.type, cardState.cardKey)
+                if (cardState.imageFile) { startUploadFile(cardState.imageFile, cardState.type, cardState.cardKey) }
+
                 startSaveCard(cardState, cardState.cardKey)
                     .then(() => {
                         goBack()
@@ -125,7 +130,5 @@ const AddEdit = () => {
     )
 }
 
-export default AddEdit
 
-// <span className="addEdit__imageViewer--border">
-// </span>
+export default AddEdit

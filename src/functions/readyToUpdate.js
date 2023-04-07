@@ -18,7 +18,7 @@ const readyToUpdate = (cardState) => {
             error: 'Please double-check the Link'
         },
         {
-            test: cardState.altText ? fieldsFilled([cardState.imageFile]) : true,
+            test: cardState.altText ? (fieldsFilled([cardState.imageFile]) || fieldsFilled([cardState.imageURL])) : true,
             error: 'Please include an image to accompany your Alternate Text'
         },
         {
