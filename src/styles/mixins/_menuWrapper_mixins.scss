@@ -1,0 +1,6 @@
+@mixin menuWrapper__addAuth--buttons{
+    text-decoration: none;
+    @include body__text--color();
+    padding: $s-size;
+    font-size: $calcFontSizeExtraLarge;
+}

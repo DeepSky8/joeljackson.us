@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
+import { auth } from "../../../api/firebase";
 
-const MenuItem = ({ cardData, removeCard }) => {
+const MenuItem = ({ cardData, removeCard, authStatus }) => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
 
@@ -25,9 +26,7 @@ const MenuItem = ({ cardData, removeCard }) => {
                         <hr />
                     }
                     <span className={`menuItem__body ${theme}`}>
-                        <span className="menuItem__body--spacer">
-                            {cardData.body}
-                        </span>
+                        {cardData.body}
                     </span>
 
                 </span>
@@ -35,7 +34,7 @@ const MenuItem = ({ cardData, removeCard }) => {
             </a>
 
 
-            <span className="menuItem__buttons--container">
+            {authStatus === 'lock_open' && <span className="menuItem__buttons--container">
 
                 <button
                     className={`menuItem__buttons--editRemove ${theme}`}
@@ -48,7 +47,7 @@ const MenuItem = ({ cardData, removeCard }) => {
                     onClick={() => { removeCard() }}
                 >Remove</button>
             </span>
-
+            }
 
         </div>
     )

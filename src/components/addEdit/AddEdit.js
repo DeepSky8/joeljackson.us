@@ -13,19 +13,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import checkURL from "../../functions/checkURL";
 
-// const loader = async ({ params }) => {
-//     return ({
-//         cardData: defaultCardState,
-//         type: params.type
-//     })
-// }
-
 const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type, id } = useParams()
     const { madeCardArray, foundCardArray } = useOutletContext([])
-    // const { type, cardData } = useLoaderData()
     const [currentArray, setCurrentArray] = useState([])
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
@@ -77,7 +69,7 @@ const AddEdit = () => {
             {cardState.cardKey
                 ?
                 <p
-                className="addEdit--center"
+                    className="addEdit--center"
                 >{`I ${cardState.type} this`}</p>
                 :
                 <MadeFoundSwitch
@@ -98,18 +90,16 @@ const AddEdit = () => {
                         )
                     })}
 
-                    <span className="addEdit__images" >
-                        <ImageUpload
-                            key={cardState.cardKey}
-                            dispatchCardState={dispatchCardState}
-                        />
-                        <ImageViewer
-                            key={cardState.cardKey}
-                            imageFile={cardState.imageFile}
-                            imageURL={cardState.imageURL}
-                            altText={cardState.altText}
-                        />
-                    </span>
+                    <ImageUpload
+                        key={cardState.cardKey}
+                        dispatchCardState={dispatchCardState}
+                    />
+                    <ImageViewer
+                        key={cardState.cardKey}
+                        imageFile={cardState.imageFile}
+                        imageURL={cardState.imageURL}
+                        altText={cardState.altText}
+                    />
 
                     <span className="addEdit__buttons--container">
                         <button

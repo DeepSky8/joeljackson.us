@@ -4,9 +4,10 @@
 @import "./mixins/themePicker_mixins";
 @import "./mixins/body_mixins";
 @import "./mixins/nav_mixins";
-@import "./components/notFoundPage";
+@import "./mixins/menuWrapper_mixins";
 @import "./base/base";
 @import "./base/materialSymbols";
+@import "./components/notFoundPage";
 @import "./components/home";
 @import "./components/header";
 @import "./components/themePicker";

@@ -1,17 +1,17 @@
 .menuWrapper__container {
 }
 
-.menuWrapper__menuItems {
-    display: flexbox;
-    flex-wrap: wrap;
+.menuWrapper__container--addAuth {
+    justify-content: space-between;
+    display: flex
 }
 
-.menuWrapper__add-link {
-    text-decoration: none;
-    @include body__text--color();
-    padding: 0 25px 15px;
-    font-size: $calcFontSizeExtraLarge;
+.menuWrapper__lock--button {
+    background: transparent;
+    border: none;
+}
+
+.menuWrapper__container--menuItems {
+    display: flexbox;
     flex-wrap: wrap;
-    display: flex;
-    width: fit-content;
 }
