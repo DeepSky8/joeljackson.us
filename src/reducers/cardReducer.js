@@ -1,6 +1,7 @@
 
 const defaultCardState = {
     cardKey: '',
+    userUID: '',
     type: 'made',
     title: '',
     titlePlaceholder: 'Catchy or otherwise',
@@ -37,6 +38,12 @@ const cardReducer = (state, action) => {
                 ...defaultCardState,
                 ...state,
                 type: action.updatedType
+            }
+        case 'UPDATE_UID':
+            return {
+                ...defaultCardState,
+                ...state,
+                userUID: action.userUID,
             }
         case 'UPDATE_TITLE':
             return {

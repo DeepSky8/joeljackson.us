@@ -23,7 +23,15 @@ const MenuWrapper = () => {
         startRemoveCard(type, cardKey)
     }
 
-    const authFlipper = () => {
+    const addActions = () => {
+        if (auth.currentUser) {
+            navigate('add')
+        } else {
+            navigate(`/authentication/${type}`)
+        }
+    }
+
+    const authActions = () => {
         if (auth.currentUser) {
             logout()
             setAuthStatus('lock')
@@ -32,14 +40,12 @@ const MenuWrapper = () => {
         }
     }
 
-
-    //                 <Link className={`material-icons ${authStatus} ${theme}`} to={`/authentication/${type}`} ></Link>
     return (
         <div className="menuWrapper__container">
             <BodyNav />
             <span className="menuWrapper__container--addAuth">
-                <Link className={`material-icons add ${theme}`} to={'add'}>add</Link>
-                <button className={`material-icons ${authStatus} ${theme} menuWrapper__lock--button`} onClick={authFlipper} >{`${authStatus}`}</button>
+                <button className={`material-icons add ${theme} menuWrapper__button--addLock`} onClick={addActions} >add</button>
+                <button className={`material-icons ${authStatus} ${theme} menuWrapper__button--addLock`} onClick={authActions} >{`${authStatus}`}</button>
             </span>
 
             <div className="menuWrapper__container--menuItems">

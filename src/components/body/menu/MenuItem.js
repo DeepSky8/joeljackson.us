@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
-import { auth } from "../../../api/firebase";
 
 const MenuItem = ({ cardData, removeCard, authStatus }) => {
     const theme = useContext(ThemeContext)
@@ -23,7 +22,7 @@ const MenuItem = ({ cardData, removeCard, authStatus }) => {
                             src={cardData.imageURL} alt={cardData.altText}
                         />
                         :
-                        <hr />
+                        ''
                     }
                     <span className={`menuItem__body ${theme}`}>
                         {cardData.body}
@@ -54,18 +53,3 @@ const MenuItem = ({ cardData, removeCard, authStatus }) => {
 }
 
 export default MenuItem
-//            <div className="menuItem__spacer">
-
-//                    <div className="menuItem__buttons--positioner">
-
-// className="menuItem__buttons--editRemove"
-
-
-
-
-
-// <span className="menuItem__image">
-// {
-
-// }
-// </span>
