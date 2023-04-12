@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router";
-import { Link } from "react-router-dom";
 import { startRemoveCard } from "../../../actions/cardActions";
 import ThemeContext from "../../context/ThemeContext";
 import BodyNav from "../BodyNav";
@@ -27,7 +26,7 @@ const MenuWrapper = () => {
         if (auth.currentUser) {
             navigate('add')
         } else {
-            navigate(`/authentication/${type}`)
+            navigate(`/authenticate/${type}`)
         }
     }
 
@@ -36,7 +35,7 @@ const MenuWrapper = () => {
             logout()
             setAuthStatus('lock')
         } else {
-            navigate(`/authentication/${type}`)
+            navigate(`/authenticate/${type}`)
         }
     }
 

@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../api/firebase";
+import { auth, logInWithEmailAndPassword, registerWithEmailAndPassword, signInWithGoogle } from "../../api/firebase";
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import { Link } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth";
 
-const AuthPage = () => {
+const ResetPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("")
     const [user, loading, error] = useAuthState(auth)
-    const loginTitle = 'Login'
-    const emailText = 'Login with Email'
+    // const [showRegisterPane, setRegisterPane] = useState(false)
+    const resetTitle = 'Password Reset'
+    const sendResetEmail = 'Send Password Reset Email'
     const newAccountText = "Create New Account"
-    const resetPasswordText = 'Reset Password'
-    const googleText = 'Login with Google'
+    const returnText = 'Return to Login'
     const returnApp = 'Return to App'
 
 
@@ -28,11 +31,26 @@ const AuthPage = () => {
         if (user) navigate(`/${back}`);
     }, [user, loading]);
 
+    // const booleanRegister = () => {
+    //     setRegisterPane(!showRegisterPane)
+    // }
+
+    // const loginRegister = () => {
+    //     if (showRegisterPane && (password === confirmPassword)) {
+    //         registerWithEmailAndPassword(email, password)
+    //     } else if (!showRegisterPane) {
+    //         logInWithEmailAndPassword(email, password)
+    //     } else {
+    //         alert('Please ensure passwords match')
+    //     }
+    // }
+
+
     return (
         <div className={`authPage__container`}>
 
             <span className={`authPage__container--title ${theme}`}>
-                <h3>{loginTitle}</h3>
+                <h3>{resetTitle}</h3>
             </span>
 
             <hr />
@@ -52,19 +70,6 @@ const AuthPage = () => {
                         placeholder="E-mail Address"
                     />
                 </span>
-                <span className="authPage__container--input">
-                    <span className="authPage__login--label">
-                        <label htmlFor="password">Password</label>
-                    </span>
-                    <input
-                        id="password"
-                        type="password"
-                        className="authPage__login--textBox"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="Password"
-                    />
-                </span>
             </span>
 
             <span className='authPage__container--buttons'>
@@ -73,10 +78,10 @@ const AuthPage = () => {
                     <button
                         className="authPage__login--button"
                         onClick={() => {
-                            logInWithEmailAndPassword(email, password)
+                            sendPasswordResetEmail(email)
                         }}
                     >
-                        {emailText}
+                        {sendResetEmail}
                     </button>
                 </span>
 
@@ -84,28 +89,19 @@ const AuthPage = () => {
                     <button
                         className="authPage__login--button"
                         onClick={() => {
-                            navigate(`/reset`)
-                        }}
-                    >
-                        {resetPasswordText}
-                    </button>
-                </span>
-
-                <span className="authPage__container--button">
-                    <button
-                        className="authPage__login--button"
-                        onClick={() => {
-                            navigate(`/register/${back}`)
+                            navigate(`register/${back}`)
                         }}>
                         {newAccountText}
                     </button>
                 </span>
 
                 <span className="authPage__container--button">
-                    <button className="authPage__login--button"
-                        onClick={signInWithGoogle}
-                    >
-                        {googleText}
+                    <button
+                        className="authPage__login--button"
+                        onClick={() => {
+                            navigate(`/${back}`)
+                        }}>
+                        {returnText}
                     </button>
                 </span>
 
@@ -119,9 +115,8 @@ const AuthPage = () => {
                     </button>
                 </span>
             </span>
-
         </div>
     )
 }
 
-export default AuthPage
+export default ResetPage

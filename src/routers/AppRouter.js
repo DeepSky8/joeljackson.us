@@ -7,6 +7,8 @@ import Home from "../components/Home";
 import NotFoundPage from "../components/NotFoundPage";
 import ThemeWrapper from "../components/theme/ThemeWrapper";
 import AuthPage from "../components/authentication/AuthPage";
+import ResetPage from "../components/authentication/ResetPage";
+import RegisterPage from "../components/authentication/RegisterPage";
 
 const AppRouter = createBrowserRouter([
     {
@@ -36,8 +38,16 @@ const AppRouter = createBrowserRouter([
                         // loader: addEditLoader,
                     },
                     {
-                        path: '/authentication/:back?',
+                        path: '/authenticate/:back?',
                         element: <AuthPage />
+                    },
+                    {
+                        path: '/register/:back?',
+                        element: <RegisterPage />
+                    },
+                    {
+                        path: '/reset/:email?',
+                        element: <ResetPage />
                     }
                 ]
 

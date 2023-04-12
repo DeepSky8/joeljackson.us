@@ -1,0 +1,48 @@
+.authPage__container {
+    display: flexbox;
+}
+
+.authPage__container--title {
+    text-align: center;
+    @include body__text--color;
+    h3 {
+        margin: 0;
+    }
+}
+
+.authPage__container--login {
+    display: flexbox;
+    @include body__text--color;
+}
+
+.authPage__container--input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.authPage__login--label {
+    max-width: 50%;
+}
+
+.authPage__login--textBox {
+    height: fit-content;
+    max-width: 50%;
+    font-size: $calcFontSizeLarge;
+}
+
+.authPage__container--buttons {
+    display: flexbox;
+    justify-content: center;
+}
+
+.authPage__container--button {
+    display: flex;
+    justify-content: center;
+    margin: $l-size 0;
+}
+
+.authPage__login--button {
+    font-size: $calcFontSizeLarge;
+    width: 75%;
+    height: $calcFontSizeExtraLarge;
+}
