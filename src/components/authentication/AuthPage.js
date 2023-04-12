@@ -81,6 +81,16 @@ const AuthPage = () => {
                 </span>
 
                 <span className="authPage__container--button">
+                    <button className="authPage__login--button"
+                        onClick={signInWithGoogle}
+                    >
+                        {googleText}
+                    </button>
+                </span>
+
+                <hr />
+
+                <span className="authPage__container--button">
                     <button
                         className="authPage__login--button"
                         onClick={() => {
@@ -101,13 +111,7 @@ const AuthPage = () => {
                     </button>
                 </span>
 
-                <span className="authPage__container--button">
-                    <button className="authPage__login--button"
-                        onClick={signInWithGoogle}
-                    >
-                        {googleText}
-                    </button>
-                </span>
+
 
                 <span className="authPage__container--button">
                     <button

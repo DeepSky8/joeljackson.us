@@ -96,6 +96,8 @@ const RegisterPage = () => {
                     </button>
                 </span>
 
+                <hr />
+
                 <span className="authPage__container--button">
                     <button
                         className="authPage__login--button"

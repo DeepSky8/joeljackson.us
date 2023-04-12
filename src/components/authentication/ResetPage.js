@@ -19,7 +19,7 @@ const ResetPage = () => {
     const resetTitle = 'Password Reset'
     const sendResetEmail = 'Send Password Reset Email'
     const newAccountText = "Create New Account"
-    const returnText = 'Return to Login'
+    const returnLogin = 'Return to Login'
     const returnApp = 'Return to App'
 
 
@@ -85,6 +85,8 @@ const ResetPage = () => {
                     </button>
                 </span>
 
+                <hr />
+
                 <span className="authPage__container--button">
                     <button
                         className="authPage__login--button"
@@ -99,9 +101,9 @@ const ResetPage = () => {
                     <button
                         className="authPage__login--button"
                         onClick={() => {
-                            navigate(`/${back}`)
+                            navigate(`/authenticate/${back}`)
                         }}>
-                        {returnText}
+                        {returnLogin}
                     </button>
                 </span>
 
