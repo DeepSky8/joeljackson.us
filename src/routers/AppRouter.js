@@ -9,6 +9,7 @@ import ThemeWrapper from "../components/theme/ThemeWrapper";
 import AuthPage from "../components/authentication/AuthPage";
 import ResetPage from "../components/authentication/ResetPage";
 import RegisterPage from "../components/authentication/RegisterPage";
+import AdminPage from "../components/admin/AdminPage";
 
 const AppRouter = createBrowserRouter([
     {
@@ -30,12 +31,10 @@ const AppRouter = createBrowserRouter([
                     {
                         path: '/:type/add',
                         element: <AddEdit />,
-                        // loader: addEditLoader
                     },
                     {
                         path: '/:type/edit/:id',
                         element: <AddEdit />,
-                        // loader: addEditLoader,
                     },
                     {
                         path: '/authenticate/:back?',
@@ -48,6 +47,10 @@ const AppRouter = createBrowserRouter([
                     {
                         path: '/reset/:email?',
                         element: <ResetPage />
+                    },
+                    {
+                        path: '/admin',
+                        element: <AdminPage />
                     }
                 ]
 
