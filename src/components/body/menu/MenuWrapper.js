@@ -20,9 +20,9 @@ import AddLock from "../AddLock";
 const MenuWrapper = () => {
     // const theme = useContext(ThemeContext)
     // const navigate = useNavigate()
-    const { madeCardArray, foundCardArray } = useOutletContext()
+    const { madeCardArray, foundCardArray, authStatus, setAuthStatus } = useOutletContext()
     const { type } = useParams()
-    const [authStatus, setAuthStatus] = useState('lock')
+    // const [authStatus, setAuthStatus] = useState('lock')
 
     useEffect(() => {
         auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
@@ -83,10 +83,7 @@ const MenuWrapper = () => {
                     )
                 })}
             </div>
-            <AddLock
-                authStatus={authStatus}
-                setAuthStatus={setAuthStatus}
-            />
+
         </div>
     )
 }
@@ -97,3 +94,8 @@ export { MenuWrapper as default }
 // <button className={`material-icons add ${theme} menuWrapper__button--addLock`} onClick={addActions} >add</button>
 // <button className={`material-icons ${authStatus} ${theme} menuWrapper__button--addLock`} onClick={authActions} >{`${authStatus}`}</button>
 // </span>
+
+// <AddLock
+// authStatus={authStatus}
+// setAuthStatus={setAuthStatus}
+// />
