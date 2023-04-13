@@ -20,7 +20,7 @@ const RegisterPage = () => {
 
     useEffect(() => {
         if (loading) {
-            console.log('loading', loading)
+            // console.log('loading', loading)
             return;
         }
         if (user) navigate(`/${back}`);
