@@ -6,29 +6,35 @@ import ImageViewer from "./ImageViewer";
 import fieldPopulator from "../../objectsArrays/fieldObjectArray";
 import { cardReducer, defaultCardState } from "../../reducers/cardReducer";
 import Field from "./Field";
-import { loadCard, startNewLink, startSaveCard, startUploadFile, updateLink, updateType } from "../../actions/cardActions";
+import {
+    loadCard,
+    startNewLink,
+    startSaveCard,
+    startUploadFile,
+    updateLink,
+    updateType,
+    updateUID
+} from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
 import { useState } from "react";
 import checkURL from "../../functions/checkURL";
-
-// const loader = async ({ params }) => {
-//     return ({
-//         cardData: defaultCardState,
-//         type: params.type
-//     })
-// }
+import { auth } from "../../api/firebase";
 
 const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type, id } = useParams()
     const { madeCardArray, foundCardArray } = useOutletContext([])
-    // const { type, cardData } = useLoaderData()
     const [currentArray, setCurrentArray] = useState([])
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
+
+    useEffect(() => {
+        // Add user UID to card
+        dispatchCardState(updateUID(auth.currentUser.uid))
+    }, [])
 
     useEffect(() => {
         dispatchCardState(updateType(type.toString()))
@@ -49,6 +55,7 @@ const AddEdit = () => {
     }
 
     const evalAddEdit = () => {
+
         if (readyToUpdate(cardState)) {
             // Add HTTP if it's not part of the URL as entered by the user
             dispatchCardState(updateLink(checkURL(cardState.link)))
@@ -77,7 +84,7 @@ const AddEdit = () => {
             {cardState.cardKey
                 ?
                 <p
-                className="addEdit--center"
+                    className="addEdit--center"
                 >{`I ${cardState.type} this`}</p>
                 :
                 <MadeFoundSwitch
@@ -98,18 +105,14 @@ const AddEdit = () => {
                         )
                     })}
 
-                    <span className="addEdit__images" >
-                        <ImageUpload
-                            key={cardState.cardKey}
-                            dispatchCardState={dispatchCardState}
-                        />
-                        <ImageViewer
-                            key={cardState.cardKey}
-                            imageFile={cardState.imageFile}
-                            imageURL={cardState.imageURL}
-                            altText={cardState.altText}
-                        />
-                    </span>
+                    <ImageUpload
+                        dispatchCardState={dispatchCardState}
+                    />
+                    <ImageViewer
+                        imageFile={cardState.imageFile}
+                        imageURL={cardState.imageURL}
+                        altText={cardState.altText}
+                    />
 
                     <span className="addEdit__buttons--container">
                         <button

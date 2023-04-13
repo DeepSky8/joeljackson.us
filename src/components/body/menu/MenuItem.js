@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
+import { auth } from "../../../api/firebase";
 
-const MenuItem = ({ cardData, removeCard }) => {
+const MenuItem = ({ cardData, removeCard, authStatus }) => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
 
@@ -22,12 +23,10 @@ const MenuItem = ({ cardData, removeCard }) => {
                             src={cardData.imageURL} alt={cardData.altText}
                         />
                         :
-                        <hr />
+                        ''
                     }
                     <span className={`menuItem__body ${theme}`}>
-                        <span className="menuItem__body--spacer">
-                            {cardData.body}
-                        </span>
+                        {cardData.body}
                     </span>
 
                 </span>
@@ -35,38 +34,28 @@ const MenuItem = ({ cardData, removeCard }) => {
             </a>
 
 
-            <span className="menuItem__buttons--container">
+            {
+                authStatus === 'lock_open'
+                &&
+                (auth.currentUser.uid === cardData.userUID)
+                &&
+                <span className="menuItem__buttons--container">
 
-                <button
-                    className={`menuItem__buttons--editRemove ${theme}`}
-                    onClick={() => {
-                        navigate(`/${cardData.type}/edit/${cardData.cardKey}`)
-                    }}
-                >Edit</button>
-                <button
-                    className={`menuItem__buttons--editRemove ${theme}`}
-                    onClick={() => { removeCard() }}
-                >Remove</button>
-            </span>
-
+                    <button
+                        className={`menuItem__buttons--editRemove ${theme}`}
+                        onClick={() => {
+                            navigate(`/${cardData.type}/edit/${cardData.cardKey}`)
+                        }}
+                    >Edit</button>
+                    <button
+                        className={`menuItem__buttons--editRemove ${theme}`}
+                        onClick={() => { removeCard() }}
+                    >Remove</button>
+                </span>
+            }
 
         </div>
     )
 }
 
 export default MenuItem
-//            <div className="menuItem__spacer">
-
-//                    <div className="menuItem__buttons--positioner">
-
-// className="menuItem__buttons--editRemove"
-
-
-
-
-
-// <span className="menuItem__image">
-// {
-
-// }
-// </span>

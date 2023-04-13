@@ -31,32 +31,27 @@
 .menuItem__content {
     display: flex;
     justify-content: center;
-    // outline-style: solid;
-    // outline-width: 1px;
-    // @include body__outline--color;
     border-style: solid;
     border-width: 1px;
     @include outset__item;
-    // @include border__style;
+    margin-bottom: $s-size;
     &:hover {
         @include inset__item;
     }
 }
 
 .menuItem__image {
+    border-radius: 5px;
+    margin: $s-size;
     text-decoration: none;
     font-size: $calcFontSize;
-    max-width: 48%;
+    max-width: 45%;
 }
 
 .menuItem__body {
-    max-width: 48%;
+    max-width: 100%;
     text-decoration: none;
-}
-
-.menuItem__body--spacer {
-    display: block;
-    margin: $s-size;
+    padding: $s-size;
 }
 
 .menuItem__buttons--container {

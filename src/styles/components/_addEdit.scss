@@ -9,20 +9,6 @@
     @include inset__item;
 }
 
-.addEdit__images {
-    // display: flexbox;
-    // justify-content: center;
-    // width: 100%;
-}
-
-// .addEdit__imageViewer--border {
-//     // @include border__style();
-//     height: 620px;
-//     width: 620px;
-//     // justify-content: space-around;
-//     // display: flexbox;
-// }
-
 .addEdit__buttons--container {
     display: flex;
     justify-content: space-between;

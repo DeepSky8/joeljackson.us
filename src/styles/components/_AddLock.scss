@@ -1,0 +1,21 @@
+.addLock__container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    @include addLock__border--top;
+}
+
+.addLock__container--addAuth {
+    justify-content: space-between;
+    display: flex;
+    @include background--color(header__background);
+}
+
+.addLock__button--addLock {
+    background: transparent;
+    border: none;
+    font-size: $calcFontSizeExtraLarge;
+    padding: $s-size;
+}

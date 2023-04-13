@@ -7,6 +7,12 @@ export const updateType = (updatedType) => ({
     updatedType
 })
 
+export const updateUID = (userUID) => ({
+    type: 'UPDATE_UID',
+    userUID
+})
+
+
 export const updateTitle = (updatedTitle) => ({
     type: 'UPDATE_TITLE',
     updatedTitle
@@ -49,7 +55,7 @@ export const loadCard = (cardData) => ({
 
 // Cloud Actions
 
-export const startSaveCard = async ({ altText, body, link, title, type }, cardKey) => {
+export const startSaveCard = async ({ altText, body, link, title, type, userUID }, cardKey) => {
     const updates = {}
 
     updates[`${type}/${cardKey}/altText`] = altText
@@ -58,6 +64,8 @@ export const startSaveCard = async ({ altText, body, link, title, type }, cardKe
     updates[`${type}/${cardKey}/title`] = title
     updates[`${type}/${cardKey}/type`] = type
     updates[`${type}/${cardKey}/cardKey`] = cardKey
+    updates[`${type}/${cardKey}/userUID`] = userUID
+
 
     update(ref(db), updates)
         .catch((error) => {
