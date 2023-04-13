@@ -6,11 +6,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { off, onValue, ref } from "firebase/database";
 import { db } from "../api/firebase";
+import AddLock from "./body/AddLock";
 
 const Home = () => {
     const theme = useContext(ThemeContext)
     const [madeCardArray, setMadeCardArray] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
+    const [authStatus, setAuthStatus] = useState('lock')
+
 
     useEffect(() => {
         onValue(ref(db, `made`), (snapshot) => {
@@ -49,9 +52,13 @@ const Home = () => {
             <Header />
             <div className={`home__content__wrapper ${theme}`}>
                 <div className={`home__content--padding ${theme}`}>
-                    <Outlet context={{ madeCardArray, foundCardArray }} />
+                    <Outlet context={{ madeCardArray, foundCardArray, authStatus, setAuthStatus }} />
                 </div>
             </div>
+            <AddLock
+                authStatus={authStatus}
+                setAuthStatus={setAuthStatus}
+            />
         </div>
     )
 }
