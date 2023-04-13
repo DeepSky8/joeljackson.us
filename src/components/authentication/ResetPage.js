@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logInWithEmailAndPassword, registerWithEmailAndPassword, signInWithGoogle } from "../../api/firebase";
+import { auth } from "../../api/firebase";
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { Link } from "react-router-dom";
 import { sendPasswordResetEmail } from "firebase/auth";
 
 const ResetPage = () => {
@@ -12,10 +11,7 @@ const ResetPage = () => {
     const navigate = useNavigate()
     const { back = '' } = useParams()
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("")
     const [user, loading, error] = useAuthState(auth)
-    // const [showRegisterPane, setRegisterPane] = useState(false)
     const resetTitle = 'Password Reset'
     const sendResetEmail = 'Send Password Reset Email'
     const newAccountText = "Create New Account"
@@ -30,21 +26,6 @@ const ResetPage = () => {
         }
         if (user) navigate(`/${back}`);
     }, [user, loading]);
-
-    // const booleanRegister = () => {
-    //     setRegisterPane(!showRegisterPane)
-    // }
-
-    // const loginRegister = () => {
-    //     if (showRegisterPane && (password === confirmPassword)) {
-    //         registerWithEmailAndPassword(email, password)
-    //     } else if (!showRegisterPane) {
-    //         logInWithEmailAndPassword(email, password)
-    //     } else {
-    //         alert('Please ensure passwords match')
-    //     }
-    // }
-
 
     return (
         <div className={`authPage__container`}>
@@ -91,7 +72,7 @@ const ResetPage = () => {
                     <button
                         className="authPage__login--button"
                         onClick={() => {
-                            navigate(`register/${back}`)
+                            navigate(`/register/${back}`)
                         }}>
                         {newAccountText}
                     </button>

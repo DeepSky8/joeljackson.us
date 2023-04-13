@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, logInWithEmailAndPassword, registerWithEmailAndPassword, signInWithGoogle } from "../../api/firebase";
+import { auth, registerWithEmailAndPassword } from "../../api/firebase";
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { Link } from "react-router-dom";
 
 const RegisterPage = () => {
     const theme = useContext(ThemeContext)
@@ -79,8 +78,6 @@ const RegisterPage = () => {
                         placeholder="Confirm Password"
                     />
                 </span>
-
-
             </span>
 
             <span className='authPage__container--buttons'>
@@ -124,11 +121,3 @@ const RegisterPage = () => {
 }
 
 export default RegisterPage
-
-// {!showRegisterPane &&
-//     <span className="authPage__container--button">
-//         <button className="authPage__login--button" onClick={signInWithGoogle}>
-//             {googleText}
-//         </button>
-//     </span>
-// }
