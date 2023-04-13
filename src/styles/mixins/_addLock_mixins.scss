@@ -1,0 +1,23 @@
+@mixin addLock__border--top {
+    border-style: solid;
+    border-top: solid;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    &.green {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+    &.blue {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+    &.black {
+        @include color__transition(border-color);
+        border-color: $blue-light;
+    }
+    &.white {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+}

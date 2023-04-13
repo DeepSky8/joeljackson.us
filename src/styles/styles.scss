@@ -5,6 +5,7 @@
 @import "./mixins/body_mixins";
 @import "./mixins/nav_mixins";
 @import "./mixins/menuWrapper_mixins";
+@import "./mixins//addLock_mixins";
 @import "./base/base";
 @import "./base/materialSymbols";
 @import "./components/notFoundPage";
@@ -21,3 +22,4 @@
 @import "./components/imageUpload";
 @import "./components/imageViewer";
 @import "./components/authPage";
+@import "./components/AddLock";
