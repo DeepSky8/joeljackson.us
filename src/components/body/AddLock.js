@@ -30,12 +30,12 @@ const AddLock = ({ authStatus, setAuthStatus }) => {
         <div className={`addLock__container ${theme}`}>
             <span className={`addLock__container--addAuth ${theme}`}>
                 <button
-                    className={`material-icons add ${theme} addLock__button--addLock ${theme}`}
+                    className={`material-icons add ${theme} addLock__button--addLock`}
                     onClick={addActions} >
                     add
                 </button>
                 <button
-                    className={`material-icons ${authStatus} ${theme} addLock__button--addLock ${theme}`}
+                    className={`material-icons ${authStatus} ${theme} addLock__button--addLock`}
                     onClick={authActions} >
                     {`${authStatus}`}
                 </button>

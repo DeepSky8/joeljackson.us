@@ -28,14 +28,14 @@
   }
 
   &.lock {
-    @include menuWrapper__addAuth--buttons;
+    @include header__text--color;
   }
 
   &.lock_open {
-    @include menuWrapper__addAuth--buttons;
+    @include header__text--color;
   }
 
   &.add {
-    @include menuWrapper__addAuth--buttons;
+    @include header__text--color;
   }
 }

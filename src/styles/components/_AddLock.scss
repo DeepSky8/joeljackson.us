@@ -16,6 +16,6 @@
 .addLock__button--addLock {
     background: transparent;
     border: none;
-
-    @include header__text--color;
+    font-size: $calcFontSizeExtraLarge;
+    padding: $s-size;
 }
