@@ -15,21 +15,6 @@ const defaultCardState = {
     altTextPlaceholder: 'Please describe the image'
 }
 
-const loadingCardState = {
-    cardKey: '',
-    type: 'made',
-    title: 'Loading...',
-    // titlePlaceholder: 'Catchy or otherwise',
-    body: 'Loading...',
-    // bodyPlaceholder: 'A reason to visit',
-    link: 'http://joeljackson.us/',
-    // linkPlaceholder: "So ... where we goin'?",
-    imageFile: null,
-    imageURL: 'https://storage.cloud.google.com/thumbnail_hosting/LoadingGif.gif',
-    altText: 'Loading gif',
-    // altTextPlaceholder: 'Please describe the image'
-}
-
 const cardReducer = (state, action) => {
 
     switch (action.type) {
@@ -98,4 +83,4 @@ const cardReducer = (state, action) => {
     }
 }
 
-export { defaultCardState, loadingCardState, cardReducer }
+export { defaultCardState, cardReducer }

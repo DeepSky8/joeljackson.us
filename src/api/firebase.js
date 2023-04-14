@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { getDatabase } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
-import { startCreateUser } from "../actions/authActions";
+import { startCreateUser, startUpdateUserAccessDate } from "../actions/authActions";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBLLiiPD4ClwO7ejHFPDDP8d74LzF7YMJ0",
@@ -30,9 +30,19 @@ const storage = getStorage(app)
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
     try {
-        const res = await signInWithPopup(auth, googleProvider);
-        const user = res.user;
-        console.log('user data popup', user)
+        await signInWithPopup(auth, googleProvider)
+            .then((result) => {
+                startCreateUser({ uid: result.user.uid, authProvider: 'Google', email: result.user.email })
+                return result.user.uid
+            })
+            .then((uid) => {
+                startUpdateUserAccessDate({ uid })
+            })
+            .catch((error) => {
+                alert(error)
+            })
+        // const user = res.user;
+        // console.log('user data popup', user)
         // const q = query(collection(db, "users"), where("uid", "==", user.uid));
         // const docs = await getDocs(q);
         // if (docs.docs.length === 0) {
@@ -51,7 +61,12 @@ const signInWithGoogle = async () => {
 
 const logInWithEmailAndPassword = async (email, password) => {
     try {
-        await signInWithEmailAndPassword(auth, email, password);
+        await signInWithEmailAndPassword(auth, email, password)
+            .then((result) => {
+                if (result) {
+                    startUpdateUserAccessDate({ uid: result.user.uid })
+                }
+            })
     } catch (err) {
         console.error(err);
         alert(err.message);

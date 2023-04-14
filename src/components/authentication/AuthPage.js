@@ -28,6 +28,13 @@ const AuthPage = () => {
         if (user) navigate(`/${back}`);
     }, [user, loading]);
 
+    const loginEmail = () => {
+        logInWithEmailAndPassword(email, password)
+        .then(() => {
+            
+        })
+    }
+
     return (
         <div className={`authPage__container`}>
 
@@ -72,9 +79,7 @@ const AuthPage = () => {
                 <span className="authPage__container--button">
                     <button
                         className="authPage__login--button"
-                        onClick={() => {
-                            logInWithEmailAndPassword(email, password)
-                        }}
+                        onClick={loginEmail}
                     >
                         {emailText}
                     </button>

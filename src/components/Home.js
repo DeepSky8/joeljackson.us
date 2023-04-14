@@ -1,20 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useReducer } from "react";
 import ThemeContext from "./context/ThemeContext";
 import Header from "./header/Header";
 import { Outlet } from "react-router";
 import { useState } from "react";
 import { useEffect } from "react";
 import { off, onValue, ref } from "firebase/database";
-import { db } from "../api/firebase";
+import { auth, db } from "../api/firebase";
 import AddLock from "./body/AddLock";
+import { defaultUserState, userReducer } from "../reducers/userReducer";
+import { clearUser, loadUser } from "../actions/userActions";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Home = () => {
+    const [user, loading, error] = useAuthState(auth)
     const theme = useContext(ThemeContext)
+    const [currentUser, dispatchCurrentUser] = useReducer(userReducer, defaultUserState)
     const [madeCardArray, setMadeCardArray] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
     const [authStatus, setAuthStatus] = useState('lock')
 
+    // Current User Listener
+    useEffect(() => {
+        if (user) {
+            onValue(ref(db, `users`), (snapshot) => {
+                const tempUsersArray = [];
+                if (snapshot.exists()) {
+                    snapshot.forEach((snap) => {
+                        tempUsersArray.push(snap.val())
+                    })
+                }
+                const tempCurrentUserIndex = tempUsersArray
+                    .map(user => user.uid)
+                    .findIndex(uid => uid === auth.currentUser.uid)
 
+                if (tempCurrentUserIndex >= 0) {
+                    dispatchCurrentUser(loadUser(tempUsersArray[tempCurrentUserIndex]))
+                } else {
+                    alert('failed to dispatch current user')
+                }
+            })
+        } else {
+            dispatchCurrentUser(clearUser())
+        }
+
+        return () => {
+            off(ref(db, `users`))
+        }
+    }, [user])
+
+    // Made Card Listener
     useEffect(() => {
         onValue(ref(db, `made`), (snapshot) => {
             const tempCardsArray = [];
@@ -31,6 +65,7 @@ const Home = () => {
         }
     }, [])
 
+    // Found Card Listener
     useEffect(() => {
         onValue(ref(db, `found`), (snapshot) => {
             const tempCardsArray = [];
@@ -58,6 +93,7 @@ const Home = () => {
             <AddLock
                 authStatus={authStatus}
                 setAuthStatus={setAuthStatus}
+                currentUser={currentUser}
             />
         </div>
     )
