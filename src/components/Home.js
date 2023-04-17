@@ -36,7 +36,7 @@ const Home = () => {
                     const userHandlesArray = tempUsersArray.map(user => {
                         return ({
                             uid: user.uid,
-                            handle: user.email.split('@')[0]
+                            handle: user.email.split('@')[0].toUpperCase()
                         })
                     })
                     setUserHandles(userHandlesArray)

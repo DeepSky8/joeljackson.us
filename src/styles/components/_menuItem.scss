@@ -22,7 +22,7 @@
 .menuItem__header {
     display: block;
     justify-content: center;
-    text-align: center;
+    margin-bottom: $s-size;
 }
 
 .menuItem__title {
@@ -40,12 +40,12 @@
 }
 
 .menuItem__visibility--symbol {
-    font-size: $calcFontSizeExtraLarge;
+    font-size: $calcFontSizeLarge;
     margin-right: 4rem;
 }
 
 .menuItem__visibility--handle {
-    font-size: $calcFontSizeLarge;
+    font-size: $calcFontSize;
     font-weight: 500;
 }
 

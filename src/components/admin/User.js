@@ -7,6 +7,7 @@ const User = ({ userData }) => {
     const [userState, dispatchUserState] = useReducer(userReducer, userData)
     const lastAccess = new Date(userState.lastAccess).toDateString()
     const dateData = lastAccess === 'Invalid Date' ? 'Never' : lastAccess
+    const handle = userData.email.split('@')[0].toUpperCase()
 
     useEffect(() => {
         if (userState.admin !== undefined && userState.hidden !== undefined) {
@@ -25,7 +26,7 @@ const User = ({ userData }) => {
 
     return (
         <div className="user__container">
-            <div className="user__data--email">{userState.email}</div>
+            <div className="user__data--email">{handle}</div>
             <div>{`Last Accessed: ${dateData}`}</div>
             <AdminSwitch
                 uid={userState.uid}
