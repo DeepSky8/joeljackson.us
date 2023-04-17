@@ -29,7 +29,7 @@ const AppRouter = createBrowserRouter([
                         element: <MenuWrapper />,
                     },
                     {
-                        path: '/:type/add',
+                        path: '/add/:type?',
                         element: <AddEdit />,
                     },
                     {

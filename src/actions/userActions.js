@@ -11,6 +11,11 @@ export const updateAdmin = (admin) => ({
     admin
 })
 
+export const updateLocked = (locked) => ({
+    type: 'UPDATE_LOCK',
+    locked
+})
+
 export const clearUser = () => ({
     type: 'CLEAR_USER'
 })
@@ -26,10 +31,23 @@ export const startRemoveUser = ({ uid }) => {
         })
 }
 
-export const startUpdateUser = ({ uid, admin }) => {
+const startLockUser = ({ uid, lockStatus }) => {
+    const updates = {};
+
+    updates[`users/${uid}/locked`] = lockStatus
+
+    update(ref(db), updates)
+        .catch((error) => {
+            alert('Did not process user lock command', error)
+        })
+}
+
+export const startUpdateUser = ({ uid, admin, locked }) => {
     const updates = {};
 
     updates[`users/${uid}/admin`] = admin
+    updates[`users/${uid}/locked`] = locked
+
 
     update(ref(db), updates)
         .catch((error) => {

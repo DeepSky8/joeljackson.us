@@ -143,4 +143,3 @@ export const startRemoveCard = async (type = 'undefined', cardKey) => {
             console.log('Error deleting image', error)
         })
 }
-

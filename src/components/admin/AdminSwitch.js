@@ -1,48 +1,53 @@
 import React, { useContext } from "react";
-import { updateType } from "../../actions/cardActions";
 import ThemeContext from "../context/ThemeContext";
 
-const AdminSwitch = ({ type, dispatchCardState }) => {
+const AdminSwitch = ({ uid, text, discrete, field, action, dispatchUserState }) => {
     const theme = useContext(ThemeContext)
 
     return (
-        <div className="madeFound__container">
-            <span>I </span>
-            <span className="madeFound__switch">
+        <div className="adminSwitch__container">
+            <span
+                className="adminSwitch__title"
+            >
+                {text}
+            </span>
+            <span className="adminSwitch__switch">
                 <input
                     type="radio"
-                    className="switch-input"
-                    name="type"
-                    value="made"
-                    id="made"
+                    className="adminSwitch__input"
+                    name={`adminSwitch${uid}${discrete}`}
+                    value="false"
+                    id={`adminFalse${uid}${discrete}`}
+                    defaultChecked={field === false}
                     onClick={() => {
-                        dispatchCardState(updateType('made'))
+                        dispatchUserState(action(false))
                     }}
-                    defaultChecked={type.toString() === 'made'}
                 />
                 <label
-                    htmlFor="made"
-                    className={`switch-label switch-label-off ${theme}`}
+                    htmlFor={`adminFalse${uid}${discrete}`}
+                    className={`adminSwitch__label adminSwitch__label--false ${theme}`}
                 >
-                    Made
+                    False
                 </label>
                 <input
                     type="radio"
-                    className="switch-input"
-                    name="type"
-                    value="found"
-                    id="found"
+                    className="adminSwitch__input"
+                    name={`adminSwitch${uid}${discrete}`}
+                    value="true"
+                    id={`adminTrue${uid}${discrete}`}
+                    defaultChecked={field === true}
                     onClick={() => {
-                        dispatchCardState(updateType('found'))
+                        dispatchUserState(action(true))
                     }}
-                    defaultChecked={type.toString() === 'found'}
-
                 />
-                <label htmlFor="found" className={`switch-label switch-label-on ${theme}`}>Found</label>
-                <span className={`switch-selection ${theme}`}></span>
+                <label
+                    htmlFor={`adminTrue${uid}${discrete}`}
+                    className={`adminSwitch__label adminSwitch__label--true ${theme}`}
+                >
+                    True
+                </label>
+                <span className={`adminSwitch__selection ${theme}`}></span>
             </span>
-            <span> this site</span>
-
         </div>
     )
 }

@@ -3,7 +3,6 @@ import fieldsFilled from "./fieldsFilled";
 
 
 const readyToUpdate = (cardState) => {
-    console.log('cardState', cardState)
     const validationObjectsArray = [
         {
             test: fieldsFilled([cardState.title, cardState.body]),
@@ -25,6 +24,10 @@ const readyToUpdate = (cardState) => {
             test: (cardState.imageFile || cardState.imageURL) ? fieldsFilled([cardState.altText]) : true,
             error: 'Please include an Alternate Text to accompany your image'
         },
+        {
+            test: fieldsFilled([cardState.uid]),
+            error: 'You somehow created an item without authentication. Stop right there.'
+        }
     ]
 
     const failedTestIndex = validationObjectsArray.map(obj => obj.test).indexOf(false)

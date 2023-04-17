@@ -1,0 +1,109 @@
+.adminSwitch__container {
+    display: flex;
+    margin-top: $xs-size;
+    margin-bottom: $s-size;
+    // justify-content: left;
+}
+
+.adminSwitch__title {
+    font-size: $calcFontSizeLarge;
+}
+
+.adminSwitch__switch {
+    display: flex;
+    position: relative;
+    max-width: 50%;
+    height: fit-content;
+    width: fit-content;
+    margin: 0 10px;
+    background: $background-fade;
+    @include inset__item;
+}
+
+.adminSwitch__label {
+    @include body__text--color(faded);
+    position: relative;
+    z-index: 2;
+    float: left;
+    width: 20vw;
+    font-size: $calcFontSizeLarge;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+}
+.adminSwitch__label:active {
+    font-weight: bold;
+}
+
+@keyframes switch-false {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes switch-true {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(98%);
+    }
+}
+
+.adminSwitch__label--false {
+    padding-left: 2px;
+}
+
+.adminSwitch__label--true {
+    padding-right: 2px;
+}
+
+.adminSwitch__input {
+    display: none;
+}
+.adminSwitch__input:checked + .adminSwitch__label {
+    font-weight: bold;
+    @include body__text--color();
+    text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+    -webkit-transition: 0.15s ease-out;
+    -moz-transition: 0.15s ease-out;
+    -ms-transition: 0.15s ease-out;
+    -o-transition: 0.15s ease-out;
+    transition: 0.15s ease-out;
+    -webkit-transition-property: color, text-shadow;
+    -moz-transition-property: color, text-shadow;
+    -ms-transition-property: color, text-shadow;
+    -o-transition-property: color, text-shadow;
+    transition-property: color, text-shadow;
+}
+
+.adminSwitch__input:checked + .adminSwitch__label--false ~ .adminSwitch__selection {
+    animation-name: switch-false;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+}
+
+.adminSwitch__input:checked + .adminSwitch__label--true ~ .adminSwitch__selection {
+    animation-name: switch-true;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+    animation-direction: forwards;
+    animation-fill-mode: forwards;
+}
+
+.adminSwitch__selection {
+    position: absolute;
+    z-index: 1;
+    top: 2px;
+    left: 2px;
+    display: block;
+    width: 50%;
+    height: 93%;
+    border-radius: 3px;
+    @include background--color(switch__background);
+}

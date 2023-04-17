@@ -2,7 +2,7 @@
 const defaultCardState = {
     cardKey: '',
     userUID: '',
-    type: 'made',
+    type: 'found',
     title: '',
     titlePlaceholder: 'Catchy or otherwise',
     body: '',

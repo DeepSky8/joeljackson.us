@@ -25,7 +25,7 @@ import { auth } from "../../api/firebase";
 const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
-    const { type, id } = useParams()
+    const { type = 'found', id = '' } = useParams()
     const { madeCardArray, foundCardArray } = useOutletContext([])
     const [currentArray, setCurrentArray] = useState([])
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
@@ -33,8 +33,10 @@ const AddEdit = () => {
 
     useEffect(() => {
         // Add user UID to card
-        dispatchCardState(updateUID(auth.currentUser.uid))
-    }, [])
+        if (auth.currentUser.uid) {
+            dispatchCardState(updateUID(auth.currentUser.uid))
+        }
+    }, [auth.currentUser])
 
     useEffect(() => {
         dispatchCardState(updateType(type.toString()))

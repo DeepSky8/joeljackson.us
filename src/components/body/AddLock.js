@@ -12,7 +12,7 @@ const AddLock = ({ authStatus, setAuthStatus, currentUser }) => {
 
     const addActions = () => {
         if (auth.currentUser) {
-            navigate('add')
+            navigate(`/add/${type}`)
         } else {
             navigate(`/authenticate/${type}`)
         }

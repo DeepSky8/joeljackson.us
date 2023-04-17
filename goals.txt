@@ -4,3 +4,4 @@ Dashboard to control whether Contribution tab is visible
 Drag/drop reordering?
 Admin rights vs regular user
 
+Date updated to cards: order by latest
