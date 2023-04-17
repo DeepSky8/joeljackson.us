@@ -59,7 +59,6 @@ const Home = () => {
                 })
             }
             setVisibleUIDs(tempVisibleUIDs)
-            console.log('tempVisibleUIDs', tempVisibleUIDs)
         })
 
         return (() => {
@@ -101,6 +100,11 @@ const Home = () => {
         }
     }, [])
 
+    // Auth icon update, changes state for Edit/Remove button display
+    useEffect(() => {
+        auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
+    }, [auth.currentUser])
+
     return (
         <div className={`window__background ${theme}`} >
             <Header />
@@ -110,8 +114,8 @@ const Home = () => {
                         madeCardArray,
                         foundCardArray,
                         authStatus,
-                        setAuthStatus,
                         visibleUIDs,
+                        currentUser
                     }} />
                 </div>
             </div>

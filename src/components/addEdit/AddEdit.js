@@ -20,10 +20,7 @@ import MadeFoundSwitch from "./MadeFoundSwitch";
 import { useEffect } from "react";
 import { useState } from "react";
 import checkURL from "../../functions/checkURL";
-import { auth, db } from "../../api/firebase";
-// import { defaultUserState, userReducer } from "../../reducers/userReducer";
-// import { clearUser, loadUser } from "../../actions/userActions";
-// import { off, onValue, ref } from "firebase/database";
+import { auth } from "../../api/firebase";
 
 const AddEdit = () => {
     const navigate = useNavigate();
@@ -33,25 +30,12 @@ const AddEdit = () => {
     const [currentArray, setCurrentArray] = useState(foundCardArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
-    // const [userState, dispatchUserState] = useReducer(userReducer, defaultUserState)
 
     useEffect(() => {
         if (auth.currentUser.uid) {
             dispatchCardState(updateUID(auth.currentUser.uid))
 
-            // onValue(ref(db, `users/${auth.currentUser.uid}`), (snapshot) => {
-            //     if (snapshot.exists()) {
-            //         dispatchUserState(loadUser(snapshot.val()))
-            //         // Add user UID to card
-            //     } else {
-            //         dispatchUserState(clearUser())
-            //     }
-            // })
         }
-
-        // return () => {
-        //     off(ref(db, `users/${auth.currentUser.uid}`))
-        // }
     }, [auth.currentUser])
 
     useEffect(() => {
