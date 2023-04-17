@@ -3,18 +3,11 @@ import { useOutletContext, useParams } from "react-router";
 import { startRemoveCard } from "../../../actions/cardActions";
 import BodyNav from "../BodyNav";
 import MenuItem from "./MenuItem";
-import { useEffect } from "react";
-import {
-    auth,
-} from "../../../api/firebase";
+import { auth } from "../../../api/firebase";
 
 const MenuWrapper = () => {
-    const { madeCardArray, foundCardArray, authStatus, setAuthStatus, visibleUIDs } = useOutletContext()
+    const { madeCardArray, foundCardArray, authStatus, visibleUIDs, currentUser } = useOutletContext()
     const { type } = useParams()
-
-    useEffect(() => {
-        auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
-    }, [auth.currentUser])
 
     const removeCard = (cardKey) => {
         startRemoveCard(type, cardKey)
@@ -30,6 +23,8 @@ const MenuWrapper = () => {
                         visibleUIDs.includes(cardData.userUID)
                         ||
                         (auth.currentUser && auth.currentUser.uid === cardData.userUID)
+                        ||
+                        (currentUser.admin)
                     ) {
                         return (
                             <MenuItem
@@ -50,6 +45,8 @@ const MenuWrapper = () => {
                         visibleUIDs.includes(cardData.userUID)
                         ||
                         (auth.currentUser && auth.currentUser.uid === cardData.userUID)
+                        ||
+                        (currentUser.admin)
                     ) {
                         return (
                             <MenuItem
