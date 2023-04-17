@@ -1,10 +1,13 @@
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+  // font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
   @include twoItem__transition(font-size, $transition-short, ease-out, color, $transition-short, ease);
   &.demography {
     font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
-
     @include header__text--color;
+  }
+  &.visibility_lock {
+    font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 48;
+    @include body__text--color;
   }
 }
 

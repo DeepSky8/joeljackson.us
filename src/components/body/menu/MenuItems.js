@@ -5,21 +5,23 @@ import { useOutletContext } from "react-router";
 import { startRemoveCard } from "../../../actions/cardActions";
 
 const MenuItems = ({ cardArray }) => {
-    const { authStatus, visibleUIDs, currentUser } = useOutletContext()
+    const { visibleUIDs, currentUser } = useOutletContext()
 
     return cardArray.map((cardData) => {
+        const alwaysVisible = visibleUIDs.includes(cardData.userUID)
+
         if (
-            (currentUser.admin)
+            currentUser.admin
             ||
-            visibleUIDs.includes(cardData.userUID)
+            alwaysVisible
             ||
             (auth.currentUser && auth.currentUser.uid === cardData.userUID)
         ) {
             return (
                 <MenuItem
                     key={cardData.cardKey}
-                    authStatus={authStatus}
                     cardData={cardData}
+                    alwaysVisible={alwaysVisible}
                     removeCard={() => {
                         startRemoveCard(cardData.type, cardData.cardKey)
                     }}

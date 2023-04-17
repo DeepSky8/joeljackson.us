@@ -15,6 +15,7 @@ const Home = () => {
     const [user, loading, error] = useAuthState(auth)
     const theme = useContext(ThemeContext)
     const [currentUser, dispatchCurrentUser] = useReducer(userReducer, defaultUserState)
+    const [userHandles, setUserHandles] = useState([])
     const [visibleUIDs, setVisibleUIDs] = useState([])
     const [madeCardArray, setMadeCardArray] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
@@ -30,6 +31,17 @@ const Home = () => {
                         tempUsersArray.push(snap.val())
                     })
                 }
+
+                if (currentUser.admin && tempUsersArray.length > 0) {
+                    const userHandlesArray = tempUsersArray.map(user => {
+                        return ({
+                            uid: user.uid,
+                            handle: user.email.split('@')[0]
+                        })
+                    })
+                    setUserHandles(userHandlesArray)
+                }
+
                 const tempCurrentUserIndex = tempUsersArray
                     .map(user => user.uid)
                     .findIndex(uid => uid === auth.currentUser.uid)
@@ -115,7 +127,8 @@ const Home = () => {
                         foundCardArray,
                         authStatus,
                         visibleUIDs,
-                        currentUser
+                        currentUser,
+                        userHandles
                     }} />
                 </div>
             </div>
