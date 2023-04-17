@@ -11,9 +11,9 @@ export const updateAdmin = (admin) => ({
     admin
 })
 
-export const updateLocked = (locked) => ({
-    type: 'UPDATE_LOCK',
-    locked
+export const updateHidden = (hidden) => ({
+    type: 'UPDATE_HIDDEN',
+    hidden
 })
 
 export const clearUser = () => ({
@@ -31,26 +31,37 @@ export const startRemoveUser = ({ uid }) => {
         })
 }
 
-const startLockUser = ({ uid, lockStatus }) => {
-    const updates = {};
-
-    updates[`users/${uid}/locked`] = lockStatus
-
-    update(ref(db), updates)
-        .catch((error) => {
-            alert('Did not process user lock command', error)
-        })
-}
-
-export const startUpdateUser = ({ uid, admin, locked }) => {
+export const startUpdateUser = ({ uid, admin, hidden }) => {
     const updates = {};
 
     updates[`users/${uid}/admin`] = admin
-    updates[`users/${uid}/locked`] = locked
+    updates[`users/${uid}/hidden`] = hidden
 
 
     update(ref(db), updates)
         .catch((error) => {
             alert('Did not update user', error)
+        })
+}
+
+export const startAddVisible = ({ uid }) => {
+    const updates = {};
+
+    updates[`visible/${uid}`] = uid
+
+    update(ref(db), updates)
+        .catch((error) => {
+            alert('Did not update visible', error)
+        })
+}
+
+export const startRemoveVisible = ({ uid }) => {
+    const updates = {};
+
+    updates[`visible/${uid}`] = null
+
+    update(ref(db), updates)
+        .catch((error) => {
+            alert('Did not update visible', error)
         })
 }

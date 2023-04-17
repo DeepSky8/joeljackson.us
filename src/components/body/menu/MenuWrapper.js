@@ -1,5 +1,5 @@
 import React from "react";
-import {    useOutletContext, useParams} from "react-router";
+import { useOutletContext, useParams } from "react-router";
 import { startRemoveCard } from "../../../actions/cardActions";
 import BodyNav from "../BodyNav";
 import MenuItem from "./MenuItem";
@@ -9,7 +9,7 @@ import {
 } from "../../../api/firebase";
 
 const MenuWrapper = () => {
-    const { madeCardArray, foundCardArray, authStatus, setAuthStatus } = useOutletContext()
+    const { madeCardArray, foundCardArray, authStatus, setAuthStatus, visibleUIDs } = useOutletContext()
     const { type } = useParams()
 
     useEffect(() => {
@@ -26,32 +26,42 @@ const MenuWrapper = () => {
 
             <div className="menuWrapper__container--menuItems">
                 {type === 'made' && madeCardArray.map((cardData) => {
+                    if (
+                        visibleUIDs.includes(cardData.userUID)
+                        ||
+                        (auth.currentUser && auth.currentUser.uid === cardData.userUID)
+                    ) {
+                        return (
+                            <MenuItem
+                                key={cardData.cardKey}
+                                authStatus={authStatus}
+                                cardData={cardData}
+                                removeCard={() => {
+                                    removeCard(cardData.cardKey)
+                                }}
+                            />
+                        )
+                    }
 
-                    return (
-                        <MenuItem
-                            key={cardData.cardKey}
-                            authStatus={authStatus}
-                            cardData={cardData}
-                            removeCard={() => {
-                                removeCard(cardData.cardKey)
-                            }}
-                        />
-                    )
                 })}
 
                 {type === 'found' && foundCardArray.map((cardData) => {
-
-                    return (
-
-                        <MenuItem
-                            key={cardData.cardKey}
-                            authStatus={authStatus}
-                            cardData={cardData}
-                            removeCard={() => {
-                                removeCard(cardData.cardKey)
-                            }}
-                        />
-                    )
+                    if (
+                        visibleUIDs.includes(cardData.userUID)
+                        ||
+                        (auth.currentUser && auth.currentUser.uid === cardData.userUID)
+                    ) {
+                        return (
+                            <MenuItem
+                                key={cardData.cardKey}
+                                authStatus={authStatus}
+                                cardData={cardData}
+                                removeCard={() => {
+                                    removeCard(cardData.cardKey)
+                                }}
+                            />
+                        )
+                    }
                 })}
             </div>
 

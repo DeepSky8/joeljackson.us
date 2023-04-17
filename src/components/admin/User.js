@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { userReducer } from "../../reducers/userReducer";
-import { startLockUser, startRemoveUser, startUpdateUser, updateAdmin, updateLocked } from "../../actions/userActions";
+import { startAddVisible, startRemoveUser, startRemoveVisible, startUpdateUser, updateAdmin, updateHidden } from "../../actions/userActions";
 import AdminSwitch from "./AdminSwitch";
 
 const User = ({ userData }) => {
@@ -9,9 +9,13 @@ const User = ({ userData }) => {
     const dateData = lastAccess === 'Invalid Date' ? 'Never' : lastAccess
 
     useEffect(() => {
-        if (userState.admin !== undefined && userState.locked !== undefined) {
-            startUpdateUser({ uid: userState.uid, admin: userState.admin, locked: userState.locked })
-
+        if (userState.admin !== undefined && userState.hidden !== undefined) {
+            startUpdateUser({ uid: userState.uid, admin: userState.admin, hidden: userState.hidden })
+            userState.hidden
+                ?
+                startRemoveVisible({ uid: userState.uid })
+                :
+                startAddVisible({ uid: userState.uid })
         }
     }, [userState])
 
@@ -34,10 +38,10 @@ const User = ({ userData }) => {
 
             <AdminSwitch
                 uid={userState.uid}
-                text='Locked: '
-                discrete='locked'
-                field={userState.locked}
-                action={updateLocked}
+                text='Hidden: '
+                discrete='hidden'
+                field={userState.hidden}
+                action={updateHidden}
                 dispatchUserState={dispatchUserState}
             />
             <span>

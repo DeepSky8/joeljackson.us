@@ -15,6 +15,7 @@ const Home = () => {
     const [user, loading, error] = useAuthState(auth)
     const theme = useContext(ThemeContext)
     const [currentUser, dispatchCurrentUser] = useReducer(userReducer, defaultUserState)
+    const [visibleUIDs, setVisibleUIDs] = useState([])
     const [madeCardArray, setMadeCardArray] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
     const [authStatus, setAuthStatus] = useState('lock')
@@ -47,6 +48,24 @@ const Home = () => {
             off(ref(db, `users`))
         }
     }, [user])
+
+    // Users with universally visible items
+    useEffect(() => {
+        onValue(ref(db, 'visible'), (snapshot) => {
+            const tempVisibleUIDs = [];
+            if (snapshot.exists()) {
+                snapshot.forEach((snap) => {
+                    tempVisibleUIDs.push(snap.val())
+                })
+            }
+            setVisibleUIDs(tempVisibleUIDs)
+            console.log('tempVisibleUIDs', tempVisibleUIDs)
+        })
+
+        return (() => {
+            off(ref(db, 'visible'))
+        })
+    }, [])
 
     // Made Card Listener
     useEffect(() => {
@@ -87,7 +106,13 @@ const Home = () => {
             <Header />
             <div className={`home__content__wrapper ${theme}`}>
                 <div className={`home__content--padding ${theme}`}>
-                    <Outlet context={{ madeCardArray, foundCardArray, authStatus, setAuthStatus }} />
+                    <Outlet context={{
+                        madeCardArray,
+                        foundCardArray,
+                        authStatus,
+                        setAuthStatus,
+                        visibleUIDs,
+                    }} />
                 </div>
             </div>
             <AddLock

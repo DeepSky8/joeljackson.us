@@ -25,7 +25,7 @@ const readyToUpdate = (cardState) => {
             error: 'Please include an Alternate Text to accompany your image'
         },
         {
-            test: fieldsFilled([cardState.uid]),
+            test: fieldsFilled([cardState.userUID]),
             error: 'You somehow created an item without authentication. Stop right there.'
         }
     ]

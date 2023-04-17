@@ -3,7 +3,7 @@ const defaultUserState = {
     email: '',
     uid: '',
     admin: false,
-    locked: false,
+    hidden: true,
     lastAccess: 0,
 }
 
@@ -20,11 +20,11 @@ const userReducer = (state, action) => {
                 ...state,
                 admin: action.admin
             }
-        case 'UPDATE_LOCK':
+        case 'UPDATE_HIDDEN':
             return {
                 ...defaultUserState,
                 ...state,
-                locked: action.locked
+                hidden: action.hidden
             }
         case 'CLEAR_USER':
             return {
