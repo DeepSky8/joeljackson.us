@@ -2,8 +2,11 @@ import React, { useEffect, useReducer } from "react";
 import { userReducer } from "../../reducers/userReducer";
 import { startAddVisible, startRemoveUser, startRemoveVisible, startUpdateUser, updateAdmin, updateHidden } from "../../actions/userActions";
 import AdminSwitch from "./AdminSwitch";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
 const User = ({ userData }) => {
+    const theme = useContext(ThemeContext)
     const [userState, dispatchUserState] = useReducer(userReducer, userData)
     const lastAccess = new Date(userState.lastAccess).toDateString()
     const dateData = lastAccess === 'Invalid Date' ? 'Never' : lastAccess
@@ -26,8 +29,35 @@ const User = ({ userData }) => {
 
     return (
         <div className="user__container">
-            <div className="user__data--email">{handle}</div>
-            <div>{`Last Accessed: ${dateData}`}</div>
+
+            <span
+                className="user__container--header"
+            >
+                <span className={`user__data--handle ${theme}`}>{handle}</span>
+
+                <span className="user__container--button">
+                    <button
+                        className="user__button--delete"
+                        onClick={handleDeleteUser}
+                    >Delete User</button>
+                </span>
+            </span>
+
+            <span
+                className="user__container--accessed"
+            >
+                <span
+                    className={`user__data--last ${theme}`}
+                >
+                    {`Last Accessed: `}
+                </span>
+                <span
+                    className={`user__data--accessed ${theme}`}
+                >
+                    {dateData}
+                </span>
+            </span>
+            
             <AdminSwitch
                 uid={userState.uid}
                 text='Admin: '
@@ -45,12 +75,6 @@ const User = ({ userData }) => {
                 action={updateHidden}
                 dispatchUserState={dispatchUserState}
             />
-            <span>
-                <button
-                    onClick={handleDeleteUser}
-                >Delete User</button>
-
-            </span>
             <hr />
         </div>
     )

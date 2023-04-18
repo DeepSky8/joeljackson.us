@@ -7,7 +7,7 @@ const AdminSwitch = ({ uid, text, discrete, field, action, dispatchUserState }) 
     return (
         <div className="adminSwitch__container">
             <span
-                className="adminSwitch__title"
+                className={`adminSwitch__title ${theme}`}
             >
                 {text}
             </span>

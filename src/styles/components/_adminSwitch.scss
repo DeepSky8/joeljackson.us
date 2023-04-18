@@ -2,11 +2,13 @@
     display: flex;
     margin-top: $xs-size;
     margin-bottom: $s-size;
-    // justify-content: left;
+    justify-content: space-between;
 }
 
 .adminSwitch__title {
     font-size: $calcFontSizeLarge;
+    @include body__text--color();
+    // width: 50%;
 }
 
 .adminSwitch__switch {
@@ -15,7 +17,7 @@
     max-width: 50%;
     height: fit-content;
     width: fit-content;
-    margin: 0 10px;
+    // margin: 0 10px;
     background: $background-fade;
     @include inset__item;
 }

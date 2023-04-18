@@ -1,5 +1,7 @@
-.adminPage__container {
-    h3 {
-        text-align: center;
-    }
+// .adminPage__container {
+// }
+
+.adminPage__header {
+    text-align: center;
+    @include body__text--color();
 }

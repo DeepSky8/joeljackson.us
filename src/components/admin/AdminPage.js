@@ -4,10 +4,13 @@ import { auth, db } from "../../api/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router";
 import User from "./User";
+import { useContext } from "react";
+import ThemeContext from "../context/ThemeContext";
 
 const AdminPage = () => {
     const [user, loading, error] = useAuthState(auth)
     const navigate = useNavigate()
+    const theme = useContext(ThemeContext);
     const [userArray, setUserArray] = useState([])
 
     useEffect(() => {
@@ -42,8 +45,12 @@ const AdminPage = () => {
     }, [user])
 
     return (
-        <div className="adminPage__container">
-            <h3>Admin Access</h3>
+        <div className={`adminPage__container`}>
+            <h3
+                className={`adminPage__header ${theme}`}
+            >
+                Admin Access
+            </h3>
             <hr />
             {userArray.map((user) => {
                 return (
