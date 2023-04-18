@@ -2,6 +2,9 @@ Date/Time for sorting
 Contributor tab for additional users
 Dashboard to control whether Contribution tab is visible
 Drag/drop reordering?
-Admin rights vs regular user
+
 
 Date updated to cards: order by latest
+
+Limit contributions
+Lock new account creation

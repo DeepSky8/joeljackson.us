@@ -9,6 +9,7 @@ const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
     const navigate = useNavigate()
     const visFlag = !alwaysVisible ? 'visibility_lock' : '';
     const userIndex = userHandles.map(user => user.uid).indexOf(cardData.userUID)
+    const handleDisplay = userHandles.length > 0 ? userHandles[userIndex].handle : ''
 
     return (
         <div className={`menuItem__container ${theme}`}>
@@ -37,7 +38,7 @@ const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
                                 <span
                                     className={`menuItem__visibility--handle`}>
                                     {
-                                        `${userHandles[userIndex].handle}`
+                                        handleDisplay
                                     }
                                 </span>
                             </span>

@@ -10,6 +10,7 @@ import AddLock from "./body/AddLock";
 import { defaultUserState, userReducer } from "../reducers/userReducer";
 import { clearUser, loadUser } from "../actions/userActions";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { startRemoveCard } from "../actions/cardActions";
 
 const Home = () => {
     const [user, loading, error] = useAuthState(auth)
@@ -30,16 +31,15 @@ const Home = () => {
                     snapshot.forEach((snap) => {
                         tempUsersArray.push(snap.val())
                     })
-                }
-
-                if (currentUser.admin && tempUsersArray.length > 0) {
-                    const userHandlesArray = tempUsersArray.map(user => {
-                        return ({
-                            uid: user.uid,
-                            handle: user.email.split('@')[0].toUpperCase()
+                    if (currentUser.admin && tempUsersArray.length > 0) {
+                        const userHandlesArray = tempUsersArray.map(user => {
+                            return ({
+                                uid: user.uid,
+                                handle: user.email.split('@')[0].toUpperCase()
+                            })
                         })
-                    })
-                    setUserHandles(userHandlesArray)
+                        setUserHandles(userHandlesArray)
+                    }
                 }
 
                 const tempCurrentUserIndex = tempUsersArray
@@ -117,6 +117,22 @@ const Home = () => {
         auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
     }, [auth.currentUser])
 
+    const removeAllItems = async (uid) => {
+        const removeMadeArray = madeCardArray
+            .filter(item => item.userUID === uid)
+            .map(item => item.cardKey);
+        removeMadeArray.forEach(item => {
+            return startRemoveCard('made', item)
+        })
+
+        const removeFoundArray = foundCardArray
+            .filter(item => item.userUID === uid)
+            .map(item => item.cardKey);
+        removeFoundArray.forEach(item => {
+            return startRemoveCard('found', item)
+        })
+    }
+
     return (
         <div className={`window__background ${theme}`} >
             <Header />
@@ -128,7 +144,8 @@ const Home = () => {
                         authStatus,
                         visibleUIDs,
                         currentUser,
-                        userHandles
+                        userHandles,
+                        removeAllItems,
                     }} />
                 </div>
             </div>

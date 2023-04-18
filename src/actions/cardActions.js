@@ -143,3 +143,16 @@ export const startRemoveCard = async (type = 'undefined', cardKey) => {
             console.log('Error deleting image', error)
         })
 }
+
+// export const startRemoveCardArray = async (type, cardArray) => {
+//     const updates = {}
+//     const storageRef = sRef(storage, `${type}/${cardKey}/`)
+
+//     updates[`${type}/${cardKey}/`] = null
+
+//     update(ref(db), updates)
+//     deleteObject(storageRef)
+//         .catch((error) => {
+//             console.log('Error deleting image', error)
+//         })
+// }
