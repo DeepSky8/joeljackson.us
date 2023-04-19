@@ -12,7 +12,9 @@ const defaultCardState = {
     imageFile: null,
     imageURL: null,
     altText: '',
-    altTextPlaceholder: 'Please describe the image'
+    altTextPlaceholder: 'Please describe the image',
+    dateCreated: Date.now(),
+    dateUpdated: 0,
 }
 
 const cardReducer = (state, action) => {
@@ -22,42 +24,49 @@ const cardReducer = (state, action) => {
             return {
                 ...defaultCardState,
                 ...state,
-                type: action.updatedType
+                type: action.updatedType,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_UID':
             return {
                 ...defaultCardState,
                 ...state,
                 userUID: action.userUID,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_TITLE':
             return {
                 ...defaultCardState,
                 ...state,
-                title: action.updatedTitle
+                title: action.updatedTitle,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_BODY':
             return {
                 ...defaultCardState,
                 ...state,
-                body: action.updatedBody
+                body: action.updatedBody,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_LINK':
             return {
                 ...defaultCardState,
                 ...state,
-                link: action.updatedLink
+                link: action.updatedLink,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_IMAGE_FILE':
             return {
                 ...state,
                 imageFile: action.updatedImageFile,
-                imageURL: null
+                imageURL: null,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_IMAGE_URL':
             return {
                 ...state,
-                imageURL: action.updatedImageURL
+                imageURL: action.updatedImageURL,
+                dateUpdated: Date.now(),
             }
         case 'CLEAR_IMAGE':
             return {
@@ -65,12 +74,14 @@ const cardReducer = (state, action) => {
                 ...state,
                 imageFile: null,
                 imageURL: null,
+                dateUpdated: Date.now(),
             }
         case 'UPDATE_ALTTEXT':
             return {
                 ...defaultCardState,
                 ...state,
-                altText: action.updatedAltText
+                altText: action.updatedAltText,
+                dateUpdated: Date.now(),
             }
         case 'LOAD_CARD':
             return {

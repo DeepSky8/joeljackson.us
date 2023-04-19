@@ -71,7 +71,7 @@ const AddEdit = () => {
                         alert(error)
                     })
 
-            } else {
+            } else if (cardState.cardKey === '') {
                 startNewLink(cardState)
             }
             return true

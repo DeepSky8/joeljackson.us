@@ -1,12 +1,6 @@
-Date/Time for sorting
 Contributor tab for additional users
 Dashboard to control whether Contribution tab is visible
 Drag/drop reordering?
 
-
-Date updated to cards: order by latest
-
 Limit contributions
-Lock new account creation
-
-Fix password reset feature
+Pin one item to top

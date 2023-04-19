@@ -83,6 +83,7 @@ const Home = () => {
                     tempCardsArray.push(snap.val())
                 })
             }
+            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setMadeCardArray(tempCardsArray)
         })
 
@@ -100,6 +101,7 @@ const Home = () => {
                     tempCardsArray.push(snap.val())
                 })
             }
+            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setFoundCardArray(tempCardsArray)
         })
 
@@ -115,14 +117,14 @@ const Home = () => {
 
     // Locked Registration listener
     useEffect(() => {
-        onValue(ref(db, 'admin/registerLock'), (snapshot) => {
+        onValue(ref(db, 'admin/lockData'), (snapshot) => {
             if (snapshot.exists) {
                 dispatchLockData(loadLock(snapshot.val()))
             }
         })
 
         return () => {
-            off(ref(db, 'admin/registerLock'))
+            off(ref(db, 'admin/lockData'))
         }
     }, [])
 

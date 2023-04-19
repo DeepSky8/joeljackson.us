@@ -2,17 +2,15 @@
 const defaultRegisterLockState = {
     registerLock: true,
     userUID: 'SYSTEM',
-    updatedOn: Date.now()
+    updatedOn: 0
 }
 
 const registerLockReducer = (state, action) => {
     switch (action.type) {
         case 'LOAD_LOCK':
             return {
-                ...defaultRegisterLockState,
+                // ...defaultRegisterLockState,
                 ...action.lockData,
-                updatedOn: Date.now()
-
             }
         case 'UPDATE_LOCK':
             return {
