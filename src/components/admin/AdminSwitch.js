@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
 
-const AdminSwitch = ({ uid, text, discrete, field, action, dispatchUserState }) => {
+const AdminSwitch = ({ uid, text, discrete, field, dispatchState, action, value1, value2 }) => {
     const theme = useContext(ThemeContext)
 
     return (
@@ -20,7 +20,7 @@ const AdminSwitch = ({ uid, text, discrete, field, action, dispatchUserState }) 
                     id={`adminFalse${uid}${discrete}`}
                     defaultChecked={field === false}
                     onClick={() => {
-                        dispatchUserState(action(false))
+                        dispatchState(action(value1))
                     }}
                 />
                 <label
@@ -37,7 +37,7 @@ const AdminSwitch = ({ uid, text, discrete, field, action, dispatchUserState }) 
                     id={`adminTrue${uid}${discrete}`}
                     defaultChecked={field === true}
                     onClick={() => {
-                        dispatchUserState(action(true))
+                        dispatchState(action(value2))
                     }}
                 />
                 <label

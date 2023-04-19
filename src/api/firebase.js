@@ -32,7 +32,7 @@ const signInWithGoogle = async () => {
     try {
         await signInWithPopup(auth, googleProvider)
             .then((result) => {
-                startCreateUser({ uid: result.user.uid, authProvider: 'Google', email: result.user.email })
+                startCreateUser({ uid: result.user.uid, authProvider: 'Google', email: result.user.email.split('@')[0].toUpperCase() })
                 return result.user.uid
             })
             .then((uid) => {
@@ -81,7 +81,7 @@ const registerWithEmailAndPassword = async (email, password) => {
                 startCreateUser({
                     uid: result.user.uid,
                     authProvider: 'local',
-                    email
+                    email: email.split('@')[0].toUpperCase()
                 })
 
             })

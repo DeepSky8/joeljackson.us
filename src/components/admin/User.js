@@ -70,7 +70,9 @@ const User = ({ userData }) => {
                 discrete='admin'
                 field={userState.admin}
                 action={updateAdmin}
-                dispatchUserState={dispatchUserState}
+                dispatchState={dispatchUserState}
+                value1={false}
+                value2={true}
             />
 
             <AdminSwitch
@@ -79,7 +81,9 @@ const User = ({ userData }) => {
                 discrete='hidden'
                 field={userState.hidden}
                 action={updateHidden}
-                dispatchUserState={dispatchUserState}
+                dispatchState={dispatchUserState}
+                value1={false}
+                value2={true}
             />
             <hr />
         </div>
@@ -87,7 +91,3 @@ const User = ({ userData }) => {
 }
 
 export default User
-
-// <div>{`Admin: ${userState.admin}`}</div>
-
-// <button>Lock User</button>

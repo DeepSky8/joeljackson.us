@@ -5,11 +5,18 @@ import { auth } from "../../../api/firebase";
 
 const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
     const theme = useContext(ThemeContext)
-    const { authStatus, currentUser, userHandles } = useOutletContext()
+    const {
+        authStatus,
+        currentUser,
+        allUsers,
+    } = useOutletContext()
     const navigate = useNavigate()
     const visFlag = !alwaysVisible ? 'visibility_lock' : '';
-    const userIndex = userHandles.map(user => user.uid).indexOf(cardData.userUID)
-    const handleDisplay = userHandles.length > 0 ? userHandles[userIndex].handle : ''
+    const handleDisplay = allUsers.length > 0
+        ?
+        allUsers.filter(user => user.uid === cardData.userUID)[0].email
+        :
+        ""
 
     return (
         <div className={`menuItem__container ${theme}`}>

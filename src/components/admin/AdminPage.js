@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import User from "./User";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import RegisterLock from "./RegisterLock";
 
 const AdminPage = () => {
     const [user, loading, error] = useAuthState(auth)
@@ -49,7 +50,16 @@ const AdminPage = () => {
             <h3
                 className={`adminPage__header ${theme}`}
             >
-                Admin Access
+                Administration
+            </h3>
+            <RegisterLock />
+
+            <hr />
+
+            <h3
+                className={`adminPage__header ${theme}`}
+            >
+                Users
             </h3>
             <hr />
             {userArray.map((user) => {

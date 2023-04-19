@@ -5,7 +5,7 @@ import { db } from "../api/firebase";
 export const startCreateUser = async ({ uid, authProvider, email = 'none provided' }) => {
     const updates = {};
 
-    updates[`users/${uid}`] = { uid, authProvider, email, admin: false }
+    updates[`users/${uid}`] = { uid, authProvider, email, admin: false, hidden: true }
 
     update(ref(db), updates)
         .catch((error) => {

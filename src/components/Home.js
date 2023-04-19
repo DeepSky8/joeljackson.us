@@ -11,12 +11,15 @@ import { defaultUserState, userReducer } from "../reducers/userReducer";
 import { clearUser, loadUser } from "../actions/userActions";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { startRemoveCard } from "../actions/cardActions";
+import { loadLock } from "../actions/registerLockActions";
+import { defaultRegisterLockState, registerLockReducer } from "../reducers/registerLockReducer";
 
 const Home = () => {
     const [user, loading, error] = useAuthState(auth)
     const theme = useContext(ThemeContext)
     const [currentUser, dispatchCurrentUser] = useReducer(userReducer, defaultUserState)
-    const [userHandles, setUserHandles] = useState([])
+    const [lockData, dispatchLockData] = useReducer(registerLockReducer, defaultRegisterLockState)
+    const [allUsers, setAllUsers] = useState([])
     const [visibleUIDs, setVisibleUIDs] = useState([])
     const [madeCardArray, setMadeCardArray] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
@@ -31,16 +34,9 @@ const Home = () => {
                     snapshot.forEach((snap) => {
                         tempUsersArray.push(snap.val())
                     })
-                    if (currentUser.admin && tempUsersArray.length > 0) {
-                        const userHandlesArray = tempUsersArray.map(user => {
-                            return ({
-                                uid: user.uid,
-                                handle: user.email.split('@')[0].toUpperCase()
-                            })
-                        })
-                        setUserHandles(userHandlesArray)
-                    }
                 }
+
+                setAllUsers(tempUsersArray)
 
                 const tempCurrentUserIndex = tempUsersArray
                     .map(user => user.uid)
@@ -117,6 +113,19 @@ const Home = () => {
         auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
     }, [auth.currentUser])
 
+    // Locked Registration listener
+    useEffect(() => {
+        onValue(ref(db, 'admin/registerLock'), (snapshot) => {
+            if (snapshot.exists) {
+                dispatchLockData(loadLock(snapshot.val()))
+            }
+        })
+
+        return () => {
+            off(ref(db, 'admin/registerLock'))
+        }
+    }, [])
+
     const removeAllItems = async (uid) => {
         const removeMadeArray = madeCardArray
             .filter(item => item.userUID === uid)
@@ -144,8 +153,9 @@ const Home = () => {
                         authStatus,
                         visibleUIDs,
                         currentUser,
-                        userHandles,
+                        allUsers,
                         removeAllItems,
+                        lockData,
                     }} />
                 </div>
             </div>
