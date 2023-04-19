@@ -117,14 +117,14 @@ const Home = () => {
 
     // Locked Registration listener
     useEffect(() => {
-        onValue(ref(db, 'admin/registerLock'), (snapshot) => {
+        onValue(ref(db, 'admin/lockData'), (snapshot) => {
             if (snapshot.exists) {
                 dispatchLockData(loadLock(snapshot.val()))
             }
         })
 
         return () => {
-            off(ref(db, 'admin/registerLock'))
+            off(ref(db, 'admin/lockData'))
         }
     }, [])
 

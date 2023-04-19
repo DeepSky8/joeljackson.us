@@ -15,14 +15,14 @@ const RegisterLock = () => {
     const theme = useContext(ThemeContext);
     const { allUsers, lockData } = useOutletContext();
     const [lockState, dispatchLockState] = useReducer(registerLockReducer, lockData)
+    const updatedOn = new Date(lockState.updatedOn).toDateString()
     const updatedBy = allUsers
         .filter(user => user.uid === lockData.userUID)
         .map(user => user.email)[0]
-        .split('@')[0]
-        .toUpperCase()
 
+    console.log('updatedOn', updatedOn)
     useEffect(() => {
-        if (lockState.userUID !== 'SYSTEM') {
+        if (lockState.userUID !== 'SYSTEM' && lockState.updatedOn !== lockData.updatedOn) {
             startLockRegistration({ lockData: lockState })
         }
     }, [lockState])
@@ -52,7 +52,7 @@ const RegisterLock = () => {
                 <span
                     className={`registerLock__data--updated ${theme}`}
                 >
-                    {new Date(lockState.updatedOn).toDateString()}
+                    {updatedOn}
                 </span>
             </span>
 
