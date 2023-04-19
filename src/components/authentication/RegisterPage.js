@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, registerWithEmailAndPassword } from "../../api/firebase";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useOutletContext, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
 
 const RegisterPage = () => {
     const theme = useContext(ThemeContext)
+    const { lockData } = useOutletContext();
     const navigate = useNavigate()
     const { back = '' } = useParams()
     const [email, setEmail] = useState("")
@@ -17,6 +18,7 @@ const RegisterPage = () => {
     const registerText = 'Register now'
     const returnLogin = 'Return to Login'
     const returnApp = 'Return to App'
+    const lockAlert = 'Account Registration is currently locked'
 
     useEffect(() => {
         if (loading) {
@@ -24,6 +26,10 @@ const RegisterPage = () => {
             return;
         }
         if (user) navigate(`/${back}`);
+        if (lockData.registerLock) {
+            alert(lockAlert)
+            navigate(`/${back}`)
+        }
     }, [user, loading]);
 
 

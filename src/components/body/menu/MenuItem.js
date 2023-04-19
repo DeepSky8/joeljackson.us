@@ -1,19 +1,56 @@
 import React, { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
 import { auth } from "../../../api/firebase";
 
-const MenuItem = ({ cardData, removeCard, authStatus }) => {
+const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
     const theme = useContext(ThemeContext)
+    const {
+        authStatus,
+        currentUser,
+        allUsers,
+    } = useOutletContext()
     const navigate = useNavigate()
+    const visFlag = !alwaysVisible ? 'visibility_lock' : '';
+    const handleDisplay = allUsers.length > 0
+        ?
+        allUsers.filter(user => user.uid === cardData.userUID)[0].email
+        :
+        ""
 
     return (
         <div className={`menuItem__container ${theme}`}>
             <a className={`menuItem__link ${theme}`}
                 href={`${cardData.link}`}
             >
-                <span className="menuItem__title">
-                    {cardData.title}
+                <span className={`menuItem__header`}>
+                    <span className="menuItem__title">
+                        {cardData.title}
+                    </span>
+                    {
+                        currentUser.admin
+                        &&
+                        (
+                            <span className={`menuItem__visibility--container`}>
+                                {
+                                    visFlag
+                                    &&
+                                    <span
+                                        className={`menuItem__visibility--symbol material-symbols-outlined ${visFlag}`}>
+                                        {
+                                            `${visFlag}`
+                                        }
+                                    </span>
+                                }
+                                <span
+                                    className={`menuItem__visibility--handle`}>
+                                    {
+                                        handleDisplay
+                                    }
+                                </span>
+                            </span>
+                        )
+                    }
                 </span>
                 <span className={`menuItem__content`}>
                     {cardData.imageURL
@@ -35,9 +72,15 @@ const MenuItem = ({ cardData, removeCard, authStatus }) => {
 
 
             {
-                authStatus === 'lock_open'
-                &&
-                (auth.currentUser.uid === cardData.userUID)
+                (
+                    currentUser.admin
+                    ||
+                    (
+                        authStatus === 'lock_open'
+                        &&
+                        (auth.currentUser.uid === cardData.userUID)
+                    )
+                )
                 &&
                 <span className="menuItem__buttons--container">
 

@@ -1,87 +1,20 @@
-import React, {
-    // useContext, 
-    useState
-} from "react";
-import {
-    // useNavigate, 
-    useOutletContext, useParams
-} from "react-router";
-import { startRemoveCard } from "../../../actions/cardActions";
-// import ThemeContext from "../../context/ThemeContext";
+import React from "react";
+import { useOutletContext, useParams } from "react-router";
 import BodyNav from "../BodyNav";
-import MenuItem from "./MenuItem";
-import { useEffect } from "react";
-import {
-    auth,
-    // logout 
-} from "../../../api/firebase";
-import AddLock from "../AddLock";
+import MenuItems from "./MenuItems";
 
 const MenuWrapper = () => {
-    // const theme = useContext(ThemeContext)
-    // const navigate = useNavigate()
-    const { madeCardArray, foundCardArray, authStatus, setAuthStatus } = useOutletContext()
-    const { type } = useParams()
-    // const [authStatus, setAuthStatus] = useState('lock')
-
-    useEffect(() => {
-        auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
-    }, [auth.currentUser])
-
-    const removeCard = (cardKey) => {
-        startRemoveCard(type, cardKey)
-    }
-
-    // const addActions = () => {
-    //     if (auth.currentUser) {
-    //         navigate('add')
-    //     } else {
-    //         navigate(`/authenticate/${type}`)
-    //     }
-    // }
-
-    // const authActions = () => {
-    //     if (auth.currentUser) {
-    //         logout()
-    //         setAuthStatus('lock')
-    //     } else {
-    //         navigate(`/authenticate/${type}`)
-    //     }
-    // }
+    const { madeCardArray, foundCardArray } = useOutletContext()
+    const { type = 'found' } = useParams()
 
     return (
         <div className="menuWrapper__container">
             <BodyNav />
 
             <div className="menuWrapper__container--menuItems">
-                {type === 'made' && madeCardArray.map((cardData) => {
-
-                    return (
-                        <MenuItem
-                            key={cardData.cardKey}
-                            authStatus={authStatus}
-                            cardData={cardData}
-                            removeCard={() => {
-                                removeCard(cardData.cardKey)
-                            }}
-                        />
-                    )
-                })}
-
-                {type === 'found' && foundCardArray.map((cardData) => {
-
-                    return (
-
-                        <MenuItem
-                            key={cardData.cardKey}
-                            authStatus={authStatus}
-                            cardData={cardData}
-                            removeCard={() => {
-                                removeCard(cardData.cardKey)
-                            }}
-                        />
-                    )
-                })}
+                <MenuItems
+                    cardArray={type === 'found' ? foundCardArray : madeCardArray}
+                />
             </div>
 
         </div>
@@ -89,13 +22,3 @@ const MenuWrapper = () => {
 }
 
 export { MenuWrapper as default }
-
-// <span className="menuWrapper__container--addAuth">
-// <button className={`material-icons add ${theme} menuWrapper__button--addLock`} onClick={addActions} >add</button>
-// <button className={`material-icons ${authStatus} ${theme} menuWrapper__button--addLock`} onClick={authActions} >{`${authStatus}`}</button>
-// </span>
-
-// <AddLock
-// authStatus={authStatus}
-// setAuthStatus={setAuthStatus}
-// />

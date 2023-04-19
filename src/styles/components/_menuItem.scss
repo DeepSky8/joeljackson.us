@@ -19,6 +19,12 @@
     cursor: pointer;
 }
 
+.menuItem__header {
+    display: block;
+    justify-content: center;
+    margin-bottom: $s-size;
+}
+
 .menuItem__title {
     display: block;
     text-align: center;
@@ -26,6 +32,21 @@
     font-size: $calcFontSizeExtraLarge;
     font-weight: bold;
     margin: $xs-size;
+}
+
+.menuItem__visibility--container {
+    display: flex;
+    justify-content: center;
+}
+
+.menuItem__visibility--symbol {
+    font-size: $calcFontSizeLarge;
+    margin-right: 4rem;
+}
+
+.menuItem__visibility--handle {
+    font-size: $calcFontSize;
+    font-weight: 500;
 }
 
 .menuItem__content {

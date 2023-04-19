@@ -1,0 +1,13 @@
+.registerLock__container--display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $s-size;
+}
+
+.registerLock__data--descriptor {
+    @include body__text--color();
+}
+
+.registerLock__data--updated {
+    @include body__text--color();
+}

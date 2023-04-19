@@ -1,0 +1,7 @@
+// .adminPage__container {
+// }
+
+.adminPage__header {
+    text-align: center;
+    @include body__text--color();
+}
