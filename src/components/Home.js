@@ -83,6 +83,7 @@ const Home = () => {
                     tempCardsArray.push(snap.val())
                 })
             }
+            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setMadeCardArray(tempCardsArray)
         })
 
@@ -100,6 +101,7 @@ const Home = () => {
                     tempCardsArray.push(snap.val())
                 })
             }
+            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setFoundCardArray(tempCardsArray)
         })
 

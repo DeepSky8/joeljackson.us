@@ -7,6 +7,4 @@ Drag/drop reordering?
 Date updated to cards: order by latest
 
 Limit contributions
-Lock new account creation
-
-Fix password reset feature
+Pin one item to top

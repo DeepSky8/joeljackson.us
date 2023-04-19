@@ -55,7 +55,7 @@ export const loadCard = (cardData) => ({
 
 // Cloud Actions
 
-export const startSaveCard = async ({ altText, body, link, title, type, userUID }, cardKey) => {
+export const startSaveCard = async ({ altText, body, link, title, type, userUID, dateCreated, dateUpdated }, cardKey) => {
     const updates = {}
 
     updates[`${type}/${cardKey}/altText`] = altText
@@ -65,7 +65,8 @@ export const startSaveCard = async ({ altText, body, link, title, type, userUID 
     updates[`${type}/${cardKey}/type`] = type
     updates[`${type}/${cardKey}/cardKey`] = cardKey
     updates[`${type}/${cardKey}/userUID`] = userUID
-
+    updates[`${type}/${cardKey}/dateCreated`] = dateCreated
+    updates[`${type}/${cardKey}/dateUpdated`] = dateUpdated
 
     update(ref(db), updates)
         .catch((error) => {
@@ -82,8 +83,6 @@ const startSaveURL = async (type, cardKey, url) => {
         .catch((error) => {
             console.log('Did not save url', error)
         })
-
-    // return true
 }
 
 export const startUploadFile = async (imageFile, type, cardKey) => {
@@ -95,9 +94,7 @@ export const startUploadFile = async (imageFile, type, cardKey) => {
         .then((url) => {
             startSaveURL(type, cardKey, url)
         })
-        // .then((result) => {
-        //     return result
-        // })
+
         .catch((error) => {
             alert('Did not upload image')
             console.log('Did not upload file', error)
@@ -107,10 +104,9 @@ export const startUploadFile = async (imageFile, type, cardKey) => {
 export const startNewLink = (cardData) => {
     const newCardKey = push(child(ref(db), `${cardData.type}`)).key
     startSaveCard(cardData, newCardKey)
-    startUploadFile(cardData.imageFile, cardData.type, newCardKey)
-    // .then(() => {
-    //     return true
-    // })
+    if (cardData.imageFile) {
+        startUploadFile(cardData.imageFile, cardData.type, newCardKey)
+    }
 }
 
 export const startGetCards = async (type) => {
@@ -144,15 +140,3 @@ export const startRemoveCard = async (type = 'undefined', cardKey) => {
         })
 }
 
-// export const startRemoveCardArray = async (type, cardArray) => {
-//     const updates = {}
-//     const storageRef = sRef(storage, `${type}/${cardKey}/`)
-
-//     updates[`${type}/${cardKey}/`] = null
-
-//     update(ref(db), updates)
-//     deleteObject(storageRef)
-//         .catch((error) => {
-//             console.log('Error deleting image', error)
-//         })
-// }
