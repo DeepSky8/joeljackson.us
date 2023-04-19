@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../api/firebase";
+import { auth, sendPasswordReset } from "../../api/firebase";
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { sendPasswordResetEmail } from "firebase/auth";
+import useLocalStorageState from 'use-local-storage-state';
 
 const ResetPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
+    const [resetEmail, setResetEmail] = useLocalStorageState('jjResetEmail', { defaultValue: "" })
     const [email, setEmail] = useState("");
     const [user, loading, error] = useAuthState(auth)
     const resetTitle = 'Password Reset'
@@ -59,7 +60,13 @@ const ResetPage = () => {
                     <button
                         className="authPage__login--button"
                         onClick={() => {
-                            sendPasswordResetEmail(email)
+                            sendPasswordReset(email)
+                                .then(() => {
+                                    setResetEmail(email)
+                                })
+                                .then(() => {
+                                    navigate(`/authenticate/${back}`)
+                                })
                         }}
                     >
                         {sendResetEmail}

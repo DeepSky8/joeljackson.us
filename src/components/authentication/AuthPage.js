@@ -4,12 +4,14 @@ import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../api/fir
 import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import useLocalStorageState from 'use-local-storage-state';
 
 const AuthPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [email, setEmail] = useState("")
+    const [resetEmail, setResetEmail, { removeItem }] = useLocalStorageState('jjResetEmail', { defaultValue: '' })
+    const [email, setEmail] = useState(resetEmail)
     const [password, setPassword] = useState("")
     const [user, loading, error] = useAuthState(auth)
     const loginTitle = 'Login'
@@ -25,14 +27,16 @@ const AuthPage = () => {
             // console.log('loading', loading)
             return;
         }
-        if (user) navigate(`/${back}`);
+        if (user) {
+            removeItem();
+            navigate(`/${back}`)
+        };
     }, [user, loading]);
+
+
 
     const loginEmail = () => {
         logInWithEmailAndPassword(email, password)
-        .then(() => {
-            
-        })
     }
 
     return (
