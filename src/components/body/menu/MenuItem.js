@@ -2,24 +2,17 @@ import React, { useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
 import { auth } from "../../../api/firebase";
+import { useState } from "react";
 
-const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
+const MenuItem = ({ cardData, removeCard }) => {
     const theme = useContext(ThemeContext)
-    const {
-        authStatus,
-        currentUser,
-        allUsers,
-    } = useOutletContext()
+    const { authStatus } = useOutletContext()
     const navigate = useNavigate()
-    const visFlag = !alwaysVisible ? 'visibility_lock' : '';
-    const handleDisplay = allUsers.length > 0
-        ?
-        allUsers.filter(user => user.uid === cardData.userUID)[0].email
-        :
-        ""
 
     return (
         <div className={`menuItem__container ${theme}`}>
+            <span className={`menuItem__star material-symbols-rounded star-${cardData.starStatus}`}>star</span>
+
             <a className={`menuItem__link ${theme}`}
                 href={`${cardData.link}`}
             >
@@ -28,24 +21,24 @@ const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
                         {cardData.title}
                     </span>
                     {
-                        currentUser.admin
+                        cardData.admin
                         &&
                         (
                             <span className={`menuItem__visibility--container`}>
                                 {
-                                    visFlag
+                                    cardData.visFlag
                                     &&
                                     <span
-                                        className={`menuItem__visibility--symbol material-symbols-outlined ${visFlag}`}>
+                                        className={`menuItem__visibility--symbol material-symbols-outlined ${cardData.visFlag}`}>
                                         {
-                                            `${visFlag}`
+                                            `${cardData.visFlag}`
                                         }
                                     </span>
                                 }
                                 <span
                                     className={`menuItem__visibility--handle`}>
                                     {
-                                        handleDisplay
+                                        cardData.handleDisplay
                                     }
                                 </span>
                             </span>
@@ -73,7 +66,7 @@ const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
 
             {
                 (
-                    currentUser.admin
+                    cardData.admin
                     ||
                     (
                         authStatus === 'lock_open'
@@ -102,3 +95,5 @@ const MenuItem = ({ cardData, alwaysVisible, removeCard }) => {
 }
 
 export default MenuItem
+
+
