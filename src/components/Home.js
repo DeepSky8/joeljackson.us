@@ -22,6 +22,8 @@ const Home = () => {
     const [allUsers, setAllUsers] = useState([])
     const [visibleUIDs, setVisibleUIDs] = useState([])
     const [madeCardArray, setMadeCardArray] = useState([])
+    const [madeCardStarred, setMadeCardStarred] = useState([])
+    const [foundCardStarred, setFoundCardStarred] = useState([])
     const [foundCardArray, setFoundCardArray] = useState([])
     const [authStatus, setAuthStatus] = useState('lock')
 
@@ -78,13 +80,18 @@ const Home = () => {
     useEffect(() => {
         onValue(ref(db, `made`), (snapshot) => {
             const tempCardsArray = [];
+            const tempStarredArray = [];
             if (snapshot.exists()) {
                 snapshot.forEach((snap) => {
                     tempCardsArray.push(snap.val())
+                    if (snap.val().starStatus === 'selected') {
+                        tempStarredArray.push(snap.val())
+                    }
                 })
             }
             tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setMadeCardArray(tempCardsArray)
+            setMadeCardStarred(tempStarredArray)
         })
 
         return () => {
@@ -96,13 +103,20 @@ const Home = () => {
     useEffect(() => {
         onValue(ref(db, `found`), (snapshot) => {
             const tempCardsArray = [];
+            const tempStarredArray = [];
+
             if (snapshot.exists()) {
                 snapshot.forEach((snap) => {
                     tempCardsArray.push(snap.val())
+                    if (snap.val().starStatus === 'selected') {
+                        tempStarredArray.push(snap.val())
+                    }
                 })
             }
             tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
             setFoundCardArray(tempCardsArray)
+            setFoundCardStarred(tempStarredArray)
+
         })
 
         return () => {
@@ -158,6 +172,8 @@ const Home = () => {
                         allUsers,
                         removeAllItems,
                         lockData,
+                        madeCardStarred,
+                        foundCardStarred,
                     }} />
                 </div>
             </div>

@@ -10,11 +10,11 @@ const MenuItems = () => {
         madeCardArray,
         foundCardArray,
         currentUser,
-        visibleUIDs
+        visibleUIDs,
+        madeCardStarred,
+        foundCardStarred,
     } = useOutletContext()
     const { type = 'found' } = useParams()
-    // const [starStatus, setStarStatus] = useState(cardData.starType)
-
     const currentDisplay = []
     const selectedType = (type === 'found' ? foundCardArray : madeCardArray)
 
@@ -35,6 +35,35 @@ const MenuItems = () => {
             currentDisplay.push({ ...card, visFlag, handleDisplay: "", admin: false })
         }
     })
+    // const foundStar = (foundCardStarred.length > 0
+    //     ?
+    //     foundCardStarred[0]
+    //     :
+    //     null
+    // )
+
+    // const madeStar = (madeCardStarred.length > 0
+    //     ?
+    //     madeCardStarred[0]
+    //     :
+    //     null
+    // )
+
+    // const currentStarred = (type === 'found'
+    //     ?
+    //     foundStar
+    //     :
+    //     madeStar
+    // )
+
+    // const handleStarCard = (type, cardKey) => {
+    //     if (currentUser.admin) {
+
+
+
+
+    //     }
+    // }
 
     return currentDisplay.map((cardData) => {
         return (

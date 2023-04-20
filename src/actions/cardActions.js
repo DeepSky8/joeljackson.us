@@ -140,3 +140,24 @@ export const startRemoveCard = async (type = 'undefined', cardKey) => {
         })
 }
 
+export const startStarCard = async ({ type, cardKey }) => {
+    const updates = {}
+
+    updates[`${type}/${cardKey}/starStatus`] = 'selected'
+
+    update(ref(db), updates)
+        .catch((error) => {
+            alert('Did not star card,', error)
+        })
+}
+
+export const startUnstarCard = async ({ type, cardKey }) => {
+    const updates = {}
+
+    updates[`${type}/${cardKey}/starStatus`] = null
+
+    update(ref(db), updates)
+        .catch((error) => {
+            alert('Did not unstar card,', error)
+        })
+}
