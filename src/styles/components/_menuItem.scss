@@ -26,12 +26,20 @@
 }
 
 .menuItem__title {
-    display: block;
     text-align: center;
     text-decoration: none;
     font-size: $calcFontSizeExtraLarge;
     font-weight: bold;
     margin: $xs-size;
+    width: fit-content;
+}
+
+.menuItem__star {
+    z-index: 50;
+    position: absolute;
+    right: 2rem;
+    background-color: transparent;
+    border: none;
 }
 
 .menuItem__visibility--container {

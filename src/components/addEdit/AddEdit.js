@@ -1,4 +1,4 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router";
 import ThemeContext from "../context/ThemeContext";
 import ImageUpload from "./ImageUpload";
@@ -12,13 +12,10 @@ import {
     startSaveCard,
     startUploadFile,
     updateLink,
-    updateType,
     updateUID
 } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
-import { useEffect } from "react";
-import { useState } from "react";
 import checkURL from "../../functions/checkURL";
 import { auth } from "../../api/firebase";
 
@@ -26,8 +23,8 @@ const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type = 'found', id = '' } = useParams()
-    const { madeCardArray, foundCardArray } = useOutletContext([])
-    const [currentArray, setCurrentArray] = useState(foundCardArray)
+    const { allCardsArray } = useOutletContext([])
+    const [currentArray, setCurrentArray] = useState(allCardsArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
@@ -37,13 +34,6 @@ const AddEdit = () => {
 
         }
     }, [auth.currentUser])
-
-    useEffect(() => {
-        if (type === 'made') {
-            dispatchCardState(updateType(type.toString()))
-            setCurrentArray(madeCardArray)
-        }
-    }, [type])
 
     useEffect(() => {
         const selectedCard = currentArray.find(card => card.cardKey === id)
@@ -61,7 +51,7 @@ const AddEdit = () => {
             dispatchCardState(updateLink(checkURL(cardState.link)))
 
             if (cardState.cardKey) {
-                if (cardState.imageFile) { startUploadFile(cardState.imageFile, cardState.type, cardState.cardKey) }
+                if (cardState.imageFile) { startUploadFile({imageFile: cardState.imageFile, cardKey: cardState.cardKey}) }
 
                 startSaveCard(cardState, cardState.cardKey)
                     .then(() => {
@@ -72,7 +62,7 @@ const AddEdit = () => {
                     })
 
             } else if (cardState.cardKey === '') {
-                startNewLink(cardState)
+                startNewLink({cardData: cardState})
             }
             return true
         }
