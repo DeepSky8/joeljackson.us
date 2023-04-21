@@ -2,16 +2,30 @@ import React, { useContext } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import ThemeContext from "../../context/ThemeContext";
 import { auth } from "../../../api/firebase";
-import { useState } from "react";
 
-const MenuItem = ({ cardData, removeCard }) => {
+const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) => {
     const theme = useContext(ThemeContext)
     const { authStatus } = useOutletContext()
     const navigate = useNavigate()
 
+    const starCheck = () => {
+        if (cardData.admin) {
+            cardData.starStatus === 'selected'
+                ?
+                handleUnstarCard(cardData.cardKey)
+                :
+                handleStarCard(cardData.type, cardData.cardKey)
+        }
+    }
+
     return (
         <div className={`menuItem__container ${theme}`}>
-            <span className={`menuItem__star material-symbols-rounded star-${cardData.starStatus}`}>star</span>
+            <button
+                className={`menuItem__star material-symbols-rounded star-${cardData.starStatus}`}
+                onClick={starCheck}
+            >
+                star
+            </button>
 
             <a className={`menuItem__link ${theme}`}
                 href={`${cardData.link}`}
@@ -97,3 +111,4 @@ const MenuItem = ({ cardData, removeCard }) => {
 export default MenuItem
 
 
+// <span className={`menuItem__star material-symbols-rounded star-${cardState.starStatus}`}>star</span>

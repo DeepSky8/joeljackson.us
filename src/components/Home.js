@@ -21,10 +21,9 @@ const Home = () => {
     const [lockData, dispatchLockData] = useReducer(registerLockReducer, defaultRegisterLockState)
     const [allUsers, setAllUsers] = useState([])
     const [visibleUIDs, setVisibleUIDs] = useState([])
-    const [madeCardArray, setMadeCardArray] = useState([])
-    const [madeCardStarred, setMadeCardStarred] = useState([])
-    const [foundCardStarred, setFoundCardStarred] = useState([])
-    const [foundCardArray, setFoundCardArray] = useState([])
+
+    const [allCardsArray, setAllCardsArray] = useState([])
+    const [starredCardsArray, setStarredCardsArray] = useState([])
     const [authStatus, setAuthStatus] = useState('lock')
 
     // Current User Listener
@@ -76,32 +75,9 @@ const Home = () => {
         })
     }, [])
 
-    // Made Card Listener
+    // Card Listener
     useEffect(() => {
-        onValue(ref(db, `made`), (snapshot) => {
-            const tempCardsArray = [];
-            const tempStarredArray = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((snap) => {
-                    tempCardsArray.push(snap.val())
-                    if (snap.val().starStatus === 'selected') {
-                        tempStarredArray.push(snap.val())
-                    }
-                })
-            }
-            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
-            setMadeCardArray(tempCardsArray)
-            setMadeCardStarred(tempStarredArray)
-        })
-
-        return () => {
-            off(ref(db, `made`))
-        }
-    }, [])
-
-    // Found Card Listener
-    useEffect(() => {
-        onValue(ref(db, `found`), (snapshot) => {
+        onValue(ref(db, `card`), (snapshot) => {
             const tempCardsArray = [];
             const tempStarredArray = [];
 
@@ -114,13 +90,13 @@ const Home = () => {
                 })
             }
             tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
-            setFoundCardArray(tempCardsArray)
-            setFoundCardStarred(tempStarredArray)
+            setAllCardsArray(tempCardsArray)
+            setStarredCardsArray(tempStarredArray)
 
         })
 
         return () => {
-            off(ref(db, `found`))
+            off(ref(db, `card`))
         }
     }, [])
 
@@ -143,19 +119,31 @@ const Home = () => {
     }, [])
 
     const removeAllItems = async (uid) => {
-        const removeMadeArray = madeCardArray
-            .filter(item => item.userUID === uid)
-            .map(item => item.cardKey);
-        removeMadeArray.forEach(item => {
-            return startRemoveCard('made', item)
-        })
+        if (currentUser.admin) {
 
-        const removeFoundArray = foundCardArray
-            .filter(item => item.userUID === uid)
-            .map(item => item.cardKey);
-        removeFoundArray.forEach(item => {
-            return startRemoveCard('found', item)
-        })
+            const cardsToRemove = allCardsArray
+                .filter(card => card.userUID === uid)
+                .map(card => card.cardKey);
+
+            cardsToRemove.forEach(cardKey => {
+                return startRemoveCard({ cardKey })
+            })
+        }
+
+        // Remove
+        // const removeMadeArray = madeCardArray
+        //     .filter(item => item.userUID === uid)
+        //     .map(item => item.cardKey);
+        // removeMadeArray.forEach(item => {
+        //     return startRemoveCard('made', item)
+        // })
+
+        // const removeFoundArray = foundCardArray
+        //     .filter(item => item.userUID === uid)
+        //     .map(item => item.cardKey);
+        // removeFoundArray.forEach(item => {
+        //     return startRemoveCard('found', item)
+        // })
     }
 
     return (
@@ -164,16 +152,14 @@ const Home = () => {
             <div className={`home__content__wrapper ${theme}`}>
                 <div className={`home__content--padding ${theme}`}>
                     <Outlet context={{
-                        madeCardArray,
-                        foundCardArray,
-                        authStatus,
-                        visibleUIDs,
-                        currentUser,
+                        allCardsArray,
                         allUsers,
-                        removeAllItems,
+                        authStatus,
+                        currentUser,
                         lockData,
-                        madeCardStarred,
-                        foundCardStarred,
+                        removeAllItems,
+                        starredCardsArray,
+                        visibleUIDs,
                     }} />
                 </div>
             </div>

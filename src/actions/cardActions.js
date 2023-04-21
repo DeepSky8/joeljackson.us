@@ -58,15 +58,15 @@ export const loadCard = (cardData) => ({
 export const startSaveCard = async ({ altText, body, link, title, type, userUID, dateCreated, dateUpdated }, cardKey) => {
     const updates = {}
 
-    updates[`${type}/${cardKey}/altText`] = altText
-    updates[`${type}/${cardKey}/body`] = body
-    updates[`${type}/${cardKey}/link`] = link
-    updates[`${type}/${cardKey}/title`] = title
-    updates[`${type}/${cardKey}/type`] = type
-    updates[`${type}/${cardKey}/cardKey`] = cardKey
-    updates[`${type}/${cardKey}/userUID`] = userUID
-    updates[`${type}/${cardKey}/dateCreated`] = dateCreated
-    updates[`${type}/${cardKey}/dateUpdated`] = dateUpdated
+    updates[`card/${cardKey}/altText`] = altText
+    updates[`card/${cardKey}/body`] = body
+    updates[`card/${cardKey}/link`] = link
+    updates[`card/${cardKey}/title`] = title
+    updates[`card/${cardKey}/type`] = type
+    updates[`card/${cardKey}/cardKey`] = cardKey
+    updates[`card/${cardKey}/userUID`] = userUID
+    updates[`card/${cardKey}/dateCreated`] = dateCreated
+    updates[`card/${cardKey}/dateUpdated`] = dateUpdated
 
     update(ref(db), updates)
         .catch((error) => {
@@ -74,10 +74,10 @@ export const startSaveCard = async ({ altText, body, link, title, type, userUID,
         })
 }
 
-const startSaveURL = async (type, cardKey, url) => {
+const startSaveURL = async ({ cardKey, url }) => {
     const updates = {}
 
-    updates[`${type}/${cardKey}/imageURL`] = url
+    updates[`card/${cardKey}/imageURL`] = url
 
     update(ref(db), updates)
         .catch((error) => {
@@ -85,14 +85,14 @@ const startSaveURL = async (type, cardKey, url) => {
         })
 }
 
-export const startUploadFile = async (imageFile, type, cardKey) => {
-    const pathReference = sRef(storage, `${type}/${cardKey}`)
+export const startUploadFile = async ({ imageFile, cardKey }) => {
+    const pathReference = sRef(storage, `card/${cardKey}`)
     uploadBytesResumable(pathReference, imageFile)
         .then(() => {
             return getDownloadURL(pathReference)
         })
         .then((url) => {
-            startSaveURL(type, cardKey, url)
+            startSaveURL({ cardKey, url })
         })
 
         .catch((error) => {
@@ -101,37 +101,19 @@ export const startUploadFile = async (imageFile, type, cardKey) => {
         })
 }
 
-export const startNewLink = (cardData) => {
-    const newCardKey = push(child(ref(db), `${cardData.type}`)).key
-    startSaveCard(cardData, newCardKey)
+export const startNewLink = ({ cardData }) => {
+    const newCardKey = push(child(ref(db), `card`)).key
+    startSaveCard({ ...cardData }, newCardKey)
     if (cardData.imageFile) {
-        startUploadFile(cardData.imageFile, cardData.type, newCardKey)
+        startUploadFile({ imageFile: cardData.imageFile, cardKey: newCardKey })
     }
 }
 
-export const startGetCards = async (type) => {
-
-    return get(ref(db, `${type}`))
-        .then((snapshot) => {
-            const tempList = [];
-            if (snapshot.exists()) {
-                snapshot.forEach((snap) => {
-                    tempList.push(snap.val())
-                })
-            }
-            return tempList
-        })
-        .catch((error) => {
-            console.log('error', error)
-        })
-
-}
-
-export const startRemoveCard = async (type = 'undefined', cardKey) => {
+export const startRemoveCard = async ({ cardKey }) => {
     const updates = {}
-    const storageRef = sRef(storage, `${type}/${cardKey}/`)
+    const storageRef = sRef(storage, `card/${cardKey}/`)
 
-    updates[`${type}/${cardKey}/`] = null
+    updates[`card/${cardKey}/`] = null
 
     update(ref(db), updates)
     deleteObject(storageRef)
@@ -140,10 +122,10 @@ export const startRemoveCard = async (type = 'undefined', cardKey) => {
         })
 }
 
-export const startStarCard = async ({ type, cardKey }) => {
+export const startStarCard = async ({ cardKey }) => {
     const updates = {}
 
-    updates[`${type}/${cardKey}/starStatus`] = 'selected'
+    updates[`card/${cardKey}/starStatus`] = 'selected'
 
     update(ref(db), updates)
         .catch((error) => {
@@ -151,10 +133,10 @@ export const startStarCard = async ({ type, cardKey }) => {
         })
 }
 
-export const startUnstarCard = async ({ type, cardKey }) => {
+export const startUnstarCard = async ({ cardKey }) => {
     const updates = {}
 
-    updates[`${type}/${cardKey}/starStatus`] = null
+    updates[`card/${cardKey}/starStatus`] = null
 
     update(ref(db), updates)
         .catch((error) => {
