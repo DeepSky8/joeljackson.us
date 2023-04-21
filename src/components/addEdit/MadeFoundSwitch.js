@@ -6,7 +6,7 @@ const MadeFoundSwitch = ({ type, dispatchCardState }) => {
     const theme = useContext(ThemeContext)
 
     return (
-        <div className="madeFound__container">
+        <div className={`madeFound__container ${theme}`}>
             <span>I </span>
             <span className="madeFound__switch">
                 <input

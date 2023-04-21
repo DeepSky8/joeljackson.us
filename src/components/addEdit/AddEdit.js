@@ -11,12 +11,11 @@ import {
     startNewLink,
     startSaveCard,
     startUploadFile,
-    updateLink,
+
     updateUID
 } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
-import checkURL from "../../functions/checkURL";
 import { auth } from "../../api/firebase";
 
 const AddEdit = () => {
@@ -24,12 +23,12 @@ const AddEdit = () => {
     const theme = useContext(ThemeContext)
     const { type = 'found', id = '' } = useParams()
     const { allCardsArray } = useOutletContext([])
-    const [currentArray, setCurrentArray] = useState(allCardsArray)
+    const [currentArray,] = useState(allCardsArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
     useEffect(() => {
-        if (auth.currentUser.uid) {
+        if (auth.currentUser) {
             dispatchCardState(updateUID(auth.currentUser.uid))
 
         }
@@ -45,13 +44,10 @@ const AddEdit = () => {
     }
 
     const evalAddEdit = () => {
-
         if (readyToUpdate(cardState)) {
-            // Add HTTP if it's not part of the URL as entered by the user
-            dispatchCardState(updateLink(checkURL(cardState.link)))
 
             if (cardState.cardKey) {
-                if (cardState.imageFile) { startUploadFile({imageFile: cardState.imageFile, cardKey: cardState.cardKey}) }
+                if (cardState.imageFile) { startUploadFile({ imageFile: cardState.imageFile, cardKey: cardState.cardKey }) }
 
                 startSaveCard(cardState, cardState.cardKey)
                     .then(() => {
@@ -62,7 +58,7 @@ const AddEdit = () => {
                     })
 
             } else if (cardState.cardKey === '') {
-                startNewLink({cardData: cardState})
+                startNewLink({ cardData: cardState })
             }
             return true
         }
@@ -90,7 +86,8 @@ const AddEdit = () => {
                             <Field
                                 key={field.id}
                                 {...field}
-                                id={field.id + cardState.cardKey}
+                                theme={theme}
+
                             />
                         )
                     })}

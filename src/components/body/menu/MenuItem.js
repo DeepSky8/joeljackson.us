@@ -21,7 +21,7 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
     return (
         <div className={`menuItem__container ${theme}`}>
             <button
-                className={`menuItem__star material-symbols-rounded star-${cardData.starStatus}`}
+                className={`menuItem__star material-symbols-rounded star-${cardData.starStatus} ${theme}`}
                 onClick={starCheck}
             >
                 star
@@ -29,6 +29,7 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
 
             <a className={`menuItem__link ${theme}`}
                 href={`${cardData.link}`}
+                target="_blank"
             >
                 <span className={`menuItem__header`}>
                     <span className="menuItem__title">
@@ -109,6 +110,3 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
 }
 
 export default MenuItem
-
-
-// <span className={`menuItem__star material-symbols-rounded star-${cardState.starStatus}`}>star</span>

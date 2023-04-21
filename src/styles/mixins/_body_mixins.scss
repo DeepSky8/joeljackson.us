@@ -57,3 +57,23 @@
         outline-color: $text-black;
     }
 }
+
+@mixin body__border--color() {
+
+    &.green {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+    &.blue {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+    &.black {
+        @include color__transition(border-color);
+        border-color: $blue-light;
+    }
+    &.white {
+        @include color__transition(border-color);
+        border-color: $text-black;
+    }
+}

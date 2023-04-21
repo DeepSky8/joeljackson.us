@@ -28,4 +28,5 @@
 
 .addEdit--center {
     @include center-item;
+    @include body__text--color;
 }

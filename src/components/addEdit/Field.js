@@ -4,7 +4,7 @@ const Field = ({ label, id, theme, type, placeholder, value, change, blur }) => 
 
     return (
         <div className="field__container">
-            <span className="field__container--description">
+            <span className={`field__container--description ${theme}`}>
                 <label htmlFor={id}>{label}</label>
             </span>
             <span className="field__container--input">
