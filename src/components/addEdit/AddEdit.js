@@ -11,6 +11,7 @@ import {
     startNewLink,
     startSaveCard,
     startUploadFile,
+
     updateUID
 } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
@@ -25,10 +26,6 @@ const AddEdit = () => {
     const [currentArray,] = useState(allCardsArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
-
-    useEffect(() => {
-        console.log('cardState', cardState)
-    }, [cardState])
 
     useEffect(() => {
         if (auth.currentUser.uid) {
@@ -66,7 +63,6 @@ const AddEdit = () => {
             return true
         }
     }
-
 
     return (
         <div className={`addEdit__container ${theme}`}>
@@ -107,8 +103,7 @@ const AddEdit = () => {
                         <button
                             className={`addEdit__buttons--saveCancel ${theme}`}
                             onClick={() => {
-                                if (evalAddEdit(cardState)) { goBack() }
-
+                                if (evalAddEdit()) { goBack() }
                             }}
                         >{cardState.cardKey ? 'Update' : 'Save'}</button>
                         <button
@@ -125,5 +120,3 @@ const AddEdit = () => {
 
 
 export default AddEdit
-
-
