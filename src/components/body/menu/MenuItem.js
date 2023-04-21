@@ -29,6 +29,7 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
 
             <a className={`menuItem__link ${theme}`}
                 href={`${cardData.link}`}
+                target="_blank"
             >
                 <span className={`menuItem__header`}>
                     <span className="menuItem__title">
