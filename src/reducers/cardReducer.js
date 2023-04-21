@@ -15,6 +15,7 @@ const defaultCardState = {
     altTextPlaceholder: 'Please describe the image',
     dateCreated: Date.now(),
     dateUpdated: 0,
+    starStatus: '',
 }
 
 const cardReducer = (state, action) => {

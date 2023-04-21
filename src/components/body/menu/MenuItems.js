@@ -2,21 +2,22 @@ import React from "react";
 import { auth } from "../../../api/firebase";
 import MenuItem from "./MenuItem";
 import { useOutletContext, useParams } from "react-router";
-import { startRemoveCard } from "../../../actions/cardActions";
+import { startRemoveCard, startStarCard, startUnstarCard } from "../../../actions/cardActions";
+import { starSort } from "../../../functions/starSort";
 
 const MenuItems = () => {
     const {
+        allCardsArray,
         allUsers,
-        madeCardArray,
-        foundCardArray,
         currentUser,
-        visibleUIDs
+        visibleUIDs,
+        starredCardsArray,
     } = useOutletContext()
     const { type = 'found' } = useParams()
-    // const [starStatus, setStarStatus] = useState(cardData.starType)
-
     const currentDisplay = []
-    const selectedType = (type === 'found' ? foundCardArray : madeCardArray)
+    const selectedType = allCardsArray
+        .filter(card => card.type === type)
+        .sort(starSort)
 
     selectedType.forEach(card => {
         const visFlag = (visibleUIDs.includes(card.userUID) ? '' : 'visibility_lock');
@@ -35,6 +36,28 @@ const MenuItems = () => {
             currentDisplay.push({ ...card, visFlag, handleDisplay: "", admin: false })
         }
     })
+    const foundStar = starredCardsArray.filter(card => (card.type === 'found' && card.starStatus === 'selected'))[0]
+    const madeStar = starredCardsArray.filter(card => (card.type === 'made' && card.starStatus === 'selected'))[0]
+
+    const handleStarCard = (type, cardKey) => {
+        if (currentUser.admin) {
+            const currentStarred = type === 'found' ? foundStar : madeStar
+            if (currentStarred) {
+                startUnstarCard({ cardKey: currentStarred.cardKey })
+                    .then(() => {
+                        startStarCard({ cardKey })
+                    })
+            } else {
+                startStarCard({ cardKey })
+            }
+        }
+    }
+
+    const handleUnstarCard = (cardKey) => {
+        if (currentUser.admin) {
+            startUnstarCard({ cardKey })
+        }
+    }
 
     return currentDisplay.map((cardData) => {
         return (
@@ -42,8 +65,10 @@ const MenuItems = () => {
                 key={cardData.cardKey}
                 cardData={cardData}
                 removeCard={() => {
-                    startRemoveCard(cardData.type, cardData.cardKey)
+                    startRemoveCard({ cardKey: cardData.cardKey })
                 }}
+                handleStarCard={handleStarCard}
+                handleUnstarCard={handleUnstarCard}
             />
         )
     })
