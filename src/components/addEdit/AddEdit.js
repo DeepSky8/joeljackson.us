@@ -27,7 +27,6 @@ const AddEdit = () => {
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
-
     useEffect(() => {
         if (auth.currentUser.uid) {
             dispatchCardState(updateUID(auth.currentUser.uid))
