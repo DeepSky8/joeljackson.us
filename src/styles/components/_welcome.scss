@@ -1,0 +1,32 @@
+.welcome__container {
+    @include body__text--color;
+    margin-bottom: $xxl-size;
+    display: flexbox;
+}
+
+.welcome__container--header {
+    font-size: $calcFontSizeLarge;
+    font-weight: bold;
+    text-align: center;
+    @include body__text--color;
+}
+
+.welcome__link {
+    // text-decoration: none;
+    @include body__text--color;
+    cursor: pointer;
+}
+
+.welcome__container--buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.welcome__button--about {
+    background: transparent;
+    @include body__text--color;
+    font-size: $calcFontSizeLarge;
+    @include border__style;
+    @include body__border--color;
+}
