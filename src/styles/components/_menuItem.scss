@@ -6,6 +6,7 @@
     border-style: solid;
     border-width: 1px;
     @include border__style;
+    @include body__border--color;
     max-width: 98%;
     max-height: $card-height;
     text-align: center;
@@ -96,6 +97,7 @@
     @include background--color(header__background);
     @include body__text--color();
     @include border__style();
+    @include body__border--color;
     cursor: pointer;
     &:hover {
         @include inset__item;

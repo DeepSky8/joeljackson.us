@@ -28,7 +28,7 @@ const AddEdit = () => {
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
     useEffect(() => {
-        if (auth.currentUser.uid) {
+        if (auth.currentUser) {
             dispatchCardState(updateUID(auth.currentUser.uid))
 
         }
@@ -86,6 +86,8 @@ const AddEdit = () => {
                             <Field
                                 key={field.id}
                                 {...field}
+                                theme={theme}
+
                             />
                         )
                     })}
