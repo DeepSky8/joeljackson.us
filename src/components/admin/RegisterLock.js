@@ -20,8 +20,7 @@ const RegisterLock = () => {
         .filter(user => user.uid === lockData.userUID)
         .map(user => user.email)[0]
 
-    console.log('updatedOn', updatedOn)
-    useEffect(() => {
+        useEffect(() => {
         if (lockState.userUID !== 'SYSTEM' && lockState.updatedOn !== lockData.updatedOn) {
             startLockRegistration({ lockData: lockState })
         }

@@ -29,7 +29,7 @@ const AddEdit = () => {
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
     useEffect(() => {
-        if (auth.currentUser.uid) {
+        if (auth.currentUser) {
             dispatchCardState(updateUID(auth.currentUser.uid))
 
         }
@@ -51,7 +51,7 @@ const AddEdit = () => {
             dispatchCardState(updateLink(checkURL(cardState.link)))
 
             if (cardState.cardKey) {
-                if (cardState.imageFile) { startUploadFile({imageFile: cardState.imageFile, cardKey: cardState.cardKey}) }
+                if (cardState.imageFile) { startUploadFile({ imageFile: cardState.imageFile, cardKey: cardState.cardKey }) }
 
                 startSaveCard(cardState, cardState.cardKey)
                     .then(() => {
@@ -62,7 +62,7 @@ const AddEdit = () => {
                     })
 
             } else if (cardState.cardKey === '') {
-                startNewLink({cardData: cardState})
+                startNewLink({ cardData: cardState })
             }
             return true
         }
@@ -91,6 +91,7 @@ const AddEdit = () => {
                                 key={field.id}
                                 {...field}
                                 id={field.id + cardState.cardKey}
+                                theme={theme}
                             />
                         )
                     })}
