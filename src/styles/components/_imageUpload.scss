@@ -26,7 +26,9 @@
     // text-align: center;
     // position: relative;
     // transform: translateY(75%);
-    @include background--color(switch__background);
+    // @include background--color(switch__background);
+    @include background--color(button__background);
+
     @include body__text--color();
     @include border__style();
     // height: 100%;
@@ -42,7 +44,7 @@
     justify-content: center;
     // position: relative;
     // transform: translateY(100%);
-    @include background--color(switch__background);
+    @include background--color(button__background);
     @include body__text--color();
     @include border__style();
     // height: 100%;

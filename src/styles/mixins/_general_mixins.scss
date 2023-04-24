@@ -22,7 +22,7 @@
 
 @mixin outset__item() {
     border-radius: 5px;
-    -webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px  rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px rgba(255, 255, 255, 0.1);
     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px rgba(255, 255, 255, 0.1);
 }
 
@@ -162,7 +162,7 @@
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue__switch--background--light-pink;
+            background-color: $blue-pastel;
         }
         &.black {
             @include color__transition(background-color);
@@ -178,9 +178,9 @@
         &.green {
             @include color__transition(background-color);
             // background-color: $green__switch--background;
-            background-color: $blue-med-dark;
+            // background-color: $blue-med-dark;
 
-            // background-color: $green-light;
+            background-color: $green-light;
         }
         &.blue {
             @include color__transition(background-color);

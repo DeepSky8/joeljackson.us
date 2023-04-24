@@ -23,39 +23,111 @@ $max-content-width: 60rem;
 $theme__button--size: 4rem;
 $theme__button--sizeSmall: 2rem;
 
+// Timing
+$transition-short: 1s;
+$transition-med: 2s;
+$transition-long: 3s;
+
+
+
+
 // Colors
 $red-delete: rgb(197, 4, 4);
-
 $text-black: #000000;
-$text-grey: #494949;
-$text-grey--green: #7e997999;
-$text-blue--faded: #a2d4d355;
 
+
+
+
+
+
+// GREEN THEME
+
+// Base green color
 $green-reg: #056137;
-$green-pastel: #74c598;
+
 $green-light: lighten($green-reg, 20%);
-$green-med-dark: darken($green-reg, 6%);
+$green-med-dark: darken($green-reg, 2%);
 $green-dark: darken($green-reg, 20%);
 $green__switch--background: #65bd63;
 
+// Made/Found unselected word color for green background
+$text-grey--green: #7e997999;
+// Green input background
+$green-pastel: #74c598;
+
+
+
+
+
+
+
+// BLUE THEME
 $blue-reg: #91ddf2;
+
 $blue-pastel: #c6f3ff;
 $blue-med-dark: darken($blue-reg, 15%);
 $blue-dark: darken($blue-reg, 20%);
 $blue-extra-dark: darken($blue-reg, 40%);
-$blue__switch--background--pink: #e9b1ff;
+// $blue__switch--background--pink: #e9b1ff;
+$blue__switch--background--pink: #f4e5fa;
+
 $blue__switch--background--light-pink: #f4e5fa;
 
+// Made/Found unselected word color for blue background
+$text-blue--faded: #a2d4d355;
+
+
+
+
+
+
+
+// BLACK THEME
+
+// Window background for Black theme
+$background-blue: #151517;
+
+// Black background blue text
 $blue-light: #a2d4d3;
+
 $blue-light-dark: darken($blue-light, 20%);
 
+
+
+
+
+
+// WHITE THEME
+
+// Base grey for White theme
 $grey-light: #e7e7e7;
 $grey-light-dark: darken($grey-light, 25%);
+
+// Window background for White theme
 $grey-regular: #686868;
-$green-alt: #4c7135;
+
+// Made/Found unselected word color for blue and white backgrounds
+$text-grey: #494949;
+
+// Window background for Green theme, and app background for Black theme
 $background-grey: #12121a;
-$background-blue: #151517;
+
+
+
+
+// SWITCH
+
+// Switch background
 $background-fade: #00000060;
+
+
+
+
+
+
+
+// Text for green-alt
+// $green-alt: #ff0000;
 
 // $blue-light: #0dc0ba;
 // blue/grey #151517
@@ -68,7 +140,6 @@ $background-fade: #00000060;
 // $blue-reg: #0f6be4;
 // $blue-reg: #267be9;
 
-// Timing
-$transition-short: 1s;
-$transition-med: 2s;
-$transition-long: 3s;
+
+
+// Input background transitions
