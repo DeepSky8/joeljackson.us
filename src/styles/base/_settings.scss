@@ -45,16 +45,18 @@ $text-black: #000000;
 // Base green color
 $green-reg: #056137;
 
+$green-med-light: lighten($green-reg, 10%);
 $green-light: lighten($green-reg, 20%);
-$green-med-dark: darken($green-reg, 2%);
+$green-med-dark: darken($green-reg, 4%);
 $green-dark: darken($green-reg, 20%);
-$green__switch--background: #65bd63;
+$green__switch--background: #3fdb80;
 
 // Made/Found unselected word color for green background
 $text-grey--green: #7e997999;
 // Green input background
-$green-pastel: #74c598;
+$green-pastel: #73c796;
 
+// $green-pastel: #74c598;
 
 
 

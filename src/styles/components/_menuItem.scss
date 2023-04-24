@@ -1,8 +1,6 @@
 .menuItem__container {
+    @include background--color(menuItem__background);
     margin: 0 auto $s-size;
-    // outline-style: solid;
-    // outline-width: 1px;
-    // @include body__outline--color;
     border-style: solid;
     border-width: 1px;
     @include border__style;
@@ -10,6 +8,11 @@
     max-width: 98%;
     max-height: $card-height;
     text-align: center;
+    @include outset__item;
+    margin-bottom: $s-size;
+    &:hover {
+        @include inset__item;
+    }
 }
 
 .menuItem__link {
@@ -63,11 +66,11 @@
     justify-content: center;
     border-style: solid;
     border-width: 1px;
-    @include outset__item;
-    margin-bottom: $s-size;
-    &:hover {
-        @include inset__item;
-    }
+    // @include outset__item;
+    // margin-bottom: $s-size;
+    // &:hover {
+    //     @include inset__item;
+    // }
 }
 
 .menuItem__image {
@@ -94,7 +97,7 @@
     padding: 0.5rem;
     width: 48%;
     font-size: $calcFontSizeLarge;
-    @include background--color(header__background);
+    @include background--color(button__background);
     @include body__text--color();
     @include border__style();
     @include body__border--color;

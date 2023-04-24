@@ -24,9 +24,10 @@
 }
 
 .welcome__button--about {
-    background: transparent;
+    // background: transparent;
     @include body__text--color;
     font-size: $calcFontSizeLarge;
     @include border__style;
     @include body__border--color;
+    @include background--color(button__background);
 }

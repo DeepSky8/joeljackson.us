@@ -45,7 +45,7 @@ const ResetPage = () => {
                     <input
                         id="email"
                         type="text"
-                        className="authPage__login--textBox"
+                        className={`authPage__login--textBox ${theme}`}
                         autoFocus
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +58,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             sendPasswordReset(email)
                                 .then(() => {
@@ -77,7 +77,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/register/${back}`)
                         }}>
@@ -87,7 +87,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/authenticate/${back}`)
                         }}>
@@ -97,7 +97,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/${back}`)
                         }}>

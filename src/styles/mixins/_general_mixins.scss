@@ -38,6 +38,7 @@
 // addLink__background
 // switch__background
 // field__input__background
+// menuItem__background
 
 @mixin background--color($area) {
     @if ($area == window__background) {
@@ -142,7 +143,7 @@
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue-med-dark;
+            background-color: $blue-reg;
         }
         &.black {
             @include color__transition(background-color);
@@ -150,7 +151,7 @@
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light;
+            background-color: $grey-light-dark;
         }
     }
 
@@ -170,7 +171,7 @@
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light-dark;
+            background-color: $grey-light;
         }
     }
 
@@ -180,11 +181,13 @@
             // background-color: $green__switch--background;
             // background-color: $blue-med-dark;
 
-            background-color: $green-light;
+            background-color: $green__switch--background;
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue__switch--background--pink;
+            // background-color: $blue__switch--background--pink;
+
+            background-color: $blue-med-dark;
         }
         &.black {
             @include color__transition(background-color);
@@ -211,6 +214,30 @@
         &.black {
             @include color__transition(background-color);
             background-color: $background-grey;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == menuItem__background) {
+        &.green {
+            @include color__transition(background-color);
+            // background-color: $green__switch--background;
+            // background-color: $blue-med-dark;
+
+            background-color: $green-med-light;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            // background-color: $blue__switch--background--pink;
+
+            background-color: $blue-med-dark;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-blue;
         }
         &.white {
             @include color__transition(background-color);
