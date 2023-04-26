@@ -11,7 +11,6 @@ import {
     startNewLink,
     startSaveCard,
     startUploadFile,
-
     updateUID
 } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";

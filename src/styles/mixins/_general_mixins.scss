@@ -22,7 +22,7 @@
 
 @mixin outset__item() {
     border-radius: 5px;
-    -webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px  rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px rgba(255, 255, 255, 0.1);
     box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.3), 5px 5px rgba(255, 255, 255, 0.1);
 }
 
@@ -38,6 +38,8 @@
 // addLink__background
 // switch__background
 // field__input__background
+// menuItem__background
+// hover__bakground
 
 @mixin background--color($area) {
     @if ($area == window__background) {
@@ -138,7 +140,83 @@
     @if ($area == button__background) {
         &.green {
             @include color__transition(background-color);
-            background-color: $green-med-dark;
+            background-color: $green-light;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-reg;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-blue;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light-dark;
+        }
+    }
+
+    @if ($area == addLink__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green-pastel;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-pastel;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-grey;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == switch__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green__switch--background;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-med-dark;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $blue-extra-dark;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == field__input__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green-pastel;
+        }
+        &.blue {
+            @include color__transition(background-color);
+            background-color: $blue-pastel;
+        }
+        &.black {
+            @include color__transition(background-color);
+            background-color: $background-grey;
+        }
+        &.white {
+            @include color__transition(background-color);
+            background-color: $grey-light;
+        }
+    }
+
+    @if ($area == menuItem__background) {
+        &.green {
+            @include color__transition(background-color);
+            background-color: $green-med-light;
         }
         &.blue {
             @include color__transition(background-color);
@@ -154,83 +232,34 @@
         }
     }
 
-    @if ($area == addLink__background) {
+    @if ($area == hover__background) {
         &.green {
             @include color__transition(background-color);
-            // background-color: $green__switch--background;
-            background-color: $green-light;
+            background-color: $green-med-dark;
         }
         &.blue {
-            @include color__transition(background-color);
-            background-color: $blue__switch--background--light-pink;
-        }
-        &.black {
-            @include color__transition(background-color);
-            background-color: $background-grey;
-        }
-        &.white {
-            @include color__transition(background-color);
-            background-color: $grey-light-dark;
-        }
-    }
-
-    @if ($area == switch__background) {
-        &.green {
-            @include color__transition(background-color);
-            // background-color: $green__switch--background;
-            background-color: $blue-med-dark;
-
-            // background-color: $green-light;
-        }
-        &.blue {
-            @include color__transition(background-color);
-            background-color: $blue__switch--background--pink;
-        }
-        &.black {
             @include color__transition(background-color);
             background-color: $blue-extra-dark;
         }
-        &.white {
-            @include color__transition(background-color);
-            background-color: $grey-light;
-        }
-    }
-
-    @if ($area == field__input__background) {
-        &.green {
-            @include color__transition(background-color);
-            // background-color: $green-pastel;
-            background-color: $green-pastel;
-
-            // background-color: $green__switch--background;
-        }
-        &.blue {
-            @include color__transition(background-color);
-            background-color: $blue-pastel;
-        }
         &.black {
             @include color__transition(background-color);
-            background-color: $background-grey;
+            background-color: $blue-med-dark;
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light;
+            background-color: $text-grey;
         }
     }
 }
 
 @mixin textLink {
     text-decoration: none;
-    // &:visited{
-    //     color: none;
-    // }
 }
 
 @mixin border__style {
     border-style: solid;
     border-radius: 5px;
     border-width: 1px;
-    // border-color: black;
 }
 
 @mixin center-item {

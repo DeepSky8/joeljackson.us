@@ -1,5 +1,6 @@
 .authPage__container {
     display: flexbox;
+    margin-bottom: $xxl-size;
 }
 
 .authPage__container--title {
@@ -28,6 +29,8 @@
     height: fit-content;
     max-width: 75%;
     font-size: $calcFontSizeLarge;
+    @include background--color(field__input__background);
+    @include body__text--color;
 }
 
 .authPage__container--buttons {
@@ -45,4 +48,9 @@
     font-size: $calcFontSizeLarge;
     width: 75%;
     height: $calcFontSizeExtraLarge;
+    @include background--color(button__background);
+    @include body__text--color;
+    &:hover {
+        @include background--color(hover__background);
+    }
 }

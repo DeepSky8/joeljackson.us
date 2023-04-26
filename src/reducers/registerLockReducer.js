@@ -9,7 +9,6 @@ const registerLockReducer = (state, action) => {
     switch (action.type) {
         case 'LOAD_LOCK':
             return {
-                // ...defaultRegisterLockState,
                 ...action.lockData,
             }
         case 'UPDATE_LOCK':

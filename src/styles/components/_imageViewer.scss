@@ -1,11 +1,9 @@
 .imageViewer__container {
-    // justify-content: space-around;
     @include border__style();
     margin: 0 auto;
     height: 620px;
     width: 620px;
     text-align: center;
-    // overflow: hidden;
     @include body__text--color;
     img {
         padding: 10px 10px;

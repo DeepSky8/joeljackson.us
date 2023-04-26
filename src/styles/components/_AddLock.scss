@@ -19,3 +19,31 @@
     font-size: $calcFontSizeExtraLarge;
     padding: $s-size;
 }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .addLock__container {
+        position: fixed;
+        bottom: 0;
+
+        z-index: 50;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 60rem;
+        @include addLock__border--top;
+    }
+
+    .addLock__container--addAuth {
+        justify-content: space-between;
+        display: flex;
+        @include background--color(header__background);
+    }
+    
+    .addLock__button--addLock {
+        background: transparent;
+        border: none;
+        font-size: $calcFontSizeLarge;
+        padding: $xs-size;
+    }
+
+
+}

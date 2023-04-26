@@ -41,18 +41,6 @@ const signInWithGoogle = async () => {
             .catch((error) => {
                 alert(error)
             })
-        // const user = res.user;
-        // console.log('user data popup', user)
-        // const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        // const docs = await getDocs(q);
-        // if (docs.docs.length === 0) {
-        //     await addDoc(collection(db, "users"), {
-        //         uid: user.uid,
-        //         name: user.displayName,
-        //         authProvider: "google",
-        //         email: user.email,
-        //     });
-        // }
     } catch (err) {
         console.error(err);
         alert(err.message);
@@ -89,14 +77,6 @@ const registerWithEmailAndPassword = async (email, password) => {
                 console.error(err);
                 alert(err.message);
             })
-
-
-        // await addDoc(collection(db, "users"), {
-        //     uid: user.uid,
-        //     name,
-        //     authProvider: "local",
-        //     email,
-        // });
     } catch (err) {
         console.error(err);
         alert(err.message);

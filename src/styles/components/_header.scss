@@ -7,13 +7,7 @@
     margin: 0 auto;
     z-index: 98;
     @include header__border--bottom;
-    // @include color__transition(border-color);
-
-    // @include header__text--color;
-    // @include color__transition(color);
-
     @include background--color(header__background);
-    // @include color__transition(background-color);
 }
 
 .header__content {
@@ -21,14 +15,7 @@
     padding-bottom: 0;
     display: flex;
     justify-content: space-between;
-    // @include header__border--bottom;
-    // @include color__transition(border-color);
-
     @include header__text--color;
-    // @include color__transition(color);
-
-    // @include background--color(header__background);
-    // @include color__transition(background-color);
     @include header__text--size;
 }
 
@@ -42,69 +29,27 @@
     }
 }
 
-// .material-icons {
-//     // @include header__text--color;
-
-//     @include twoItem__transition(font-size, $transition-short, ease-out, color, $transition-short, ease);
-
-//     // @include header__text--size;
-//     // font-size: $calcFontSizeExtraLarge;
-//     // @include header__text--size;
-//     // border-radius: 100%;
-
-//     // height: $theme__button--size;
-//     // width: $theme__button--size;
-//     // border-radius: 60%;
-
-//     &.palette {
-//         // @include sizecolor__transition(font-size, $transition-long, ease-out, color, $transition-short, ease);
-//         // @include header__text--size;
-
-//         // @include color__transition(background-color);
-//         // @include background--color(header__background);
-//         // background-color: transparent;
-//         // @include color__transition(color);
-//         @include header__text--color;
-//     }
-// }
-
 @media only screen and (min-device-width: $desktop-breakpoint) {
     .header__wrapper {
-        // justify-content: space-around;
-        // position: fixed;
-        // top: 0;
-
-        // text-align: center;
         left: 50%;
         transform: translateX(-50%);
         overflow: hidden;
-
-        // padding: $xs-size;
-        // transition: .5s;
-        // width: 100%;
         max-width: 60rem;
-        // padding: 0;
         margin: 0 auto;
-
-        // z-index: 98;
-        // @include body__text--color;
-        // @include header__text--color;
-        // @include background--color(header__background);
-        // @include background--color(header__background__shadow);
-
-        // @include header__border--bottom;
-
-        // display: block;
     }
 
     .header__content {
         padding: 0 $s-size;
-        display: flex;
-        justify-content: space-between;
+    }
 
+    .headerLink {
+        margin: 0;
+
+        @include textLink;
+        @include header__text--color;
         h1 {
+            font-size: $calcFontSize;
             margin: 0;
-            font-size: $calcFontSizeExtraLarge;
         }
     }
 }

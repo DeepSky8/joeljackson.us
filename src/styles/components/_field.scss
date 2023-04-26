@@ -8,20 +8,8 @@
 }
 
 .field__container--description {
-    // flex: 0 0 33.3333%;
-    // display: flex;
-    // width: 15vw;
-    // min-width: fit-content;
     @include body__text--color;
 }
-
-// .field__container--input {
-//     // flex: 0 0 66.6666%;
-//     // position: absolute;
-//     // left: 20vw;
-//     // max-width: 70vw;
-//     // display: flex;
-// }
 
 .field--input {
     height: fit-content;

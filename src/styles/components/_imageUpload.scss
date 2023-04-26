@@ -4,53 +4,33 @@
     justify-content: space-between;
 }
 
-// .imageUpload__uploadClear {
-//     display: flex;
-//     justify-content: center;
-//     // position: relative;
-//     // transform: translateY(100%);
-//     @include background--color(switch__background);
-//     @include body__text--color();
-//     @include border__style();
-//     height: 100%;
-//     width: 48%;
-//     padding: 0;
-//     // padding: 0 1rem 5px;
-//     font-size: $calcFontSizeLarge;
-//     cursor: pointer;
-// }
-
 .imageUpload__label {
     display: flex;
     justify-content: center;
-    // text-align: center;
-    // position: relative;
-    // transform: translateY(75%);
-    @include background--color(switch__background);
+    @include background--color(button__background);
     @include body__text--color();
     @include border__style();
-    // height: 100%;
     width: 48%;
-    // padding: 0 1rem 5px;
-
     font-size: $calcFontSizeLarge;
     cursor: pointer;
+    &:hover {
+        @include background--color(hover__background);
+    }
 }
 
 .imageUpload__clearImage {
     display: flex;
     justify-content: center;
-    // position: relative;
-    // transform: translateY(100%);
-    @include background--color(switch__background);
+    @include background--color(button__background);
     @include body__text--color();
     @include border__style();
-    // height: 100%;
     width: 48%;
-    padding: .5rem;
-    // padding: 0 1rem 5px;
+    padding: 0.5rem;
     font-size: $calcFontSizeLarge;
     cursor: pointer;
+    &:hover {
+        @include background--color(hover__background);
+    }
 }
 .imageUpload__button {
     position: absolute;

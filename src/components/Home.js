@@ -129,21 +129,6 @@ const Home = () => {
                 return startRemoveCard({ cardKey })
             })
         }
-
-        // Remove
-        // const removeMadeArray = madeCardArray
-        //     .filter(item => item.userUID === uid)
-        //     .map(item => item.cardKey);
-        // removeMadeArray.forEach(item => {
-        //     return startRemoveCard('made', item)
-        // })
-
-        // const removeFoundArray = foundCardArray
-        //     .filter(item => item.userUID === uid)
-        //     .map(item => item.cardKey);
-        // removeFoundArray.forEach(item => {
-        //     return startRemoveCard('found', item)
-        // })
     }
 
     return (

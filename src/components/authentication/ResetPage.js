@@ -10,11 +10,11 @@ const ResetPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [resetEmail, setResetEmail] = useLocalStorageState('jjResetEmail', { defaultValue: "" })
+    const [, setResetEmail] = useLocalStorageState('jjResetEmail', { defaultValue: "" })
     const [email, setEmail] = useState("");
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading,] = useAuthState(auth)
     const resetTitle = 'Password Reset'
-    const sendResetEmail = 'Send Password Reset Email'
+    const sendResetEmail = 'Send Password Reset'
     const newAccountText = "Create New Account"
     const returnLogin = 'Return to Login'
     const returnApp = 'Return to App'
@@ -22,7 +22,6 @@ const ResetPage = () => {
 
     useEffect(() => {
         if (loading) {
-            // console.log('loading', loading)
             return;
         }
         if (user) navigate(`/${back}`);
@@ -45,7 +44,7 @@ const ResetPage = () => {
                     <input
                         id="email"
                         type="text"
-                        className="authPage__login--textBox"
+                        className={`authPage__login--textBox ${theme}`}
                         autoFocus
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -58,7 +57,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             sendPasswordReset(email)
                                 .then(() => {
@@ -77,7 +76,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/register/${back}`)
                         }}>
@@ -87,7 +86,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/authenticate/${back}`)
                         }}>
@@ -97,7 +96,7 @@ const ResetPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/${back}`)
                         }}>

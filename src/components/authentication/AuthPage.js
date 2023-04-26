@@ -24,7 +24,6 @@ const AuthPage = () => {
 
     useEffect(() => {
         if (loading) {
-            // console.log('loading', loading)
             return;
         }
         if (user) {
@@ -56,7 +55,7 @@ const AuthPage = () => {
                     <input
                         id="email"
                         type="text"
-                        className="authPage__login--textBox"
+                        className={`authPage__login--textBox ${theme}`}
                         autoFocus
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -70,7 +69,7 @@ const AuthPage = () => {
                     <input
                         id="password"
                         type="password"
-                        className="authPage__login--textBox"
+                        className={`authPage__login--textBox ${theme}`}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
@@ -82,7 +81,7 @@ const AuthPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={loginEmail}
                     >
                         {emailText}
@@ -90,7 +89,7 @@ const AuthPage = () => {
                 </span>
 
                 <span className="authPage__container--button">
-                    <button className="authPage__login--button"
+                    <button className={`authPage__login--button ${theme}`}
                         onClick={signInWithGoogle}
                     >
                         {googleText}
@@ -101,7 +100,7 @@ const AuthPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/reset`)
                         }}
@@ -112,7 +111,7 @@ const AuthPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/register/${back}`)
                         }}>
@@ -124,7 +123,7 @@ const AuthPage = () => {
 
                 <span className="authPage__container--button">
                     <button
-                        className="authPage__login--button"
+                        className={`authPage__login--button ${theme}`}
                         onClick={() => {
                             navigate(`/${back}`)
                         }}>
