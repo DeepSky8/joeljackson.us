@@ -59,7 +59,7 @@ const AuthPage = () => {
                         autoFocus
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        placeholder="E-mail Address"
+                        placeholder="Email Address"
                     />
                 </span>
                 <span className="authPage__container--input">
