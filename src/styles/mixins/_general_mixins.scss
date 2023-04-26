@@ -39,6 +39,7 @@
 // switch__background
 // field__input__background
 // menuItem__background
+// hover__bakground
 
 @mixin background--color($area) {
     @if ($area == window__background) {
@@ -234,11 +235,11 @@
     @if ($area == hover__background) {
         &.green {
             @include color__transition(background-color);
-            background-color: $green__switch--background;
+            background-color: $green-med-dark;
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue-med-dark;
+            background-color: $blue-extra-dark;
         }
         &.black {
             @include color__transition(background-color);
@@ -246,7 +247,7 @@
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light;
+            background-color: $text-grey;
         }
     }
 }

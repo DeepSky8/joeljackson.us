@@ -37,6 +37,10 @@
     color: rgb(158, 158, 0);
     font-size: $calcFontSizeExtraLarge;
     display: flex;
+    &:hover {
+      @include body__text--color;
+      font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 48;
+    }
   }
 
   &.star-undefined {
@@ -44,5 +48,10 @@
     @include body__text--color;
     font-size: $calcFontSizeExtraLarge;
     display: flex;
+    &:hover {
+      @include color__transition(color, $transition-extraShort);
+      color: rgb(158, 158, 0);
+      font-variation-settings: "FILL" 1, "wght" 300, "GRAD" 0, "opsz" 48;
+    }
   }
 }

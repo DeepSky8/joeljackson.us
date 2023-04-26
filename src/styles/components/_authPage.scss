@@ -50,4 +50,7 @@
     height: $calcFontSizeExtraLarge;
     @include background--color(button__background);
     @include body__text--color;
+    &:hover {
+        @include background--color(hover__background);
+    }
 }

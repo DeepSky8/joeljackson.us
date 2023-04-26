@@ -101,6 +101,6 @@
     cursor: pointer;
     &:hover {
         @include inset__item;
-        @include background--color(switch__background);
+        @include background--color(hover__background);
     }
 }
