@@ -22,21 +22,14 @@
 .user__container--accessed {
     display: flex;
     justify-content: space-between;
-    // font-size: $calcFontSize;
-    // @include body__text--color();
 }
 
 .user__data--last {
     font-size: $calcFontSizeLarge;
     @include body__text--color();
-    // width: 50%;
 }
 
 .user__data--accessed {
     font-size: $calcFontSizeLarge;
     @include body__text--color();
-    // margin-left: 10px;
 }
-
-// .user__container--button {
-// }

@@ -4,7 +4,7 @@ import { auth } from "../../api/firebase";
 import { startLockRegistration, updateLock } from "../../actions/registerLockActions";
 import AdminSwitch from "./AdminSwitch";
 import { useReducer } from "react";
-import { defaultRegisterLockState, registerLockReducer } from "../../reducers/registerLockReducer";
+import { registerLockReducer } from "../../reducers/registerLockReducer";
 import { useOutletContext } from "react-router";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
@@ -20,7 +20,7 @@ const RegisterLock = () => {
         .filter(user => user.uid === lockData.userUID)
         .map(user => user.email)[0]
 
-        useEffect(() => {
+    useEffect(() => {
         if (lockState.userUID !== 'SYSTEM' && lockState.updatedOn !== lockData.updatedOn) {
             startLockRegistration({ lockData: lockState })
         }

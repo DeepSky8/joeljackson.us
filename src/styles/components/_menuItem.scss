@@ -19,7 +19,7 @@
     display: block;
     text-decoration: none;
     @include body__text--color;
-    padding: 0 $s-size;
+    padding: $s-size;
     cursor: pointer;
 }
 
@@ -66,11 +66,8 @@
     justify-content: center;
     border-style: solid;
     border-width: 1px;
-    // @include outset__item;
-    // margin-bottom: $s-size;
-    // &:hover {
-    //     @include inset__item;
-    // }
+    @include border__style;
+    @include body__border--color;
 }
 
 .menuItem__image {

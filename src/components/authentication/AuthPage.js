@@ -24,7 +24,6 @@ const AuthPage = () => {
 
     useEffect(() => {
         if (loading) {
-            // console.log('loading', loading)
             return;
         }
         if (user) {

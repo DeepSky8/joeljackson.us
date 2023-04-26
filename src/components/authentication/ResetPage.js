@@ -10,11 +10,11 @@ const ResetPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [resetEmail, setResetEmail] = useLocalStorageState('jjResetEmail', { defaultValue: "" })
+    const [, setResetEmail] = useLocalStorageState('jjResetEmail', { defaultValue: "" })
     const [email, setEmail] = useState("");
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading,] = useAuthState(auth)
     const resetTitle = 'Password Reset'
-    const sendResetEmail = 'Send Password Reset Email'
+    const sendResetEmail = 'Send Password Reset'
     const newAccountText = "Create New Account"
     const returnLogin = 'Return to Login'
     const returnApp = 'Return to App'
@@ -22,7 +22,6 @@ const ResetPage = () => {
 
     useEffect(() => {
         if (loading) {
-            // console.log('loading', loading)
             return;
         }
         if (user) navigate(`/${back}`);

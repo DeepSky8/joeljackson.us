@@ -1,11 +1,9 @@
 @mixin themePicker__container--bottomPadding {
     &.expanded {
-        // @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
         padding-bottom: 0;
         @include size__transition(padding-bottom)
     }
     &.contracted {
-        // @include twoItem__transition(height, $transition-long, ease, width, $transition-med, ease-out);
         padding-bottom: $xs-size;
         @include size__transition(padding-bottom)
 

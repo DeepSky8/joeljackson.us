@@ -5,13 +5,7 @@
     width: 100%;
     min-height: 100vh;
     font-size: $calcFontSizeLarge;
-    // padding: $m-size;
-    // padding-top: $xxl-size;
     @include background--color(body__background);
-    // @include color__transition(background-color);
-
-    // @include body__text--color;
-    // @include color__transition(color);
 }
 
 .home__content--padding {
@@ -19,34 +13,22 @@
     padding-top: $xxl-size;
 }
 
-
-
 @media only screen and (min-device-width: $desktop-breakpoint) {
     .window__background {
         @include background--color(window__background);
-        // @include color__transition(background-color);
     }
 
     .home__content__wrapper {
         position: relative;
         margin: 0 auto;
-
         max-width: $max-content-width;
         padding-bottom: $s-size;
         min-height: 99vh;
-        // font-size: $calcFontSizeLarge;
-
-        // @include background--color(body__background);
-        // @include color__transition(background-color);
-
         @include background--color(body__background__shadow);
-        // @include color__transition(box-shadow);
-
-        // @include body__text--color;
-        // @include color__transition(color);
     }
 
-    // .home__body--spacer {
-    //     padding: $m-size;
-    // }
+    .home__content--padding {
+        padding: $m-size;
+        padding-top: $xl-size;
+    }
 }

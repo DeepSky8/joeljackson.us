@@ -12,7 +12,6 @@
 }
 
 .welcome__link {
-    // text-decoration: none;
     @include body__text--color;
     cursor: pointer;
 }
@@ -24,7 +23,6 @@
 }
 
 .welcome__button--about {
-    // background: transparent;
     @include body__text--color;
     font-size: $calcFontSizeLarge;
     @include border__style;

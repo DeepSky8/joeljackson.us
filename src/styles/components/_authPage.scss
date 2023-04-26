@@ -30,6 +30,7 @@
     max-width: 75%;
     font-size: $calcFontSizeLarge;
     @include background--color(field__input__background);
+    @include body__text--color;
 }
 
 .authPage__container--buttons {
@@ -47,5 +48,6 @@
     font-size: $calcFontSizeLarge;
     width: 75%;
     height: $calcFontSizeExtraLarge;
-    @include background--color(switch__background);
+    @include background--color(button__background);
+    @include body__text--color;
 }

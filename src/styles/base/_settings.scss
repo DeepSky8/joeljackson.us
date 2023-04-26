@@ -28,17 +28,9 @@ $transition-short: 1s;
 $transition-med: 2s;
 $transition-long: 3s;
 
-
-
-
 // Colors
 $red-delete: rgb(197, 4, 4);
 $text-black: #000000;
-
-
-
-
-
 
 // GREEN THEME
 
@@ -55,13 +47,7 @@ $green__switch--background: #3fdb80;
 $text-grey--green: #7e997999;
 // Green input background
 $green-pastel: #73c796;
-
 // $green-pastel: #74c598;
-
-
-
-
-
 
 // BLUE THEME
 $blue-reg: #91ddf2;
@@ -70,19 +56,12 @@ $blue-pastel: #c6f3ff;
 $blue-med-dark: darken($blue-reg, 15%);
 $blue-dark: darken($blue-reg, 20%);
 $blue-extra-dark: darken($blue-reg, 40%);
-// $blue__switch--background--pink: #e9b1ff;
 $blue__switch--background--pink: #f4e5fa;
 
 $blue__switch--background--light-pink: #f4e5fa;
 
 // Made/Found unselected word color for blue background
 $text-blue--faded: #a2d4d355;
-
-
-
-
-
-
 
 // BLACK THEME
 
@@ -93,11 +72,6 @@ $background-blue: #151517;
 $blue-light: #a2d4d3;
 
 $blue-light-dark: darken($blue-light, 20%);
-
-
-
-
-
 
 // WHITE THEME
 
@@ -114,34 +88,7 @@ $text-grey: #494949;
 // Window background for Green theme, and app background for Black theme
 $background-grey: #12121a;
 
-
-
-
 // SWITCH
 
 // Switch background
 $background-fade: #00000060;
-
-
-
-
-
-
-
-// Text for green-alt
-// $green-alt: #ff0000;
-
-// $blue-light: #0dc0ba;
-// blue/grey #151517
-// red/grey #171515
-// favicon green #86bf63
-// $green-reg: #66904c;
-// $green-light: #09b667;
-// $green-dark: #66904c;
-// $green-alt: #4c7135;
-// $blue-reg: #0f6be4;
-// $blue-reg: #267be9;
-
-
-
-// Input background transitions
