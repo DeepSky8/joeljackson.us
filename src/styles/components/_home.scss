@@ -10,7 +10,7 @@
 
 .home__content--padding {
     padding: $m-size;
-    padding-top: $xxl-size;
+    padding-top: $xl-size + $l-size;
 }
 
 @media only screen and (min-device-width: $desktop-breakpoint) {
@@ -30,6 +30,6 @@
 
     .home__content--padding {
         padding: $m-size;
-        padding-top: $xl-size;
+        padding-top: $xl-size + $m-size;
     }
 }

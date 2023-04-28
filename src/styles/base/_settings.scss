@@ -14,6 +14,7 @@ $xxl-size: 9.6rem;
 $card-height: 60rem;
 
 $calcFontSize: calc(12px + 2vmin);
+$calcFontSizeMed: calc(12px + 3vmin);
 $calcFontSizeLarge: calc(12px + 4vmin);
 $calcFontSizeExtraLarge: calc(12px + 6vmin);
 
@@ -24,7 +25,7 @@ $theme__button--size: 4rem;
 $theme__button--sizeSmall: 2rem;
 
 // Timing
-$transition-extraShort: .5s;
+$transition-extraShort: 0.5s;
 $transition-short: 1s;
 $transition-med: 2s;
 $transition-long: 3s;
@@ -78,7 +79,9 @@ $blue-light-dark: darken($blue-light, 20%);
 
 // Base grey for White theme
 $grey-light: #e7e7e7;
+$grey-light-lighten: lighten($grey-light, 20%);
 $grey-light-dark: darken($grey-light, 25%);
+$grey-light-med: darken($grey-light, 11%);
 
 // Window background for White theme
 $grey-regular: #686868;

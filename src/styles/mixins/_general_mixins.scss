@@ -144,7 +144,7 @@
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue-reg;
+            background-color: $blue-med-dark;
         }
         &.black {
             @include color__transition(background-color);
@@ -190,7 +190,7 @@
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light;
+            background-color: $grey-light-med;
         }
     }
 
@@ -220,15 +220,15 @@
         }
         &.blue {
             @include color__transition(background-color);
-            background-color: $blue-med-dark;
+            background-color: $blue-pastel;
         }
         &.black {
             @include color__transition(background-color);
-            background-color: $background-blue;
+            background-color: $background-grey;
         }
         &.white {
             @include color__transition(background-color);
-            background-color: $grey-light;
+            background-color: $grey-light-lighten;
         }
     }
 

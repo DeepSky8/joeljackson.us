@@ -6,3 +6,9 @@
     text-align: center;
     @include body__text--color();
 }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .adminPage__container {
+        font-size: $calcFontSize;
+    }
+}

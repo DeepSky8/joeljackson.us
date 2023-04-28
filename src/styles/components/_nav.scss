@@ -1,32 +1,45 @@
 .nav__wrapper {
     display: flex;
     justify-content: center;
-    padding: $s-size 0;
+    padding: 0;
+    padding-bottom: $s-size;
+    font-size: $calcFontSizeMed;
 }
 
 .nav-link--left {
     @include nav-link--base;
     @include body__text--color;
-    @include background--color(header__background);
+    @include background--color(menuItem__background);
     @include nav-link--outline;
     text-align: right;
     border-top-left-radius: 500px;
     border-bottom-left-radius: 500px;
-    padding: 10px 22px 15px 0px;
+    // padding: 10px 22px 15px 20px;
+    padding: $xs-size;
+    padding-left: $s-size;
     margin-right: 0%;
-    width: 20%;
+    max-width: 20%;
+    min-width: 5%;
 }
 
 .nav-link--right {
     @include nav-link--base;
     @include header__text--color;
     @include body__text--color;
-    @include background--color(header__background);
+    @include background--color(menuItem__background);
     @include nav-link--outline;
     text-align: left;
     border-top-right-radius: 500px;
     border-bottom-right-radius: 500px;
-    padding: 10px 0px 15px 20px;
+    // padding: 10px 20px 15px 20px;
+    padding: $xs-size;
+    padding-right: $s-size;
     margin-left: 0%;
-    width: 20%;
+    max-width: 20%;
+    min-width: 5%;
 }
+
+
+// @media only screen and (min-device-width: $desktop-breakpoint) {
+
+// }

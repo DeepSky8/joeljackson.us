@@ -1,0 +1,6 @@
+Contributor tab for additional users
+Dashboard to control whether Contribution tab is visible
+Drag/drop reordering?
+
+Limit contributions
+Pin one item to top

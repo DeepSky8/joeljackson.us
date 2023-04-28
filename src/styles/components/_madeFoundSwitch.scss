@@ -10,6 +10,8 @@
     display: flex;
     position: relative;
     max-width: 50%;
+    min-width: 10vw;
+
     height: fit-content;
     width: fit-content;
     margin: 0 10px;
@@ -23,6 +25,7 @@
     z-index: 2;
     float: left;
     width: 20vw;
+    min-width: 10vw;
     font-size: $calcFontSizeLarge;
     text-align: center;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
@@ -103,4 +106,16 @@
     height: 93%;
     border-radius: 3px;
     @include background--color(switch__background);
+}
+
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .switch-label {
+        width: 5vw;
+        font-size: $calcFontSize;
+    }
+
+    .switch-selection {
+        height: 90%;
+    }
 }

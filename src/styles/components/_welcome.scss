@@ -2,6 +2,9 @@
     @include body__text--color;
     margin-bottom: $xxl-size;
     display: flexbox;
+    p {
+        margin-top: $s-size;
+    }
 }
 
 .welcome__container--header {
@@ -24,7 +27,7 @@
 
 .welcome__button--about {
     @include body__text--color;
-    font-size: $calcFontSizeLarge;
+    font-size: $calcFontSizeMed;
     @include border__style;
     @include body__border--color;
     @include background--color(button__background);
