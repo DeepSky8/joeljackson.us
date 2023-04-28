@@ -107,3 +107,22 @@
     border-radius: 3px;
     @include background--color(switch__background);
 }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .adminSwitch__title {
+        font-size: $calcFontSize;
+    }
+
+    .adminSwitch__switch {
+        max-width: 25%;
+    }
+
+    .adminSwitch__label {
+        font-size: $calcFontSize;
+    }
+
+    .adminSwitch__selection {
+        max-width: 49.6%;
+        height: 90%;
+    }
+}

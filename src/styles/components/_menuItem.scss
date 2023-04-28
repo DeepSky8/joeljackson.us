@@ -104,3 +104,15 @@
         @include background--color(hover__background);
     }
 }
+
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .menuItem__title {
+        font-size: $calcFontSizeLarge;
+    }
+
+    .menuItem__buttons--editRemove {
+        font-size: $calcFontSize;
+
+    }
+}

@@ -33,3 +33,17 @@
     font-size: $calcFontSizeLarge;
     @include body__text--color();
 }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .user__button--delete {
+        font-size: $calcFontSize;
+    }
+
+    .user__data--last {
+        font-size: $calcFontSize;
+    }
+
+    .user__data--accessed {
+        font-size: $calcFontSize;
+    }
+}

@@ -54,3 +54,31 @@
         @include background--color(hover__background);
     }
 }
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .authPage__container {
+        margin-top: $m-size;
+        font-size: $calcFontSizeLarge;
+    }
+
+    .authPage__container--input {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 $xl-size;
+    }
+
+    .authPage__login--label {
+        font-size: $calcFontSize;
+    }
+
+    .authPage__login--textBox {
+        font-size: $calcFontSize;
+        width: 55%;
+    }
+
+    .authPage__login--button {
+        font-size: $calcFontSize;
+        height: $calcFontSizeLarge;
+        width: 55%;
+    }
+}

@@ -9,6 +9,11 @@
     margin-bottom: $xxl-size;
 }
 
+// .addEdit__container--field {
+//     // display: block;
+//     // justify-content: center;
+// }
+
 .addEdit__buttons--container {
     display: flex;
     justify-content: space-between;
@@ -31,4 +36,27 @@
 .addEdit--center {
     @include center-item;
     @include body__text--color;
+}
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    // .addEdit__container{
+
+    // }
+
+    .addEdit__buttons--container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .addEdit__buttons--saveCancel {
+        width: 35%;
+        font-size: $calcFontSize;
+        @include background--color(button__background);
+        @include body__text--color();
+        @include border__style();
+        @include body__border--color();
+    }
 }

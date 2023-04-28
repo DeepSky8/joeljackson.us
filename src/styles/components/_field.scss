@@ -2,8 +2,6 @@
     max-width: 100%;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    flex-wrap: wrap;
-    flex-direction: row;
     padding-bottom: $xs-size;
 }
 
@@ -17,4 +15,27 @@
     @include inset__item;
     @include background--color(field__input__background);
     @include body__text--color();
+}
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .field__container {
+        max-width: 620px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-between;
+
+        padding-bottom: $xs-size;
+        margin: auto;
+    }
+
+    .field__container--description {
+        @include body__text--color;
+    }
+
+    .field--input {
+        height: fit-content;
+        font-size: $calcFontSize;
+        position: relative;
+        right: 0;
+    }
 }

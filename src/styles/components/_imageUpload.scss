@@ -10,6 +10,7 @@
     @include background--color(button__background);
     @include body__text--color();
     @include border__style();
+    @include body__border--color();
     width: 48%;
     font-size: $calcFontSizeLarge;
     cursor: pointer;
@@ -24,6 +25,7 @@
     @include background--color(button__background);
     @include body__text--color();
     @include border__style();
+    @include body__border--color();
     width: 48%;
     padding: 0.5rem;
     font-size: $calcFontSizeLarge;
@@ -38,4 +40,25 @@
     height: 1px;
     overflow: hidden;
     position: relative;
+}
+
+@media only screen and (min-device-width: $desktop-breakpoint) {
+    .imageUpload__container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 620px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .imageUpload__label {
+        padding: 0.2rem;
+        width: 35%;
+        font-size: $calcFontSize;
+    }
+
+    .imageUpload__clearImage {
+        width: 35%;
+        font-size: $calcFontSize;
+    }
 }

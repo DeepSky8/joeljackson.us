@@ -66,55 +66,58 @@ const AddEdit = () => {
     return (
         <div className={`addEdit__container ${theme}`}>
 
-            {cardState.cardKey
-                ?
-                <p
-                    className="addEdit--center"
-                >{`I ${cardState.type} this`}</p>
-                :
-                <MadeFoundSwitch
-                    type={type}
-                    dispatchCardState={dispatchCardState}
-                />
-            }
-
-            {
-                <span>
-                    {fieldArray.map((field) => {
-                        return (
-                            <Field
-                                key={field.id}
-                                {...field}
-                                theme={theme}
-
-                            />
-                        )
-                    })}
-
-                    <ImageUpload
+                {cardState.cardKey
+                    ?
+                    <p
+                        className="addEdit--center"
+                    >{`I ${cardState.type} this`}</p>
+                    :
+                    <MadeFoundSwitch
+                        type={type}
                         dispatchCardState={dispatchCardState}
                     />
-                    <ImageViewer
-                        imageFile={cardState.imageFile}
-                        imageURL={cardState.imageURL}
-                        altText={cardState.altText}
-                    />
+                }
 
-                    <span className="addEdit__buttons--container">
-                        <button
-                            className={`addEdit__buttons--saveCancel ${theme}`}
-                            onClick={() => {
-                                if (evalAddEdit()) { goBack() }
-                            }}
-                        >{cardState.cardKey ? 'Update' : 'Save'}</button>
-                        <button
-                            className={`addEdit__buttons--saveCancel ${theme}`}
-                            onClick={() => { goBack() }}
-                        >Cancel</button>
+
+                {
+                    <span>
+                        <span className="addEdit__container--field">
+                            {fieldArray.map((field) => {
+                                return (
+                                    <Field
+                                        key={field.id}
+                                        {...field}
+                                        theme={theme}
+
+                                    />
+                                )
+                            })}
+                        </span>
+
+                        <ImageUpload
+                            dispatchCardState={dispatchCardState}
+                        />
+                        <ImageViewer
+                            imageFile={cardState.imageFile}
+                            imageURL={cardState.imageURL}
+                            altText={cardState.altText}
+                        />
+
+                        <span className="addEdit__buttons--container">
+                            <button
+                                className={`addEdit__buttons--saveCancel ${theme}`}
+                                onClick={() => {
+                                    if (evalAddEdit()) { goBack() }
+                                }}
+                            >{cardState.cardKey ? 'Update' : 'Save'}</button>
+                            <button
+                                className={`addEdit__buttons--saveCancel ${theme}`}
+                                onClick={() => { goBack() }}
+                            >Cancel</button>
+                        </span>
+
                     </span>
-
-                </span>
-            }
+                }
         </div>
     )
 }
