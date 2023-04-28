@@ -10,6 +10,7 @@ import AuthPage from "../components/authentication/AuthPage";
 import ResetPage from "../components/authentication/ResetPage";
 import RegisterPage from "../components/authentication/RegisterPage";
 import AdminPage from "../components/admin/AdminPage";
+import AuthWrapper from "../components/authentication/AuthWrapper";
 
 const AppRouter = createBrowserRouter([
     {
@@ -29,14 +30,6 @@ const AppRouter = createBrowserRouter([
                         element: <MenuWrapper />,
                     },
                     {
-                        path: '/add/:type?',
-                        element: <AddEdit />,
-                    },
-                    {
-                        path: '/:type/edit/:id',
-                        element: <AddEdit />,
-                    },
-                    {
                         path: '/authenticate/:back?',
                         element: <AuthPage />
                     },
@@ -49,9 +42,23 @@ const AppRouter = createBrowserRouter([
                         element: <ResetPage />
                     },
                     {
-                        path: '/admin',
-                        element: <AdminPage />
-                    }
+                        element: <AuthWrapper />,
+                        children: [
+                            {
+                                path: '/add/:type?',
+                                element: <AddEdit />,
+                            },
+                            {
+                                path: '/:type/edit/:id',
+                                element: <AddEdit />,
+                            },
+                            {
+                                path: '/admin',
+                                element: <AdminPage />
+                            }
+                        ]
+                    },
+
                 ]
 
             }

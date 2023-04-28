@@ -28,26 +28,22 @@ const Welcome = () => {
                 I realized I wanted a single, central location to share them with people.
             </p>
             <p>
+                {checkOut}
+                <Link
+                    className={`welcome__link ${theme}`}
+                    to={'/made'}>
+                    {made}
+                </Link>
                 <span>
-                    <p>
-                        {checkOut}
-                        <Link
-                            className={`welcome__link ${theme}`}
-                            to={'/made'}>
-                            {made}
-                        </Link>
-                        <span>
-                            {and}
-                        </span>
-                        <Link
-                            className={`welcome__link ${theme}`}
-                            to={'/found'}>
-                            {found}
-                        </Link>
-                        <span>
-                            {pages}
-                        </span>
-                    </p>
+                    {and}
+                </span>
+                <Link
+                    className={`welcome__link ${theme}`}
+                    to={'/found'}>
+                    {found}
+                </Link>
+                <span>
+                    {pages}
                 </span>
             </p>
             <hr />

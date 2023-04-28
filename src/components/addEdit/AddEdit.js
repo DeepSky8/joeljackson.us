@@ -21,7 +21,7 @@ const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type = 'found', id = '' } = useParams()
-    const { allCardsArray } = useOutletContext([])
+    const { allCardsArray } = useOutletContext()
     const [currentArray,] = useState(allCardsArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
