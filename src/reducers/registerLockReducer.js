@@ -13,7 +13,6 @@ const registerLockReducer = (state, action) => {
             }
         case 'UPDATE_LOCK':
             return {
-                ...state,
                 registerLock: !state.registerLock,
                 userUID: action.uid,
                 updatedOn: Date.now()

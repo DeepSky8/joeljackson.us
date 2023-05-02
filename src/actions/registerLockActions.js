@@ -14,7 +14,7 @@ export const updateLock = (uid) => ({
 export const startLockRegistration = ({ lockData }) => {
     const updates = {};
 
-    updates[`admin/lockData`] = lockData
+    updates[`admin/`] = {...lockData}
 
     update(ref(db), updates)
         .catch((error) => {

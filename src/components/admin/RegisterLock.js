@@ -33,7 +33,7 @@ const RegisterLock = () => {
                 uid={user ? user.uid : 'SYSTEM'}
                 text="Lock Registration: "
                 discrete='lock'
-                field={true}
+                field={lockData.registerLock}
                 action={updateLock}
                 dispatchState={dispatchLockState}
                 value1={user ? user.uid : 'SYSTEM'}
