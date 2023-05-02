@@ -69,7 +69,7 @@ const AddEdit = () => {
                 {cardState.cardKey
                     ?
                     <p
-                        className="addEdit--center"
+                        className={`addEdit--center ${theme}`}
                     >{`I ${cardState.type} this`}</p>
                     :
                     <MadeFoundSwitch

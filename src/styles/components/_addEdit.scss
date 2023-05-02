@@ -35,7 +35,8 @@
 
 .addEdit--center {
     @include center-item;
-    @include body__text--color;
+    @include body__text--color();
+
 }
 
 @media only screen and (min-device-width: $desktop-breakpoint) {
