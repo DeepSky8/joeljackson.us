@@ -21,6 +21,7 @@
     @include body__text--color;
     padding: $s-size;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .menuItem__header {
@@ -82,6 +83,8 @@
     max-width: 100%;
     text-decoration: none;
     padding: $s-size;
+    overflow: hidden;
+    max-height: 600px;
 }
 
 .menuItem__buttons--container {
