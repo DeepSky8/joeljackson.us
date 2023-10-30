@@ -1,4 +1,4 @@
-import { startSaveCard, updateAltText, updateBody, updateLink, updateTitle } from "../actions/cardActions"
+import { updateAltText, updateBody, updateLink, updateTitle } from "../actions/cardActions"
 import checkURL from "../functions/checkURL"
 
 const fieldObjectArray = [

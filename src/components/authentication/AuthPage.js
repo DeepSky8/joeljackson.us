@@ -10,10 +10,10 @@ const AuthPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [resetEmail, setResetEmail, { removeItem }] = useLocalStorageState('jjResetEmail', { defaultValue: '' })
+    const [resetEmail,, { removeItem }] = useLocalStorageState('jjResetEmail', { defaultValue: '' })
     const [email, setEmail] = useState(resetEmail)
     const [password, setPassword] = useState("")
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading] = useAuthState(auth)
     const loginTitle = 'Login'
     const emailText = 'Login with Email'
     const newAccountText = "Create New Account"

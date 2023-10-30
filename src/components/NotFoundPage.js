@@ -1,9 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useRouteError } from "react-router-dom";
-import useLocalStorageState from "use-local-storage-state";
-
-
 
 export const NotFoundPage = () => {
     const error = useRouteError()

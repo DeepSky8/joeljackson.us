@@ -9,7 +9,7 @@ import ThemeContext from "../context/ThemeContext";
 import RegisterLock from "./RegisterLock";
 
 const AdminPage = () => {
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const navigate = useNavigate()
     const theme = useContext(ThemeContext);
     const [userArray, setUserArray] = useState([])
@@ -32,9 +32,6 @@ const AdminPage = () => {
                     setUserArray(tempUsersArray)
                 }
             })
-
-
-        } else if (loading) {
 
         } else {
             navigate('/')

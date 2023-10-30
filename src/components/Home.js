@@ -15,7 +15,7 @@ import { loadLock } from "../actions/registerLockActions";
 import { defaultRegisterLockState, registerLockReducer } from "../reducers/registerLockReducer";
 
 const Home = () => {
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const theme = useContext(ThemeContext)
     const [currentUser, dispatchCurrentUser] = useReducer(userReducer, defaultUserState)
     const [lockData, dispatchLockData] = useReducer(registerLockReducer, defaultRegisterLockState)
@@ -103,7 +103,7 @@ const Home = () => {
     // Auth icon update, changes state for Edit/Remove button display
     useEffect(() => {
         auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
-    }, [auth.currentUser])
+    }, [])
 
     // Locked Registration listener
     useEffect(() => {

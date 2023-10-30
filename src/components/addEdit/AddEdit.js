@@ -31,7 +31,7 @@ const AddEdit = () => {
             dispatchCardState(updateUID(auth.currentUser.uid))
 
         }
-    }, [auth.currentUser])
+    }, [])
 
     useEffect(() => {
         const selectedCard = currentArray.find(card => card.cardKey === id)

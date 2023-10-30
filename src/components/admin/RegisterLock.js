@@ -11,7 +11,7 @@ import ThemeContext from "../context/ThemeContext";
 import { useEffect } from "react";
 
 const RegisterLock = () => {
-    const [user, loading, error] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const theme = useContext(ThemeContext);
     const { allUsers, lockData } = useOutletContext();
     const [lockState, dispatchLockState] = useReducer(registerLockReducer, lockData)
@@ -24,7 +24,7 @@ const RegisterLock = () => {
         if (lockState.userUID !== 'SYSTEM' && lockState.updatedOn !== lockData.updatedOn) {
             startLockRegistration({ lockData: lockState })
         }
-    }, [lockState])
+    }, [lockState, lockData.updatedOn])
 
     return (
         <div className="registerLock__container">
