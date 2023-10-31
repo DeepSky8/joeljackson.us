@@ -15,43 +15,43 @@
             "purpose": "any"
         },
         {
-            "src": "/maskable_icon_x48.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x48.png?alt=media&token=e5046028-1183-43c4-96db-7bead23a0537&_gl=1*rlvsu8*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNzM4LjIxLjAuMA..",
             "sizes": "48x48",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x72.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x72.png?alt=media&token=cdc486bc-a233-45a8-8c10-a9767c78a3de&_gl=1*19gzn9x*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNzYzLjYwLjAuMA..",
             "sizes": "72x72",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x96.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x96.png?alt=media&token=f77fc036-e4d3-428a-94d4-6c619b53b100&_gl=1*5175y3*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNzgxLjQyLjAuMA..",
             "sizes": "96x96",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x128.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x128.png?alt=media&token=9e9708c8-b848-464c-b0ec-7373e38ef80f&_gl=1*16pd670*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzMDc0LjU1LjAuMA..",
             "sizes": "128x128",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x192.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x192.png?alt=media&token=f5cf08f2-936c-41c6-ae94-10e9a8165229&_gl=1*11vwwpw*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNjk5LjYwLjAuMA..",
             "sizes": "192x192",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x384.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x384.png?alt=media&token=2cc43792-e1ab-4be3-81f9-7eac41a17989&_gl=1*75sr7e*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNzI3LjMyLjAuMA..",
             "sizes": "384x384",
             "type": "image/png",
             "purpose": "maskable"
         },
         {
-            "src": "/maskable_icon_x512.png",
+            "src": "https://firebasestorage.googleapis.com/v0/b/joeljacksonus.appspot.com/o/maskable_icon_x512.png?alt=media&token=80e90d64-f280-410f-8c58-e1eebd6b57dd&_gl=1*eojiv5*_ga*MTQzOTk4OTM1MS4xNjc4MzA4OTE2*_ga_CW55HF8NVT*MTY5ODc4MzA2OS40MTMuMS4xNjk4NzgzNzUyLjcuMC4w",
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
