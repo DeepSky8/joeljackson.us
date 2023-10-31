@@ -45,7 +45,7 @@ const AddLock = ({ authStatus, setAuthStatus, currentUser }) => {
 
                 <button
                     className={`material-icons add ${theme} addLock__button--addLock`}
-                    onClick={addActions} >
+                    onClick={() => { addActions() }} >
                     add
                 </button>
 
@@ -54,13 +54,13 @@ const AddLock = ({ authStatus, setAuthStatus, currentUser }) => {
                     &&
                     <button
                         className={`material-symbols-outlined demography ${theme} addLock__button--addLock`}
-                        onClick={adminActions} >
+                        onClick={() => { adminActions() }} >
                         demography
                     </button>}
 
                 <button
                     className={`material-icons ${authStatus} ${theme} addLock__button--addLock`}
-                    onClick={authActions} >
+                    onClick={() => { authActions() }} >
                     {`${authStatus}`}
                 </button>
 

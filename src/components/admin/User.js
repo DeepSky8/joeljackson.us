@@ -44,7 +44,7 @@ const User = ({ userData }) => {
                 <span className="user__container--button">
                     <button
                         className="user__button--delete"
-                        onClick={handleDeleteUser}
+                        onClick={() => { handleDeleteUser() }}
                     >Delete User</button>
                 </span>
             </span>

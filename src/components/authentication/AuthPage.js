@@ -10,7 +10,7 @@ const AuthPage = () => {
     const theme = useContext(ThemeContext)
     const navigate = useNavigate()
     const { back = '' } = useParams()
-    const [resetEmail,, { removeItem }] = useLocalStorageState('jjResetEmail', { defaultValue: '' })
+    const [resetEmail, , { removeItem }] = useLocalStorageState('jjResetEmail', { defaultValue: '' })
     const [email, setEmail] = useState(resetEmail)
     const [password, setPassword] = useState("")
     const [user, loading] = useAuthState(auth)
@@ -82,7 +82,7 @@ const AuthPage = () => {
                 <span className="authPage__container--button">
                     <button
                         className={`authPage__login--button ${theme}`}
-                        onClick={loginEmail}
+                        onClick={() => { loginEmail() }}
                     >
                         {emailText}
                     </button>
@@ -90,7 +90,7 @@ const AuthPage = () => {
 
                 <span className="authPage__container--button">
                     <button className={`authPage__login--button ${theme}`}
-                        onClick={signInWithGoogle}
+                        onClick={()=>{signInWithGoogle()}}
                     >
                         {googleText}
                     </button>

@@ -29,7 +29,7 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
                 &&
                 <button
                     className={`menuItem__star material-symbols-rounded star-${cardData.starStatus} ${theme}`}
-                    onClick={starCheck}
+                    onClick={() => { starCheck() }}
                 >
                     star
                 </button>
