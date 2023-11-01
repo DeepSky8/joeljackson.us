@@ -20,6 +20,7 @@ const AppRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+                errorElement: <NotFoundPage />,
                 children: [
                     {
                         index: true,
@@ -43,6 +44,7 @@ const AppRouter = createBrowserRouter([
                     },
                     {
                         element: <AuthWrapper />,
+                        errorElement: <NotFoundPage />,
                         children: [
                             {
                                 path: '/add/:type?',
@@ -63,7 +65,6 @@ const AppRouter = createBrowserRouter([
 
             }
         ]
-
     },
 
 ])

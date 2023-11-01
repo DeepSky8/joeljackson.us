@@ -14,7 +14,7 @@ const MenuItem = ({ cardData, removeCard, handleStarCard, handleUnstarCard }) =>
                 ?
                 handleUnstarCard(cardData.cardKey)
                 :
-                handleStarCard(cardData.type, cardData.cardKey)
+                handleStarCard(cardData.cardKey)
         }
     }
 

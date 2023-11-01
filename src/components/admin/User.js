@@ -4,11 +4,9 @@ import { startAddVisible, startRemoveUser, startRemoveVisible, startUpdateUser, 
 import AdminSwitch from "./AdminSwitch";
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
-import { useOutletContext } from "react-router";
 
-const User = ({ userData }) => {
+const User = ({ userData, removeAllItems }) => {
     const theme = useContext(ThemeContext)
-    const { removeAllItems } = useOutletContext();
     const [userState, dispatchUserState] = useReducer(userReducer, userData)
     const lastAccess = new Date(userState.lastAccess).toDateString()
     const dateData = lastAccess === 'Invalid Date' ? 'Never' : lastAccess
@@ -26,7 +24,8 @@ const User = ({ userData }) => {
     }, [userState])
 
     const handleDeleteUser = () => {
-        removeAllItems(userState.uid)
+
+        removeAllItems()
             .then(() => {
                 startRemoveUser({ uid: userState.uid })
             })

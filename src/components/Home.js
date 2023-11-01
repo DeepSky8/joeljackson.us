@@ -10,7 +10,6 @@ import AddLock from "./body/AddLock";
 import { defaultUserState, userReducer } from "../reducers/userReducer";
 import { clearUser, loadUser } from "../actions/userActions";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { startRemoveCard } from "../actions/cardActions";
 import { loadLock } from "../actions/registerLockActions";
 import { defaultRegisterLockState, registerLockReducer } from "../reducers/registerLockReducer";
 
@@ -21,9 +20,6 @@ const Home = () => {
     const [lockData, dispatchLockData] = useReducer(registerLockReducer, defaultRegisterLockState)
     const [allUsers, setAllUsers] = useState([])
     const [visibleUIDs, setVisibleUIDs] = useState([])
-
-    const [allCardsArray, setAllCardsArray] = useState([])
-    const [starredCardsArray, setStarredCardsArray] = useState([])
     const [authStatus, setAuthStatus] = useState('lock')
 
     // Current User Listener
@@ -75,31 +71,6 @@ const Home = () => {
         })
     }, [])
 
-    // Card Listener
-    useEffect(() => {
-        onValue(ref(db, `card`), (snapshot) => {
-            const tempCardsArray = [];
-            const tempStarredArray = [];
-
-            if (snapshot.exists()) {
-                snapshot.forEach((snap) => {
-                    tempCardsArray.push(snap.val())
-                    if (snap.val().starStatus === 'selected') {
-                        tempStarredArray.push(snap.val())
-                    }
-                })
-            }
-            tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated))
-            setAllCardsArray(tempCardsArray)
-            setStarredCardsArray(tempStarredArray)
-
-        })
-
-        return () => {
-            off(ref(db, `card`))
-        }
-    }, [])
-
     // Auth icon update, changes state for Edit/Remove button display
     useEffect(() => {
         auth.currentUser ? setAuthStatus('lock_open') : setAuthStatus('lock')
@@ -118,32 +89,16 @@ const Home = () => {
         }
     }, [])
 
-    const removeAllItems = async (uid) => {
-        if (currentUser.admin) {
-
-            const cardsToRemove = allCardsArray
-                .filter(card => card.userUID === uid)
-                .map(card => card.cardKey);
-
-            cardsToRemove.forEach(cardKey => {
-                return startRemoveCard({ cardKey })
-            })
-        }
-    }
-
     return (
         <div className={`window__background ${theme}`} >
             <Header />
             <div className={`home__content__wrapper ${theme}`}>
                 <div className={`home__content--padding ${theme}`}>
                     <Outlet context={{
-                        allCardsArray,
                         allUsers,
                         authStatus,
                         currentUser,
                         lockData,
-                        removeAllItems,
-                        starredCardsArray,
                         visibleUIDs,
                     }} />
                 </div>

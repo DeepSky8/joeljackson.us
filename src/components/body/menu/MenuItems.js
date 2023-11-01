@@ -1,32 +1,56 @@
-import React from "react";
-import { auth } from "../../../api/firebase";
+import React, { useEffect, useState } from "react";
+import { auth, db } from "../../../api/firebase";
 import MenuItem from "./MenuItem";
 import { useOutletContext, useParams } from "react-router";
 import { startRemoveCard, startStarCard, startUnstarCard } from "../../../actions/cardActions";
 import { starSort } from "../../../functions/starSort";
+import { equalTo, off, onValue, orderByChild, query, ref } from "firebase/database";
+import LoadingSpinner from "../../LoadingSpinner";
 
 const MenuItems = () => {
     const {
-        allCardsArray,
         allUsers,
         currentUser,
         visibleUIDs,
-        starredCardsArray,
     } = useOutletContext()
-    const { type = 'found' } = useParams()
+    const { type } = useParams()
+    const [sortedArray, setSortedArray] = useState([])
     const currentDisplay = []
-    const selectedType = allCardsArray
-        .filter(card => card.type === type)
-        .sort(starSort)
 
-    selectedType.forEach(card => {
+
+    // Card Listener
+    useEffect(() => {
+        const cardTypeListenerQuery = query(ref(db, `card`), orderByChild('type'), equalTo(type))
+        if (type) {
+            onValue(cardTypeListenerQuery, (snapshot) => {
+                const tempCardsArray = [];
+
+                if (snapshot.exists()) {
+                    snapshot.forEach((snap) => {
+                        tempCardsArray.push(snap.val())
+                    })
+                }
+                const sortedCards = tempCardsArray.sort((a, b) => (b.dateUpdated - a.dateUpdated)).sort(starSort)
+                setSortedArray(sortedCards)
+
+            })
+        }
+
+        return () => {
+            if (type) {
+                off(cardTypeListenerQuery)
+            }
+        }
+    }, [type])
+
+    sortedArray.forEach(card => {
         const visFlag = (visibleUIDs.includes(card.userUID) ? '' : 'visibility_lock');
         const handleDisplay = allUsers.length > 0
             ?
-            allUsers.filter(user => user.uid === card.userUID)[0].email
+            allUsers.find(user => user.uid === card.userUID).email
             :
             ""
-        if (currentUser.admin) {
+        if (currentUser.admin && handleDisplay) {
             currentDisplay.push({ ...card, visFlag, handleDisplay, admin: true })
         } else if (
             (visFlag === '')
@@ -36,14 +60,14 @@ const MenuItems = () => {
             currentDisplay.push({ ...card, visFlag, handleDisplay: "", admin: false })
         }
     })
-    const foundStar = starredCardsArray.filter(card => (card.type === 'found' && card.starStatus === 'selected'))[0]
-    const madeStar = starredCardsArray.filter(card => (card.type === 'made' && card.starStatus === 'selected'))[0]
 
-    const handleStarCard = (type, cardKey) => {
+
+    const handleStarCard = (cardKey) => {
         if (currentUser.admin) {
-            const currentStarred = type === 'found' ? foundStar : madeStar
-            if (currentStarred) {
-                startUnstarCard({ cardKey: currentStarred.cardKey })
+            const starredCard = currentDisplay.find(card => card.starStatus === 'selected')
+
+            if (starredCard) {
+                startUnstarCard({ cardKey: starredCard.cardKey })
                     .then(() => {
                         startStarCard({ cardKey })
                     })
@@ -59,19 +83,30 @@ const MenuItems = () => {
         }
     }
 
-    return currentDisplay.map((cardData) => {
+    if (currentDisplay.length > 0) {
+
+        return currentDisplay.map((cardData) => {
+            return (
+                <MenuItem
+                    key={cardData.cardKey}
+                    cardData={cardData}
+                    removeCard={() => {
+                        startRemoveCard({ cardKey: cardData.cardKey })
+                    }}
+                    handleStarCard={handleStarCard}
+                    handleUnstarCard={handleUnstarCard}
+                />
+            )
+        })
+
+    } else {
         return (
-            <MenuItem
-                key={cardData.cardKey}
-                cardData={cardData}
-                removeCard={() => {
-                    startRemoveCard({ cardKey: cardData.cardKey })
-                }}
-                handleStarCard={handleStarCard}
-                handleUnstarCard={handleUnstarCard}
-            />
+            <LoadingSpinner />
         )
-    })
+
+
+    }
+
 }
 
 
