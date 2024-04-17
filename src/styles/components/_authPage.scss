@@ -31,6 +31,10 @@
     font-size: $calcFontSizeLarge;
     @include background--color(field__input__background);
     @include body__text--color;
+    border: 1px $text-black solid;
+    &.black {
+        border: 1px $blue-reg solid;
+    }
 }
 
 .authPage__container--buttons {
@@ -50,6 +54,10 @@
     height: $calcFontSizeExtraLarge;
     @include background--color(button__background);
     @include body__text--color;
+    border: 1px $text-black solid;
+    &.black {
+        border: 1px $blue-reg solid;
+    }
     &:hover {
         @include background--color(hover__background);
     }
