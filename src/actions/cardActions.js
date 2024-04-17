@@ -1,4 +1,4 @@
-import { child, get, push, ref, update } from 'firebase/database';
+import { child, push, ref, update } from 'firebase/database';
 import { uploadBytesResumable, ref as sRef, getDownloadURL, deleteObject } from 'firebase/storage';
 import { db, storage } from "../api/firebase";
 

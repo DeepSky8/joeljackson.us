@@ -13,7 +13,7 @@ const RegisterPage = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [confirmPassword, setConfirmPassword] = useState("")
-    const [user, loading, error] = useAuthState(auth)
+    const [user, loading] = useAuthState(auth)
     const registerTitle = 'Create New Account'
     const registerText = 'Register now'
     const returnLogin = 'Return to Login'
