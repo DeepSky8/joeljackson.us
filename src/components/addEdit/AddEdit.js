@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useReducer, useState } from "react";
-import { useNavigate, useOutletContext, useParams } from "react-router";
+import React, { useContext, useEffect, useReducer } from "react";
+import { useNavigate, useParams } from "react-router";
 import ThemeContext from "../context/ThemeContext";
 import ImageUpload from "./ImageUpload";
 import ImageViewer from "./ImageViewer";
@@ -15,14 +15,13 @@ import {
 } from "../../actions/cardActions";
 import readyToUpdate from "../../functions/readyToUpdate";
 import MadeFoundSwitch from "./MadeFoundSwitch";
-import { auth } from "../../api/firebase";
+import { auth, db } from "../../api/firebase";
+import { off, onValue, ref } from "firebase/database";
 
 const AddEdit = () => {
     const navigate = useNavigate();
     const theme = useContext(ThemeContext)
     const { type = 'found', id = '' } = useParams()
-    const { allCardsArray } = useOutletContext()
-    const [currentArray,] = useState(allCardsArray)
     const [cardState, dispatchCardState] = useReducer(cardReducer, defaultCardState)
     const fieldArray = fieldPopulator({ cardState, dispatchCardState, theme })
 
@@ -34,9 +33,23 @@ const AddEdit = () => {
     }, [])
 
     useEffect(() => {
-        const selectedCard = currentArray.find(card => card.cardKey === id)
-        if (selectedCard) { dispatchCardState(loadCard(selectedCard)) }
-    }, [currentArray])
+        const cardRef = ref(db, `card/${id}`)
+        if (id) {
+            onValue(cardRef,
+                snapshot => {
+                    if (snapshot.exists()) {
+                        dispatchCardState(loadCard(snapshot.val()))
+                    } else {
+                        dispatchCardState(loadCard(defaultCardState))
+                    }
+                })
+        }
+
+        return (() => {
+            if (id) { off(cardRef) }
+        })
+
+    }, [id])
 
     const goBack = () => {
         navigate(`/${cardState.type}`)
@@ -66,58 +79,60 @@ const AddEdit = () => {
     return (
         <div className={`addEdit__container ${theme}`}>
 
-                {cardState.cardKey
-                    ?
-                    <p
-                        className={`addEdit--center ${theme}`}
-                    >{`I ${cardState.type} this`}</p>
-                    :
-                    <MadeFoundSwitch
-                        type={type}
+            {cardState.cardKey
+                ?
+                <p
+                    className={`addEdit--center ${theme} bold`}
+                >{`I ${cardState.type} this`}</p>
+                :
+                <MadeFoundSwitch
+                    type={type}
+                    dispatchCardState={dispatchCardState}
+                />
+            }
+
+
+            {
+                <span>
+                    <span className="addEdit__container--field">
+                        {
+                            fieldArray
+                                .map((field) => {
+                                    return (
+                                        <Field
+                                            key={field.id}
+                                            {...field}
+                                            theme={theme}
+
+                                        />
+                                    )
+                                })}
+                    </span>
+
+                    <ImageUpload
                         dispatchCardState={dispatchCardState}
                     />
-                }
+                    <ImageViewer
+                        imageFile={cardState.imageFile}
+                        imageURL={cardState.imageURL}
+                        altText={cardState.altText}
+                    />
 
-
-                {
-                    <span>
-                        <span className="addEdit__container--field">
-                            {fieldArray.map((field) => {
-                                return (
-                                    <Field
-                                        key={field.id}
-                                        {...field}
-                                        theme={theme}
-
-                                    />
-                                )
-                            })}
-                        </span>
-
-                        <ImageUpload
-                            dispatchCardState={dispatchCardState}
-                        />
-                        <ImageViewer
-                            imageFile={cardState.imageFile}
-                            imageURL={cardState.imageURL}
-                            altText={cardState.altText}
-                        />
-
-                        <span className="addEdit__buttons--container">
-                            <button
-                                className={`addEdit__buttons--saveCancel ${theme}`}
-                                onClick={() => {
-                                    if (evalAddEdit()) { goBack() }
-                                }}
-                            >{cardState.cardKey ? 'Update' : 'Save'}</button>
-                            <button
-                                className={`addEdit__buttons--saveCancel ${theme}`}
-                                onClick={() => { goBack() }}
-                            >Cancel</button>
-                        </span>
-
+                    <span className="addEdit__buttons--container">
+                        <button
+                            className={`addEdit__buttons--saveCancel ${theme}`}
+                            onClick={() => {
+                                if (evalAddEdit()) { goBack() }
+                            }}
+                        >{cardState.cardKey ? 'Update' : 'Save'}</button>
+                        <button
+                            className={`addEdit__buttons--saveCancel ${theme}`}
+                            onClick={() => { goBack() }}
+                        >Cancel</button>
                     </span>
-                }
+
+                </span>
+            }
         </div>
     )
 }

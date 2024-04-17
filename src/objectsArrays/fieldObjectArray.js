@@ -17,7 +17,7 @@ const fieldObjectArray = [
     {
         label: 'Link: ',
         id: 'link',
-        type: 'text',
+        type: 'url',
         action: updateLink,
     },
     {
